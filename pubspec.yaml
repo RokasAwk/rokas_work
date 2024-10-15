@@ -52,6 +52,7 @@ dependencies:
   # 畫面
   fluttertoast: ^8.0.9
   font_awesome_flutter: ^10.7.0
+  carousel_slider: ^5.0.0
 
   # 時間
   intl: ^0.18.1
@@ -82,9 +83,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
