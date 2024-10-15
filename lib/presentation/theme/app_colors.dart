@@ -53,5 +53,5 @@ class AppColors {
   static const Color b_2 = Color(0xFF00C6FB);
   static const Color b_3 = Color(0xFF005BEA);
 
-  static const List<Color> gradientColors = [b_1, b_2, b_3];
+  static List<Color> gradientColors = [blueGrey_10, blurGray];
 }
