@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../routers/router.dart';
@@ -11,6 +12,8 @@ abstract class HomeNotifier extends StateNotifier<HomeState> {
   });
   void goToToDoPage();
   void goToMusicPlayerPage();
+
+  void openDrawer(BuildContext context);
 }
 
 class HomeNotifierImpl extends HomeNotifier {
@@ -35,5 +38,10 @@ class HomeNotifierImpl extends HomeNotifier {
   @override
   void goToMusicPlayerPage() {
     appRouter.push(const MusicPlayerRoute());
+  }
+
+  @override
+  void openDrawer(BuildContext context) {
+    Scaffold.of(context).openDrawer();
   }
 }

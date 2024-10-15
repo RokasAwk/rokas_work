@@ -72,7 +72,31 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Scaffold(
           appBar: AppBar(
             title: Text(L10n.tr.page_home_title),
-            leading: _buildDrawerBth(),
+            leading: _buildDrawerBth(notifier),
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                const DrawerHeader(
+                  decoration: BoxDecoration(
+                    color: AppColors.blurGray,
+                  ),
+                  child: Text('Drawer Header'),
+                ),
+                ListTile(
+                  title: const Text('Item 1'),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: const Text('Item 2'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+              ],
+            ),
           ),
           body: Container(
             alignment: Alignment.topCenter,
@@ -94,11 +118,13 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
-  Widget _buildDrawerBth() {
-    return IconButton(
-      onPressed: () {},
-      icon: const FaIcon(FontAwesomeIcons.bars),
-    );
+  Widget _buildDrawerBth(HomeNotifier notifier) {
+    return Builder(builder: (context) {
+      return IconButton(
+        onPressed: () => notifier.openDrawer(context),
+        icon: const FaIcon(FontAwesomeIcons.bars),
+      );
+    });
   }
 
 // 首頁跑馬燈
@@ -166,7 +192,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Container(
       height: 32,
       width: MediaQuery.of(context).size.width,
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           gradient: LinearGradient(
         colors: AppColors.gradientColors,
       )),
