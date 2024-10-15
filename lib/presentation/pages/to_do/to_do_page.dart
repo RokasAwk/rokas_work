@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/domain/value_object/to_do_list.dart';
 import 'package:rokas_work/l10n/l10n.dart';
-import 'package:rokas_work/presentation/theme/app_colors.dart';
 
 import '../../di_providers/di_provider.dart';
 import '../widgets/empty_list_widget.dart';
@@ -91,28 +90,14 @@ Widget _buildItemTile({
   required Size size,
   required ToDoList item,
 }) {
-  return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+  return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Flight',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.tileTitleColor,
-                ),
-              ),
-              SizedBox(
-                height: 4,
-              ),
-              SizedBox(
-                height: 4,
-              ),
-            ],
+            children: [],
           ),
         ],
       ));
