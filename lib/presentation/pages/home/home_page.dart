@@ -33,7 +33,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     L10n.tr.page_to_do_title,
     L10n.tr.page_expense_title,
     L10n.tr.page_calender_title,
-    L10n.tr.page_music_player_title
+    L10n.tr.page_music_player_title,
+    L10n.tr.page_cost_title,
   ];
 
   final List<String> punchImgList = [
@@ -80,7 +81,7 @@ class _HomePageState extends ConsumerState<HomePage> {
               children: [
                 const DrawerHeader(
                   decoration: BoxDecoration(
-                    color: AppColors.blurGray,
+                    color: AppColors.blueGray,
                   ),
                   child: Text('Drawer Header'),
                 ),
@@ -110,6 +111,18 @@ class _HomePageState extends ConsumerState<HomePage> {
                   state: state,
                   notifier: notifier,
                 )),
+                Row(
+                  children: [
+                    _buildSectionTitleDivider(),
+                    const Spacer(),
+                    Text(
+                      L10n.tr.page_punch_title,
+                      style: AppTextStyles.appW400Primary,
+                    ),
+                    const Spacer(),
+                    _buildSectionTitleDivider(isReverse: true),
+                  ],
+                ),
                 _buildPuchImgSection(),
                 const DevelopedByWidget(),
               ],
@@ -179,7 +192,21 @@ class _HomePageState extends ConsumerState<HomePage> {
         const SizedBox(
           height: 16,
         ),
-        _buildSectionTitleDivider(),
+        Row(
+          children: [
+            _buildSectionTitleDivider(),
+            const Spacer(),
+            Text(
+              L10n.tr.page_function_area_title,
+              style: AppTextStyles.appW400Primary,
+            ),
+            const Spacer(),
+            _buildSectionTitleDivider(isReverse: true),
+          ],
+        ),
+        const SizedBox(
+          height: 16,
+        ),
         _buildGridSection(
           functionsList: functionsList,
           notifier: notifier,
@@ -188,15 +215,21 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
-  Widget _buildSectionTitleDivider() {
-    return Container(
-      height: 32,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-        colors: AppColors.gradientColors,
-      )),
-    );
+  Widget _buildSectionTitleDivider({
+    bool isReverse = false,
+  }) {
+    {
+      return Container(
+        height: 5,
+        width: size.width * 0.2,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+          begin: isReverse ? Alignment.centerRight : Alignment.centerLeft,
+          end: isReverse ? Alignment.centerLeft : Alignment.centerRight,
+          colors: AppColors.dividerGradientColors,
+        )),
+      );
+    }
   }
 
   Widget _buildGridSection({
@@ -204,7 +237,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     required HomeNotifier notifier,
   }) {
     return Container(
-        height: 56 * ((functionsList.length ~/ 4) + 1),
+        height: 90 * ((functionsList.length ~/ 4) + 1),
         decoration: BoxDecoration(
           color: AppColors.blueGrey_10,
         ),
@@ -300,6 +333,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         return notifier.goToToDoPage();
       case 3:
         return notifier.goToMusicPlayerPage();
+      case 4:
+        return notifier.goToCostPage();
     }
   }
 }
