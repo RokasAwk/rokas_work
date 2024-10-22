@@ -163,4 +163,112 @@ class AppTextStyles {
     height: 3 / 2,
     leadingDistribution: TextLeadingDistribution.even,
   );
+
+  static const appW600BlueGray = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW600BlueGrayMedium = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 11 / 7,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW600BlueGraySmall = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400BlueGray = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400BlueGrayMedium = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 11 / 7,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400BlueGraySmall = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.blueGray,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW600R400 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW600R400Medium = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 11 / 7,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW600R400Small = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400R400 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w400,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400R400Medium = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 11 / 7,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const appW400R400Small = TextStyle(
+    fontSize: 12,
+    fontWeight: FontWeight.w400,
+    color: AppColors.r_400,
+    decoration: TextDecoration.none,
+    height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
 }

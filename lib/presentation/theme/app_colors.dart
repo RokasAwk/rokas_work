@@ -4,8 +4,8 @@ import 'package:flutter/widgets.dart';
 class AppColors {
   static const Color primaryColor = Color.fromARGB(255, 37, 37, 41);
 
-  static const Color blurGray = Colors.blueGrey;
-  static Color blueGrey_10 = AppColors.blurGray.withOpacity(0.1);
+  static const Color blueGray = Colors.blueGrey;
+  static Color blueGrey_10 = AppColors.blueGray.withOpacity(0.1);
 
   static const Color black = Color(0xFF000000);
   static Color black_50 = AppColors.black.withOpacity(0.5);
@@ -53,5 +53,6 @@ class AppColors {
   static const Color b_2 = Color(0xFF00C6FB);
   static const Color b_3 = Color(0xFF005BEA);
 
-  static List<Color> gradientColors = [blueGrey_10, blurGray];
+  static List<Color> dividerGradientColors = [blueGrey_10, blueGray];
+  static List<Color> balanceGradientColors = [b_1, b_2];
 }
