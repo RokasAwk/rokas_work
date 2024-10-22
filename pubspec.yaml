@@ -53,10 +53,17 @@ dependencies:
   fluttertoast: ^8.0.9
   font_awesome_flutter: ^10.7.0
   carousel_slider: ^5.0.0
+  # youtube_player_flutter: ^8.1.2
 
   # 時間
   intl: ^0.18.1
   flutter_cupertino_date_picker_fork: ^1.0.7
+
+  # 數量
+  decimal: ^2.3.2
+
+  # Data
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
