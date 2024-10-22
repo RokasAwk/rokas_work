@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../pages/cost/cost_notifier.dart';
+import '../pages/cost/cost_state.dart';
 import '../pages/home/home_notifier.dart';
 import '../pages/home/home_state.dart';
 import '../pages/music_player/music_player_notifier.dart';
@@ -30,6 +32,13 @@ final musicPlayerStateNotifierProvider =
     StateNotifierProvider.autoDispose<MusicPlayerNotifier, MusicPlayerState>(
         (ref) {
   return MusicPlayerNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});
+
+final costStateNotifierProvider =
+    StateNotifierProvider.autoDispose<CostNotifier, CostState>((ref) {
+  return CostNotifierImpl(
     appRouter: ref.read(routerProvider),
   );
 });
