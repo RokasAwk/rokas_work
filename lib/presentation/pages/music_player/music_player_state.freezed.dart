@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MusicPlayerState {
-  DateTime get currentTime => throw _privateConstructorUsedError;
+  List<String> get videoList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MusicPlayerStateCopyWith<MusicPlayerState> get copyWith =>
@@ -29,7 +29,7 @@ abstract class $MusicPlayerStateCopyWith<$Res> {
           MusicPlayerState value, $Res Function(MusicPlayerState) then) =
       _$MusicPlayerStateCopyWithImpl<$Res, MusicPlayerState>;
   @useResult
-  $Res call({DateTime currentTime});
+  $Res call({List<String> videoList});
 }
 
 /// @nodoc
@@ -45,13 +45,13 @@ class _$MusicPlayerStateCopyWithImpl<$Res, $Val extends MusicPlayerState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentTime = null,
+    Object? videoList = null,
   }) {
     return _then(_value.copyWith(
-      currentTime: null == currentTime
-          ? _value.currentTime
-          : currentTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      videoList: null == videoList
+          ? _value.videoList
+          : videoList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$MusicPlayerStateImplCopyWith<$Res>
       __$$MusicPlayerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime currentTime});
+  $Res call({List<String> videoList});
 }
 
 /// @nodoc
@@ -78,13 +78,13 @@ class __$$MusicPlayerStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentTime = null,
+    Object? videoList = null,
   }) {
     return _then(_$MusicPlayerStateImpl(
-      currentTime: null == currentTime
-          ? _value.currentTime
-          : currentTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+      videoList: null == videoList
+          ? _value._videoList
+          : videoList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -92,14 +92,20 @@ class __$$MusicPlayerStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MusicPlayerStateImpl implements _MusicPlayerState {
-  _$MusicPlayerStateImpl({required this.currentTime});
+  _$MusicPlayerStateImpl({required final List<String> videoList})
+      : _videoList = videoList;
 
+  final List<String> _videoList;
   @override
-  final DateTime currentTime;
+  List<String> get videoList {
+    if (_videoList is EqualUnmodifiableListView) return _videoList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_videoList);
+  }
 
   @override
   String toString() {
-    return 'MusicPlayerState(currentTime: $currentTime)';
+    return 'MusicPlayerState(videoList: $videoList)';
   }
 
   @override
@@ -107,12 +113,13 @@ class _$MusicPlayerStateImpl implements _MusicPlayerState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MusicPlayerStateImpl &&
-            (identical(other.currentTime, currentTime) ||
-                other.currentTime == currentTime));
+            const DeepCollectionEquality()
+                .equals(other._videoList, _videoList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentTime);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_videoList));
 
   @JsonKey(ignore: true)
   @override
@@ -123,11 +130,11 @@ class _$MusicPlayerStateImpl implements _MusicPlayerState {
 }
 
 abstract class _MusicPlayerState implements MusicPlayerState {
-  factory _MusicPlayerState({required final DateTime currentTime}) =
+  factory _MusicPlayerState({required final List<String> videoList}) =
       _$MusicPlayerStateImpl;
 
   @override
-  DateTime get currentTime;
+  List<String> get videoList;
   @override
   @JsonKey(ignore: true)
   _$$MusicPlayerStateImplCopyWith<_$MusicPlayerStateImpl> get copyWith =>
