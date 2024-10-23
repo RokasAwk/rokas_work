@@ -1,4 +1,5 @@
 extension CommaNumberHelper on String {
+  // 千位數加逗號
   String formatNumberWithComma() {
     List<String> parts = split('.');
     String integerPart = parts[0];

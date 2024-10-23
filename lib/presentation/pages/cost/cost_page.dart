@@ -98,6 +98,7 @@ class _CostPageState extends ConsumerState<CostPage> {
             )));
   }
 
+// 總花費區塊
   Widget _buildTotalCostSection({
     required CostState state,
     required CostNotifier notifier,
@@ -167,6 +168,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     ]);
   }
 
+// 花費區塊的標題
   Widget _buildCostCardTitle({
     required String title,
   }) {
@@ -176,6 +178,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     );
   }
 
+// 花費區塊的數值
   Widget _buildCostCardBody({
     required String body,
     required double fontSize,
@@ -187,6 +190,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     );
   }
 
+// 取得花費變化率
   String getChangeCost({
     required Decimal currentMonthCost,
     required Decimal lastMonthCost,
@@ -194,6 +198,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     return (currentMonthCost - lastMonthCost).toString();
   }
 
+// 分隔線
   Widget _buildDivider({
     bool isReverse = false,
   }) {
@@ -209,6 +214,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     );
   }
 
+// 新增花費的標題
   Widget _buildAddCostTitle() {
     return Row(
       children: [
@@ -224,6 +230,7 @@ class _CostPageState extends ConsumerState<CostPage> {
     );
   }
 
+// 新增花費區塊
   Widget _buildAddCostSection() {
     return Container(
         decoration: BoxDecoration(
@@ -270,6 +277,7 @@ class _CostPageState extends ConsumerState<CostPage> {
         ));
   }
 
+// 新增花費按鈕
   Widget _buildAddButton({
     required CostNotifier notifier,
   }) {
@@ -294,6 +302,7 @@ class _CostPageState extends ConsumerState<CostPage> {
         ));
   }
 
+// 新增花費的含標題文字輸入區
   Widget _buildFormField({
     required String titleText,
     required String hintText,

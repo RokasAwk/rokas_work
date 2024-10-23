@@ -73,7 +73,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       child: Scaffold(
           appBar: AppBar(
             title: Text(L10n.tr.page_home_title),
-            leading: _buildDrawerBth(notifier),
+            leading: _buildDrawerButton(notifier),
           ),
           drawer: Drawer(
             child: ListView(
@@ -123,7 +123,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                     _buildSectionTitleDivider(isReverse: true),
                   ],
                 ),
-                _buildPuchImgSection(),
+                _buildPunchImgSection(),
                 const DevelopedByWidget(),
               ],
             ),
@@ -131,7 +131,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
-  Widget _buildDrawerBth(HomeNotifier notifier) {
+// 開啟Drawer的按鈕
+  Widget _buildDrawerButton(HomeNotifier notifier) {
     return Builder(builder: (context) {
       return IconButton(
         onPressed: () => notifier.openDrawer(context),
@@ -171,6 +172,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
+// 現在時間的區塊
   Widget _buildDateTimeSection({
     required HomeState state,
   }) {
@@ -215,6 +217,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
+// 分隔線
   Widget _buildSectionTitleDivider({
     bool isReverse = false,
   }) {
@@ -232,6 +235,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
   }
 
+// 功能區域
   Widget _buildGridSection({
     required List functionsList,
     required HomeNotifier notifier,
@@ -260,6 +264,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         ));
   }
 
+// 功能區域的子元件
   Widget _buildGridViewItemWidget({
     required int index,
     required HomeNotifier notifier,
@@ -303,7 +308,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     );
   }
 
-  Widget _buildPuchImgSection() {
+// 動態輪播圖
+  Widget _buildPunchImgSection() {
     return SizedBox(
         child: CarouselSlider(
       options: CarouselOptions(
@@ -324,6 +330,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     ));
   }
 
+// 取得功能區域的對應路由
   void getOnTapFunction({
     required int index,
     required HomeNotifier notifier,
