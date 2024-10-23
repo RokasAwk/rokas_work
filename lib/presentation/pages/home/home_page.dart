@@ -31,10 +31,10 @@ class _HomePageState extends ConsumerState<HomePage> {
   var size;
   List<String> functionsList = [
     L10n.tr.page_to_do_title,
-    L10n.tr.page_expense_title,
     L10n.tr.page_calender_title,
     L10n.tr.page_music_player_title,
     L10n.tr.page_cost_title,
+    L10n.tr.page_ramen_map_title,
   ];
 
   final List<String> punchImgList = [
@@ -48,7 +48,6 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
     dateTimeTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       ref
           .read(homeStateNotifierProvider.notifier)
@@ -241,14 +240,14 @@ class _HomePageState extends ConsumerState<HomePage> {
     required HomeNotifier notifier,
   }) {
     return Container(
-        height: 90 * ((functionsList.length ~/ 4) + 1),
+        height: 80 * ((functionsList.length ~/ 4) + 1),
         decoration: BoxDecoration(
           color: AppColors.blueGrey_10,
         ),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            mainAxisSpacing: 16,
+            mainAxisSpacing: 4,
             crossAxisSpacing: 0,
             childAspectRatio: 89 / 66,
           ),
@@ -271,7 +270,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     required String functionTitle,
   }) {
     return GestureDetector(
-      onTap: () => getOnTapFunction(
+      onTap: () => getFunctionsOnTapFunction(
         index: index,
         notifier: notifier,
       ),
@@ -287,8 +286,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                   height: 44,
                   width: 44,
                   decoration: BoxDecoration(
-                    color: AppColors.neutral_300,
+                    color: AppColors.blueGray,
                     borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Icon(
+                    getFunctionIconFunction(
+                      index: index,
+                    ),
+                    color: AppColors.b_2,
                   ),
                 ),
               ],
@@ -330,17 +335,37 @@ class _HomePageState extends ConsumerState<HomePage> {
     ));
   }
 
+// 取得功能區域的對應圖示
+  IconData getFunctionIconFunction({
+    required int index,
+  }) {
+    switch (index) {
+      case 0:
+        return FontAwesomeIcons.book;
+      case 1:
+        return Icons.calendar_month;
+      case 2:
+        return Icons.music_note;
+      case 3:
+        return Icons.attach_money;
+      case 4:
+        return Icons.ramen_dining;
+      default:
+        return Icons.error;
+    }
+  }
+
 // 取得功能區域的對應路由
-  void getOnTapFunction({
+  void getFunctionsOnTapFunction({
     required int index,
     required HomeNotifier notifier,
   }) {
     switch (index) {
       case 0:
         return notifier.goToToDoPage();
-      case 3:
+      case 2:
         return notifier.goToMusicPlayerPage();
-      case 4:
+      case 3:
         return notifier.goToCostPage();
     }
   }
