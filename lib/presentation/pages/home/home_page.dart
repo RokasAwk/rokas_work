@@ -31,6 +31,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   var size;
   List<String> functionsList = [
     L10n.tr.page_to_do_title,
+    L10n.tr.page_momo_title,
     L10n.tr.page_calender_title,
     L10n.tr.page_music_player_title,
     L10n.tr.page_cost_title,
@@ -341,14 +342,16 @@ class _HomePageState extends ConsumerState<HomePage> {
   }) {
     switch (index) {
       case 0:
-        return FontAwesomeIcons.book;
+        return FontAwesomeIcons.list;
       case 1:
-        return Icons.calendar_month;
+        return FontAwesomeIcons.book;
       case 2:
-        return Icons.music_note;
+        return Icons.calendar_month;
       case 3:
-        return Icons.attach_money;
+        return Icons.music_note;
       case 4:
+        return Icons.attach_money;
+      case 5:
         return Icons.ramen_dining;
       default:
         return Icons.error;
@@ -363,9 +366,11 @@ class _HomePageState extends ConsumerState<HomePage> {
     switch (index) {
       case 0:
         return notifier.goToToDoPage();
-      case 2:
-        return notifier.goToMusicPlayerPage();
+      case 1:
+        return notifier.goToMemoListPage();
       case 3:
+        return notifier.goToMusicPlayerPage();
+      case 4:
         return notifier.goToCostPage();
     }
   }

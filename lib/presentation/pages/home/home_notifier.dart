@@ -11,6 +11,7 @@ abstract class HomeNotifier extends StateNotifier<HomeState> {
     required DateTime currentTime,
   });
   void goToToDoPage();
+  void goToMemoListPage();
   void goToMusicPlayerPage();
   void goToCostPage();
 
@@ -34,6 +35,11 @@ class HomeNotifierImpl extends HomeNotifier {
   @override
   void goToToDoPage() {
     appRouter.push(const ToDoRoute());
+  }
+
+  @override
+  void goToMemoListPage() {
+    appRouter.push(const MemoListRoute());
   }
 
   @override
