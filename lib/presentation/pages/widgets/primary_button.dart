@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-import '../../../l10n/l10n.dart';
 import '../../theme/app_colors.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -18,7 +16,7 @@ class PrimaryButton extends StatelessWidget {
     return Row(children: [
       Expanded(
           child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: MaterialButton(
           color: AppColors.blueGray,
           onPressed: onPressed,

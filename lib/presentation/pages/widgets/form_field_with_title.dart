@@ -8,8 +8,10 @@ import 'common_border.dart';
 class FormFieldWithTitle extends StatefulWidget {
   const FormFieldWithTitle({
     this.readOnly = false,
+    this.isShowClearIcon = true,
     required this.titleText,
     required this.hintText,
+    this.maxLines = 1,
     this.controller,
     this.validator,
     this.unFocus,
@@ -21,8 +23,10 @@ class FormFieldWithTitle extends StatefulWidget {
 
   final bool autoFocus;
   final bool readOnly;
+  final bool isShowClearIcon;
   final String titleText;
   final String hintText;
+  final int maxLines;
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final void Function()? unFocus;
@@ -111,6 +115,7 @@ class _FormFieldWithTitleState extends State<FormFieldWithTitle> {
       validator: widget.validator,
       onChanged: widget.onChanged,
       focusNode: _focusNode,
+      maxLines: widget.maxLines,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       // for android/web, textInputAction is next, next focus will be stuck on the Button or InkWell.
@@ -126,18 +131,20 @@ class _FormFieldWithTitleState extends State<FormFieldWithTitle> {
         hintText: widget.hintText,
         hintStyle: AppTextStyles.appW400N300Medium,
         errorStyle: AppTextStyles.appW400R400Small,
-        suffixIcon: Visibility(
-          visible: clearIconVisible,
-          child: IconButton(
-            icon: const FaIcon(
-              FontAwesomeIcons.close,
-              size: 20,
-              color: AppColors.blueGray,
-            ),
-            padding: const EdgeInsets.only(left: 8, right: 16),
-            onPressed: onClearPressed,
-          ),
-        ),
+        suffixIcon: widget.isShowClearIcon
+            ? Visibility(
+                visible: clearIconVisible,
+                child: IconButton(
+                  icon: const FaIcon(
+                    FontAwesomeIcons.close,
+                    size: 20,
+                    color: AppColors.blueGray,
+                  ),
+                  padding: const EdgeInsets.only(left: 8, right: 16),
+                  onPressed: onClearPressed,
+                ),
+              )
+            : null,
         focusedBorder: focusBorder(),
         enabledBorder: enableBorder(),
         errorBorder: errorBorder(),
