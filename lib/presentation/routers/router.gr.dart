@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AddMemoRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddMemoPage(),
+      );
+    },
     CostRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -52,6 +58,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AddMemoPage]
+class AddMemoRoute extends PageRouteInfo<void> {
+  const AddMemoRoute({List<PageRouteInfo>? children})
+      : super(
+          AddMemoRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddMemoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

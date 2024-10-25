@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import '../pages/cost/cost_page.dart';
 import '../pages/home/home_page.dart';
+import '../pages/memo/add_memo_page.dart';
 import '../pages/memo/memo_list_page.dart';
 import '../pages/music_player/music_player_page.dart';
 import '../pages/music_player/video_list/video_list_page.dart';
@@ -39,6 +40,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: MemoListRoute.page,
+        ),
+        AutoRoute(
+          page: AddMemoRoute.page,
         ),
       ];
 }
