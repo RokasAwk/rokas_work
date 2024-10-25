@@ -8,6 +8,7 @@ import 'package:rokas_work/utils/toast_utils.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../../di_providers/di_provider.dart';
+import '../widgets/primary_button.dart';
 import 'music_player_notifier.dart';
 import 'music_player_state.dart';
 
@@ -210,9 +211,7 @@ class _MusicPlayerPageState extends ConsumerState<MusicPlayerPage> {
                       ),
                     ),
                     _space,
-                    Row(
-                      children: [_loadButton()],
-                    ),
+                    _loadButton(),
                     _space,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -367,39 +366,23 @@ class _MusicPlayerPageState extends ConsumerState<MusicPlayerPage> {
   Widget get _space => const SizedBox(height: 10);
 
   Widget _loadButton() {
-    return Expanded(
-      child: MaterialButton(
-        color: AppColors.blueGray,
-        onPressed: _isPlayerReady
-            ? () {
-                if (_idController.text.isNotEmpty) {
-                  var id = YoutubePlayer.convertUrlToId(
-                        _idController.text,
-                      ) ??
-                      '';
-                  _controller.load(id);
+    return PrimaryButton(
+      title: L10n.tr.page_music_player_load_button,
+      onPressed: () => _isPlayerReady
+          ? () {
+              if (_idController.text.isNotEmpty) {
+                var id = YoutubePlayer.convertUrlToId(
+                      _idController.text,
+                    ) ??
+                    '';
+                _controller.load(id);
 
-                  FocusScope.of(context).requestFocus(FocusNode());
-                } else {
-                  ToastUtils.showToast('Source can\'t be empty!');
-                }
+                FocusScope.of(context).requestFocus(FocusNode());
+              } else {
+                ToastUtils.showToast('Source can\'t be empty!');
               }
-            : null,
-        disabledColor: AppColors.black_50,
-        disabledTextColor: AppColors.black,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 14.0),
-          child: Text(
-            L10n.tr.page_music_player_load_button,
-            style: const TextStyle(
-              fontSize: 18.0,
-              color: AppColors.white,
-              fontWeight: FontWeight.w300,
-            ),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+            }
+          : null,
     );
   }
 }
