@@ -4,6 +4,8 @@ import '../pages/cost/cost_notifier.dart';
 import '../pages/cost/cost_state.dart';
 import '../pages/home/home_notifier.dart';
 import '../pages/home/home_state.dart';
+import '../pages/memo/memo_list_notifier.dart';
+import '../pages/memo/memo_list_state.dart';
 import '../pages/music_player/music_player_notifier.dart';
 import '../pages/music_player/music_player_state.dart';
 import '../pages/to_do/to_do_notifier.dart';
@@ -39,6 +41,13 @@ final musicPlayerStateNotifierProvider =
 final costStateNotifierProvider =
     StateNotifierProvider.autoDispose<CostNotifier, CostState>((ref) {
   return CostNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});
+
+final memoListStateNotifierProvider =
+    StateNotifierProvider.autoDispose<MemoListNotifier, MemoListState>((ref) {
+  return MemoListNotifierImpl(
     appRouter: ref.read(routerProvider),
   );
 });

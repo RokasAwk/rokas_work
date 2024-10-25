@@ -27,6 +27,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const HomePage(),
       );
     },
+    MemoListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const MemoListPage(),
+      );
+    },
     MusicPlayerRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -37,6 +43,12 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const ToDoPage(),
+      );
+    },
+    VideoListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const VideoListPage(),
       );
     },
   };
@@ -71,6 +83,20 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [MemoListPage]
+class MemoListRoute extends PageRouteInfo<void> {
+  const MemoListRoute({List<PageRouteInfo>? children})
+      : super(
+          MemoListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'MemoListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [MusicPlayerPage]
 class MusicPlayerRoute extends PageRouteInfo<void> {
   const MusicPlayerRoute({List<PageRouteInfo>? children})
@@ -94,6 +120,20 @@ class ToDoRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ToDoRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [VideoListPage]
+class VideoListRoute extends PageRouteInfo<void> {
+  const VideoListRoute({List<PageRouteInfo>? children})
+      : super(
+          VideoListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'VideoListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
