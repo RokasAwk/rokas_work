@@ -55,4 +55,11 @@ class AppColors {
 
   static List<Color> dividerGradientColors = [blueGrey_10, blueGray];
   static List<Color> balanceGradientColors = [b_1, b_2];
+
+  static const Color boxShadow1 = Color(0x7A000000);
+  static const Color boxShadow2 = Color(0x32000000);
+  static const Color boxShadowBlack = Color(0x3F000000);
+  static const Color shadow = Color(0xFFD2D2D2);
+  static const Color bottomShadow = Color(0xFF333333);
+  static const Color border = Color(0xFF62636A);
 }
