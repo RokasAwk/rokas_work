@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/domain/entity/momo.dart';
 import 'package:rokas_work/l10n/l10n.dart';
-import 'package:rokas_work/presentation/services/firestore_service/firestore_service.dart';
 
 import '../../di_providers/di_provider.dart';
+import '../../services/firestore_service/firestore_memo_service.dart';
 import '../widgets/empty_list_widget.dart';
 import 'memo_list_notifier.dart';
 import 'memo_list_state.dart';
@@ -26,7 +26,7 @@ class _HomePageState extends ConsumerState<MemoListPage> {
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {});
-    FirestoreServiceImpl().listenToMemoData();
+    FirestoreMemoService().listenToData();
     super.initState();
   }
 
@@ -70,7 +70,7 @@ Widget _buildBody({
       //           )),
       TextButton(
           onPressed: () {
-            FirestoreServiceImpl().getMemoData();
+            FirestoreMemoService().getData();
           },
           child: const Text('add')),
     ],
