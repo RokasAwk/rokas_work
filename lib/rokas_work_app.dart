@@ -39,7 +39,7 @@ class RokasWorkAppState extends ConsumerState<RokasWorkApp> {
             if (child != null) ...[
               OverlayEntry(
                 builder: (context) {
-                  ToastUtils.init(context);
+                  ToastUtils.init(context, appRouter);
                   return child;
                 },
               ),

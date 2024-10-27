@@ -17,7 +17,8 @@ class ToastUtils {
 
   static AppRouter? _appRouter;
 
-  static init(BuildContext context) {
+  static init(BuildContext context, AppRouter appRouter) {
+    _appRouter = appRouter;
     _fToast.init(context);
   }
 
