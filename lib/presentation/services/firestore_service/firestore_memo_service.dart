@@ -55,14 +55,25 @@ class FirestoreMemoService implements FirestoreService {
   }
 
   @override
-  Future<void> getData() async {
+  Future<List> getData() async {
+    List<Memo> memoList = [];
     try {
       QuerySnapshot snapshot = await db.collection('memo').get();
       for (var doc in snapshot.docs) {
-        print(doc.data());
+        Map data = doc.data() as Map;
+        memoList.add(Memo(
+            id: data['id'],
+            title: data['title'],
+            body: data['body'],
+            createdTime: data['createdTime'].toDate(),
+            editedTime: data['editedTime'].toDate(),
+            isPin: data['isPin'],
+            isDeleted: data['isDeleted']));
       }
     } catch (e) {
       print("Error get memo: $e");
     }
+
+    return memoList;
   }
 }

@@ -7,5 +7,5 @@ abstract class FirestoreService {
     required String dataId,
     required var data,
   });
-  Future<void> getData();
+  Future<List> getData();
 }
