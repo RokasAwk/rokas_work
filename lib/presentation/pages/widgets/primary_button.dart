@@ -6,36 +6,45 @@ class PrimaryButton extends StatelessWidget {
     super.key,
     required this.title,
     required this.onPressed,
+    this.verticalPadding = 16,
   });
 
   final String title;
   final Function() onPressed;
+  final double verticalPadding;
+
+  factory PrimaryButton.medium({
+    required String text,
+    required VoidCallback onPressed,
+  }) {
+    return PrimaryButton(
+      title: text,
+      onPressed: onPressed,
+      verticalPadding: 8,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Row(children: [
       Expanded(
-          child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: MaterialButton(
-          color: AppColors.blueGray,
+        child: TextButton(
+          style: TextButton.styleFrom(
+            backgroundColor: AppColors.blueGray,
+            padding: EdgeInsets.symmetric(vertical: verticalPadding),
+          ),
           onPressed: onPressed,
-          disabledColor: AppColors.black_50,
-          disabledTextColor: AppColors.black,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 14.0),
-            child: Text(
-              title,
-              style: const TextStyle(
-                fontSize: 18.0,
-                color: AppColors.white,
-                fontWeight: FontWeight.w300,
-              ),
-              textAlign: TextAlign.center,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18.0,
+              color: AppColors.white,
+              fontWeight: FontWeight.w300,
             ),
+            textAlign: TextAlign.center,
           ),
         ),
-      ))
+      )
     ]);
   }
 }

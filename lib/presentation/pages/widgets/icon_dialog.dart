@@ -56,7 +56,11 @@ class IconDialog extends StatefulWidget {
     TextStyle? messageStyle,
   }) {
     return IconDialog(
-      icon: const FaIcon(FontAwesomeIcons.triangleExclamation),
+      icon: const FaIcon(
+        FontAwesomeIcons.triangleExclamation,
+        color: AppColors.white,
+        size: 30,
+      ),
       title: title != null
           ? Text(
               title,
@@ -71,8 +75,8 @@ class IconDialog extends StatefulWidget {
       ),
       positiveButton: isHideConfirm
           ? null
-          : PrimaryButton(
-              title: confirmButtonText ?? L10n.tr.common_ok,
+          : PrimaryButton.medium(
+              text: confirmButtonText ?? L10n.tr.common_ok,
               onPressed: onConfirm,
             ),
       negativeButton: isHideCancel

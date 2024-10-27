@@ -7,7 +7,7 @@ class CommonButton extends StatelessWidget {
   const CommonButton({
     Key? key,
     required this.title,
-    this.onPressed,
+    required this.onPressed,
     this.verticalPadding = 16,
     this.backgroundColor,
     this.textColor,
@@ -16,7 +16,7 @@ class CommonButton extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
   final double verticalPadding;
   final Color? backgroundColor;
   final Color? textColor;
@@ -25,7 +25,7 @@ class CommonButton extends StatelessWidget {
 
   factory CommonButton.medium({
     required String text,
-    required VoidCallback? onPressed,
+    required VoidCallback onPressed,
     Color? backgroundColor,
     Color? textColor,
     OutlinedBorder? shape,
@@ -49,25 +49,23 @@ class CommonButton extends StatelessWidget {
     if (textStyleHeight != null) {
       style = style.copyWith(height: textStyleHeight);
     }
-    return IgnorePointer(
-      child: TextButton(
-          style: TextButton.styleFrom(
-            visualDensity: const VisualDensity(horizontal: 0, vertical: 0),
-            backgroundColor: backgroundColor ?? AppColors.neutral_700,
-            padding: EdgeInsets.symmetric(vertical: verticalPadding),
-            shape: shape ??
-                RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+    return TextButton(
+        style: TextButton.styleFrom(
+          visualDensity: const VisualDensity(horizontal: 0, vertical: 0),
+          backgroundColor: backgroundColor ?? AppColors.neutral_700,
+          padding: EdgeInsets.symmetric(vertical: verticalPadding),
+          shape: shape ??
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4.0),
+              ),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        onPressed: onPressed,
+        child: Center(
+          child: Text(
+            title,
+            style: style,
           ),
-          onPressed: onPressed,
-          child: Center(
-            child: Text(
-              title,
-              style: style,
-            ),
-          )),
-    );
+        ));
   }
 }
