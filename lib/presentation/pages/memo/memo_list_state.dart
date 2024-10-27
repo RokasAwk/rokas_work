@@ -7,9 +7,11 @@ part 'memo_list_state.freezed.dart';
 class MemoListState with _$MemoListState {
   factory MemoListState({
     required List<Memo> memoList,
+    required int filterType, // 0: 創建時間 1: 編輯時間
   }) = _MemoListState;
 
   factory MemoListState.init() => MemoListState(
         memoList: [],
+        filterType: 0,
       );
 }

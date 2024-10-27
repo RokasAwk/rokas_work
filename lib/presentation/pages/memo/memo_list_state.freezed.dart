@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MemoListState {
   List<Memo> get memoList => throw _privateConstructorUsedError;
+  int get filterType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MemoListStateCopyWith<MemoListState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $MemoListStateCopyWith<$Res> {
           MemoListState value, $Res Function(MemoListState) then) =
       _$MemoListStateCopyWithImpl<$Res, MemoListState>;
   @useResult
-  $Res call({List<Memo> memoList});
+  $Res call({List<Memo> memoList, int filterType});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$MemoListStateCopyWithImpl<$Res, $Val extends MemoListState>
   @override
   $Res call({
     Object? memoList = null,
+    Object? filterType = null,
   }) {
     return _then(_value.copyWith(
       memoList: null == memoList
           ? _value.memoList
           : memoList // ignore: cast_nullable_to_non_nullable
               as List<Memo>,
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$MemoListStateImplCopyWith<$Res>
       __$$MemoListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Memo> memoList});
+  $Res call({List<Memo> memoList, int filterType});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$MemoListStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? memoList = null,
+    Object? filterType = null,
   }) {
     return _then(_$MemoListStateImpl(
       memoList: null == memoList
           ? _value._memoList
           : memoList // ignore: cast_nullable_to_non_nullable
               as List<Memo>,
+      filterType: null == filterType
+          ? _value.filterType
+          : filterType // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -92,7 +103,8 @@ class __$$MemoListStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$MemoListStateImpl implements _MemoListState {
-  _$MemoListStateImpl({required final List<Memo> memoList})
+  _$MemoListStateImpl(
+      {required final List<Memo> memoList, required this.filterType})
       : _memoList = memoList;
 
   final List<Memo> _memoList;
@@ -104,8 +116,11 @@ class _$MemoListStateImpl implements _MemoListState {
   }
 
   @override
+  final int filterType;
+
+  @override
   String toString() {
-    return 'MemoListState(memoList: $memoList)';
+    return 'MemoListState(memoList: $memoList, filterType: $filterType)';
   }
 
   @override
@@ -113,12 +128,14 @@ class _$MemoListStateImpl implements _MemoListState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$MemoListStateImpl &&
-            const DeepCollectionEquality().equals(other._memoList, _memoList));
+            const DeepCollectionEquality().equals(other._memoList, _memoList) &&
+            (identical(other.filterType, filterType) ||
+                other.filterType == filterType));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_memoList));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_memoList), filterType);
 
   @JsonKey(ignore: true)
   @override
@@ -128,11 +145,14 @@ class _$MemoListStateImpl implements _MemoListState {
 }
 
 abstract class _MemoListState implements MemoListState {
-  factory _MemoListState({required final List<Memo> memoList}) =
-      _$MemoListStateImpl;
+  factory _MemoListState(
+      {required final List<Memo> memoList,
+      required final int filterType}) = _$MemoListStateImpl;
 
   @override
   List<Memo> get memoList;
+  @override
+  int get filterType;
   @override
   @JsonKey(ignore: true)
   _$$MemoListStateImplCopyWith<_$MemoListStateImpl> get copyWith =>
