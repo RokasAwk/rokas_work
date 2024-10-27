@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:rokas_work/domain/entity/momo.dart';
+import 'package:rokas_work/domain/entity/memo.dart';
 import 'package:rokas_work/presentation/services/firestore_service/firestore_memo_service.dart';
 
 import '../../routers/router.dart';

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rokas_work/domain/entity/momo.dart';
+import 'package:rokas_work/domain/entity/memo.dart';
 
 part 'memo_list_state.freezed.dart';
 

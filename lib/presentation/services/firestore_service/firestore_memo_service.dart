@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../domain/entity/momo.dart';
+import '../../../domain/entity/memo.dart';
 import 'firestore_service.dart';
 
 class FirestoreMemoService implements FirestoreService {
