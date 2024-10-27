@@ -12,6 +12,7 @@ class FormFieldWithTitle extends StatefulWidget {
     required this.titleText,
     required this.hintText,
     this.maxLines = 1,
+    this.maxLength = 20,
     this.controller,
     this.validator,
     this.unFocus,
@@ -27,6 +28,7 @@ class FormFieldWithTitle extends StatefulWidget {
   final String titleText;
   final String hintText;
   final int maxLines;
+  final int maxLength;
   final TextEditingController? controller;
   final FormFieldValidator<String>? validator;
   final void Function()? unFocus;
@@ -116,6 +118,7 @@ class _FormFieldWithTitleState extends State<FormFieldWithTitle> {
       onChanged: widget.onChanged,
       focusNode: _focusNode,
       maxLines: widget.maxLines,
+      maxLength: widget.maxLength,
       keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       // for android/web, textInputAction is next, next focus will be stuck on the Button or InkWell.

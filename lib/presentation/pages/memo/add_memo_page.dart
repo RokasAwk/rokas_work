@@ -1,17 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
 import 'package:rokas_work/presentation/pages/widgets/form_field_with_title.dart';
 import 'package:rokas_work/presentation/pages/widgets/icon_dialog.dart';
-import 'package:rokas_work/presentation/services/firestore_service/firestore_memo_service.dart';
-import 'package:rokas_work/presentation/services/firestore_service/firestore_service.dart';
-
 import '../../../utils/toast_utils.dart';
 import '../../di_providers/di_provider.dart';
 import '../../routers/router.dart';
-import '../../theme/app_colors.dart';
+import '../../services/firestore_service/firestore_memo_service.dart';
 import '../widgets/primary_button.dart';
 import 'memo_list_notifier.dart';
 
@@ -92,7 +88,8 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
           FormFieldWithTitle(
             titleText: L10n.tr.page_add_memo_add_body,
             hintText: L10n.tr.page_add_memo_add_body_hint,
-            maxLines: 20,
+            maxLines: 18,
+            maxLength: 1000,
             isShowClearIcon: false,
             controller: bodyController,
           ),
@@ -106,21 +103,23 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
     required TextEditingController bodyController,
     required MemoListNotifier notifier,
   }) {
-    return PrimaryButton(
-      title: L10n.tr.common_add,
-      onPressed: () {
-        if (titleController.text.isNotEmpty) {
-          ToastUtils.showCustomDialog(
-            _buildConfirmAddMemoDialog(
-                titleController: titleController,
-                bodyController: bodyController,
-                notifier: notifier),
-          );
-        } else {
-          ToastUtils.showToast('Title Empty');
-        }
-      },
-    );
+    return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: PrimaryButton(
+          title: L10n.tr.common_add,
+          onPressed: () {
+            if (titleController.text.isNotEmpty) {
+              ToastUtils.showCustomDialog(
+                _buildConfirmAddMemoDialog(
+                    titleController: titleController,
+                    bodyController: bodyController,
+                    notifier: notifier),
+              );
+            } else {
+              ToastUtils.showToast('Title Empty');
+            }
+          },
+        ));
   }
 
   Widget _buildConfirmAddMemoDialog({
@@ -138,6 +137,10 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
               body: bodyController.text,
             );
             ToastUtils.showToast(L10n.tr.common_success);
+
+            List dataList = await FirestoreMemoService().getData();
+            notifier.updateMemoList(memoList: dataList);
+            appRouter.back();
           } catch (e) {
             print('Error: Add memo error $e');
             ToastUtils.showToast(L10n.tr.common_fail);
