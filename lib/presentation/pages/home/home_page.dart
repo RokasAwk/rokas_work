@@ -372,6 +372,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         return notifier.goToMusicPlayerPage();
       case 4:
         return notifier.goToCostPage();
+      case 5:
+        return notifier.goToRamenMapPage();
     }
   }
 }

@@ -16,9 +16,14 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AddMemoRoute.name: (routeData) {
+      final args = routeData.argsAs<AddMemoRouteArgs>(
+          orElse: () => const AddMemoRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AddMemoPage(),
+        child: AddMemoPage(
+          key: args.key,
+          existedMemo: args.existedMemo,
+        ),
       );
     },
     CostRoute.name: (routeData) {
@@ -45,6 +50,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MusicPlayerPage(),
       );
     },
+    RamenMapRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RamenMapPage(),
+      );
+    },
     ToDoRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -62,16 +73,40 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AddMemoPage]
-class AddMemoRoute extends PageRouteInfo<void> {
-  const AddMemoRoute({List<PageRouteInfo>? children})
-      : super(
+class AddMemoRoute extends PageRouteInfo<AddMemoRouteArgs> {
+  AddMemoRoute({
+    Key? key,
+    Memo? existedMemo,
+    List<PageRouteInfo>? children,
+  }) : super(
           AddMemoRoute.name,
+          args: AddMemoRouteArgs(
+            key: key,
+            existedMemo: existedMemo,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AddMemoRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AddMemoRouteArgs> page =
+      PageInfo<AddMemoRouteArgs>(name);
+}
+
+class AddMemoRouteArgs {
+  const AddMemoRouteArgs({
+    this.key,
+    this.existedMemo,
+  });
+
+  final Key? key;
+
+  final Memo? existedMemo;
+
+  @override
+  String toString() {
+    return 'AddMemoRouteArgs{key: $key, existedMemo: $existedMemo}';
+  }
 }
 
 /// generated route for
@@ -126,6 +161,20 @@ class MusicPlayerRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'MusicPlayerRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RamenMapPage]
+class RamenMapRoute extends PageRouteInfo<void> {
+  const RamenMapRoute({List<PageRouteInfo>? children})
+      : super(
+          RamenMapRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RamenMapRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }

@@ -8,6 +8,8 @@ import '../pages/memo/memo_list_notifier.dart';
 import '../pages/memo/memo_list_state.dart';
 import '../pages/music_player/music_player_notifier.dart';
 import '../pages/music_player/music_player_state.dart';
+import '../pages/ramen_map/ramen_map_notifier.dart';
+import '../pages/ramen_map/ramen_map_state.dart';
 import '../pages/to_do/to_do_notifier.dart';
 import '../pages/to_do/to_do_state.dart';
 import '../routers/router.dart';
@@ -48,6 +50,13 @@ final costStateNotifierProvider =
 final memoListStateNotifierProvider =
     StateNotifierProvider.autoDispose<MemoListNotifier, MemoListState>((ref) {
   return MemoListNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});
+
+final ramenMapStateNotifierProvider =
+    StateNotifierProvider.autoDispose<RamenMapNotifier, RamenMapState>((ref) {
+  return RamenMapNotifierImpl(
     appRouter: ref.read(routerProvider),
   );
 });
