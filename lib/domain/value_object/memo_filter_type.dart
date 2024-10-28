@@ -1,0 +1,1 @@
+enum MemoFilterType { createdTime, editedTime }
