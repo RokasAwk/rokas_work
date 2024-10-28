@@ -54,7 +54,7 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.tr.page_momo_title),
+        title: Text(L10n.tr.page_memo_title),
         leading: const BackButton(),
         actions: [
           IconButton(

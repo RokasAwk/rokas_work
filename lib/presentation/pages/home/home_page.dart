@@ -31,7 +31,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   var size;
   List<String> functionsList = [
     L10n.tr.page_to_do_title,
-    L10n.tr.page_momo_title,
+    L10n.tr.page_memo_title,
     L10n.tr.page_calender_title,
     L10n.tr.page_music_player_title,
     L10n.tr.page_cost_title,
