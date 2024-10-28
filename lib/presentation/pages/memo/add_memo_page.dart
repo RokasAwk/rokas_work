@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/l10n/l10n.dart';
 import 'package:rokas_work/presentation/pages/widgets/form_field_with_title.dart';
 import 'package:rokas_work/presentation/pages/widgets/icon_dialog.dart';
+import '../../../domain/entity/memo.dart';
 import '../../../utils/toast_utils.dart';
 import '../../di_providers/di_provider.dart';
 import '../../routers/router.dart';
@@ -15,7 +16,10 @@ import 'memo_list_notifier.dart';
 class AddMemoPage extends ConsumerStatefulWidget {
   const AddMemoPage({
     super.key,
+    this.existedMemo,
   });
+
+  final Memo? existedMemo;
 
   @override
   ConsumerState<AddMemoPage> createState() => _AddMemoPageState();
@@ -30,6 +34,15 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
   @override
   void initState() {
     appRouter = ref.read(routerProvider);
+
+    if (widget.existedMemo != null) {
+      Memo existedMemo = widget.existedMemo!;
+      titleController.text = existedMemo.title;
+
+      if (existedMemo.body != null) {
+        bodyController.text = existedMemo.body!;
+      }
+    }
     super.initState();
   }
 
@@ -46,7 +59,9 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(L10n.tr.page_add_memo_title),
+        title: Text(widget.existedMemo == null
+            ? L10n.tr.page_add_memo_title
+            : L10n.tr.page_add_memo_edit_title),
         leading: const BackButton(),
       ),
       body: _buildBody(
@@ -106,7 +121,9 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: PrimaryButton(
-          title: L10n.tr.common_add,
+          title: widget.existedMemo == null
+              ? L10n.tr.common_add
+              : L10n.tr.common_edit,
           onPressed: () {
             if (titleController.text.isNotEmpty) {
               ToastUtils.showCustomDialog(
@@ -128,14 +145,25 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
     required MemoListNotifier notifier,
   }) {
     return IconDialog.warning(
-        message: L10n.tr.common_add_hint,
+        message: widget.existedMemo == null
+            ? L10n.tr.common_add_hint
+            : L10n.tr.common_edit_hint,
         onCancel: () => appRouter.pop(),
         onConfirm: () async {
           try {
-            notifier.addMemo(
-              title: titleController.text,
-              body: bodyController.text,
-            );
+            if (widget.existedMemo == null) {
+              notifier.addMemo(
+                title: titleController.text,
+                body: bodyController.text,
+              );
+            } else {
+              notifier.editMemo(
+                originMemoData: widget.existedMemo!,
+                title: titleController.text,
+                body: bodyController.text,
+              );
+            }
+
             ToastUtils.showToast(L10n.tr.common_success);
 
             List dataList = await FirestoreMemoService().getData();
