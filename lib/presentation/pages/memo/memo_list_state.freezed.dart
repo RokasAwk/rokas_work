@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MemoListState {
   List<Memo> get memoList => throw _privateConstructorUsedError;
-  int get filterType => throw _privateConstructorUsedError;
+  MemoFilterType get filterType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $MemoListStateCopyWith<MemoListState> get copyWith =>
@@ -30,7 +30,7 @@ abstract class $MemoListStateCopyWith<$Res> {
           MemoListState value, $Res Function(MemoListState) then) =
       _$MemoListStateCopyWithImpl<$Res, MemoListState>;
   @useResult
-  $Res call({List<Memo> memoList, int filterType});
+  $Res call({List<Memo> memoList, MemoFilterType filterType});
 }
 
 /// @nodoc
@@ -57,7 +57,7 @@ class _$MemoListStateCopyWithImpl<$Res, $Val extends MemoListState>
       filterType: null == filterType
           ? _value.filterType
           : filterType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as MemoFilterType,
     ) as $Val);
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$MemoListStateImplCopyWith<$Res>
       __$$MemoListStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<Memo> memoList, int filterType});
+  $Res call({List<Memo> memoList, MemoFilterType filterType});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class __$$MemoListStateImplCopyWithImpl<$Res>
       filterType: null == filterType
           ? _value.filterType
           : filterType // ignore: cast_nullable_to_non_nullable
-              as int,
+              as MemoFilterType,
     ));
   }
 }
@@ -116,7 +116,7 @@ class _$MemoListStateImpl implements _MemoListState {
   }
 
   @override
-  final int filterType;
+  final MemoFilterType filterType;
 
   @override
   String toString() {
@@ -147,12 +147,12 @@ class _$MemoListStateImpl implements _MemoListState {
 abstract class _MemoListState implements MemoListState {
   factory _MemoListState(
       {required final List<Memo> memoList,
-      required final int filterType}) = _$MemoListStateImpl;
+      required final MemoFilterType filterType}) = _$MemoListStateImpl;
 
   @override
   List<Memo> get memoList;
   @override
-  int get filterType;
+  MemoFilterType get filterType;
   @override
   @JsonKey(ignore: true)
   _$$MemoListStateImplCopyWith<_$MemoListStateImpl> get copyWith =>
