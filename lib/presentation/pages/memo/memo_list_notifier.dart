@@ -85,7 +85,7 @@ class MemoListNotifierImpl extends MemoListNotifier {
         isDeleted: false);
     try {
       FirestoreMemoService().upateData(
-        dataId: '${originMemoData.id}}',
+        dataId: '${originMemoData.id}',
         data: updateMemo,
       );
     } catch (e) {
