@@ -16,7 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$RamenMapState {
-  List<String> get locationKeyList => throw _privateConstructorUsedError;
+  Set<Marker> get locationSet => throw _privateConstructorUsedError;
+  RamenLocation get currentShop => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RamenMapStateCopyWith<RamenMapState> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $RamenMapStateCopyWith<$Res> {
           RamenMapState value, $Res Function(RamenMapState) then) =
       _$RamenMapStateCopyWithImpl<$Res, RamenMapState>;
   @useResult
-  $Res call({List<String> locationKeyList});
+  $Res call({Set<Marker> locationSet, RamenLocation currentShop});
 }
 
 /// @nodoc
@@ -45,13 +46,18 @@ class _$RamenMapStateCopyWithImpl<$Res, $Val extends RamenMapState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locationKeyList = null,
+    Object? locationSet = null,
+    Object? currentShop = null,
   }) {
     return _then(_value.copyWith(
-      locationKeyList: null == locationKeyList
-          ? _value.locationKeyList
-          : locationKeyList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      locationSet: null == locationSet
+          ? _value.locationSet
+          : locationSet // ignore: cast_nullable_to_non_nullable
+              as Set<Marker>,
+      currentShop: null == currentShop
+          ? _value.currentShop
+          : currentShop // ignore: cast_nullable_to_non_nullable
+              as RamenLocation,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$RamenMapStateImplCopyWith<$Res>
       __$$RamenMapStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<String> locationKeyList});
+  $Res call({Set<Marker> locationSet, RamenLocation currentShop});
 }
 
 /// @nodoc
@@ -78,13 +84,18 @@ class __$$RamenMapStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locationKeyList = null,
+    Object? locationSet = null,
+    Object? currentShop = null,
   }) {
     return _then(_$RamenMapStateImpl(
-      locationKeyList: null == locationKeyList
-          ? _value._locationKeyList
-          : locationKeyList // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+      locationSet: null == locationSet
+          ? _value._locationSet
+          : locationSet // ignore: cast_nullable_to_non_nullable
+              as Set<Marker>,
+      currentShop: null == currentShop
+          ? _value.currentShop
+          : currentShop // ignore: cast_nullable_to_non_nullable
+              as RamenLocation,
     ));
   }
 }
@@ -92,20 +103,24 @@ class __$$RamenMapStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$RamenMapStateImpl implements _RamenMapState {
-  _$RamenMapStateImpl({required final List<String> locationKeyList})
-      : _locationKeyList = locationKeyList;
+  _$RamenMapStateImpl(
+      {required final Set<Marker> locationSet, required this.currentShop})
+      : _locationSet = locationSet;
 
-  final List<String> _locationKeyList;
+  final Set<Marker> _locationSet;
   @override
-  List<String> get locationKeyList {
-    if (_locationKeyList is EqualUnmodifiableListView) return _locationKeyList;
+  Set<Marker> get locationSet {
+    if (_locationSet is EqualUnmodifiableSetView) return _locationSet;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_locationKeyList);
+    return EqualUnmodifiableSetView(_locationSet);
   }
 
   @override
+  final RamenLocation currentShop;
+
+  @override
   String toString() {
-    return 'RamenMapState(locationKeyList: $locationKeyList)';
+    return 'RamenMapState(locationSet: $locationSet, currentShop: $currentShop)';
   }
 
   @override
@@ -114,12 +129,14 @@ class _$RamenMapStateImpl implements _RamenMapState {
         (other.runtimeType == runtimeType &&
             other is _$RamenMapStateImpl &&
             const DeepCollectionEquality()
-                .equals(other._locationKeyList, _locationKeyList));
+                .equals(other._locationSet, _locationSet) &&
+            (identical(other.currentShop, currentShop) ||
+                other.currentShop == currentShop));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_locationKeyList));
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_locationSet), currentShop);
 
   @JsonKey(ignore: true)
   @override
@@ -129,11 +146,14 @@ class _$RamenMapStateImpl implements _RamenMapState {
 }
 
 abstract class _RamenMapState implements RamenMapState {
-  factory _RamenMapState({required final List<String> locationKeyList}) =
-      _$RamenMapStateImpl;
+  factory _RamenMapState(
+      {required final Set<Marker> locationSet,
+      required final RamenLocation currentShop}) = _$RamenMapStateImpl;
 
   @override
-  List<String> get locationKeyList;
+  Set<Marker> get locationSet;
+  @override
+  RamenLocation get currentShop;
   @override
   @JsonKey(ignore: true)
   _$$RamenMapStateImplCopyWith<_$RamenMapStateImpl> get copyWith =>
