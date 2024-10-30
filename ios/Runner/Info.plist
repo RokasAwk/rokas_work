@@ -67,5 +67,7 @@
 		</dict>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>需要訪問位置以顯示地圖</string>
 	</dict>
 </plist>
