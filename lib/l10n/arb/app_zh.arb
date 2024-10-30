@@ -5,15 +5,19 @@
     "page_punch_title": "衝啊衝啊衝啊",
     "page_home_noify_title": "快訊｜",
     "page_to_do_title": "待辦清單",
-    "page_momo_title": "記事本",
+    "page_memo_title": "記事本",
     "page_music_player_title": "播放器",
     "page_calender_title": "行事曆",
     "page_cost_title": "記帳",
     "page_ramen_map_title": "拉麵地圖",
+    "page_weather_title": "天氣",
+    "page_1A_2B_title": "1A2B",
     "common_add": "新增",
+    "common_edit": "編輯",
     "common_add_hint": "確定新增？",
     "common_pin_hint": "確定置頂？",
     "common_del_hint": "確定刪除？",
+    "common_edit_hint": "確定編輯？",
     "common_ok": "確定",
     "common_cancel": "取消",
     "common_back": "返回",
@@ -45,15 +49,25 @@
     "page_music_player_video_state": "影片狀態",
     "page_music_player_enter_link_hint": "請輸入影片ID或連結...",
     "page_video_list_title": "播放清單",
+    "page_memo_created_time": "創建時間",
+    "page_memo_edited_time": "編輯時間",
     "page_add_memo_title": "新增筆記",
+    "page_add_memo_edit_title": "編輯筆記",
     "page_add_memo_add_title": "標題",
     "page_add_memo_add_body": "內文",
     "page_add_memo_add_title_hint": "請輸入標題",
     "page_add_memo_add_body_hint": "請輸入內文",
-    "page_add_memo_filter_type_result": "排序：依 {filterType} 排序",
-    "@page_add_memo_filter_type_result": {
+    "page_memo_filter_type_result": "排序：依 {filterType} 排序",
+    "@page_memo_filter_type_result": {
         "placeholders": {
             "filterType": {"type": "String"}
         }
-    }
+    },
+    "page_ramen_map_add_ramen_shop_add_shop_button": "新增商家",
+    "page_ramen_map_add_ramen_shop_x_location": "緯度",
+    "page_ramen_map_add_ramen_shop_y_location": "經度",
+    "page_ramen_map_add_ramen_shop_name": "店家名稱",
+    "page_ramen_map_add_ramen_shop_x_location_hint": "請輸入緯度",
+    "page_ramen_map_add_ramen_shop_y_location_hint": "請輸入經度",
+    "page_ramen_map_add_ramen_shop_name_hint": "請輸入店家名稱"
 }
