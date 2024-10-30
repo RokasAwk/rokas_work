@@ -222,13 +222,8 @@ class _IconDialogState extends State<IconDialog> {
           children: [
             /// Icon
             if (widget.icon != null) ...[
-              ContentShadow(
-                isShadow: _showShadow,
-                shadowContainerHeight: 60,
-                shadow: AppBoxShadow.bottomShadow,
-                content: Center(
-                  child: widget.icon!,
-                ),
+              Center(
+                child: widget.icon!,
               ),
             ],
 
