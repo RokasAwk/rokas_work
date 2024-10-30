@@ -99,6 +99,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                     // ...
                   },
                 ),
+                Image.asset(Assets.warrior, scale: 4),
+                const Padding(
+                  padding: EdgeInsets.only(left: 16, top: 16),
+                  child: DevelopedByWidget(),
+                ),
               ],
             ),
           ),
@@ -356,6 +361,11 @@ class _HomePageState extends ConsumerState<HomePage> {
         return Icons.attach_money;
       case 5:
         return Icons.ramen_dining;
+      case 6:
+        return Icons.sunny;
+      case 7:
+        return Icons.numbers;
+
       default:
         return Icons.error;
     }
@@ -377,6 +387,9 @@ class _HomePageState extends ConsumerState<HomePage> {
         return notifier.goToCostPage();
       case 5:
         return notifier.goToRamenMapPage();
+
+      default:
+        return ToastUtils.showToast('別急！還沒開發～');
     }
   }
 }
