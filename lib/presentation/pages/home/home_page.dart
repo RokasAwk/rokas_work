@@ -6,10 +6,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
-import 'package:rokas_work/presentation/resource/png_assets.dart';
+import 'package:rokas_work/presentation/resource/assets.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
 import 'package:rokas_work/presentation/utils/date_util.dart';
+import 'package:rokas_work/utils/toast_utils.dart';
 
 import '../../di_providers/di_provider.dart';
 import '../widgets/developed_by_widget.dart';
@@ -36,15 +37,17 @@ class _HomePageState extends ConsumerState<HomePage> {
     L10n.tr.page_music_player_title,
     L10n.tr.page_cost_title,
     L10n.tr.page_ramen_map_title,
+    L10n.tr.page_weather_title,
+    L10n.tr.page_1A_2B_title,
   ];
 
   final List<String> punchImgList = [
-    PngAssets.punch1,
-    PngAssets.punch2,
-    PngAssets.punch3,
-    PngAssets.punch4,
-    PngAssets.punch5,
-    PngAssets.punch6,
+    Assets.punch1,
+    Assets.punch2,
+    Assets.punch3,
+    Assets.punch4,
+    Assets.punch5,
+    Assets.punch6,
   ];
 
   @override

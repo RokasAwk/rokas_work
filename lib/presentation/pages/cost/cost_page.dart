@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
-import 'package:rokas_work/presentation/resource/png_assets.dart';
+import 'package:rokas_work/presentation/resource/assets.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
 import 'package:rokas_work/presentation/utils/date_util.dart';
