@@ -14,6 +14,7 @@ import 'package:rokas_work/utils/toast_utils.dart';
 
 import '../../di_providers/di_provider.dart';
 import '../widgets/developed_by_widget.dart';
+import 'home_drawer.dart';
 import 'home_notifier.dart';
 import 'home_state.dart';
 
@@ -78,34 +79,9 @@ class _HomePageState extends ConsumerState<HomePage> {
             title: Text(L10n.tr.page_home_title),
             leading: _buildDrawerButton(notifier),
           ),
-          drawer: Drawer(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: [
-                const DrawerHeader(
-                  decoration: BoxDecoration(
-                    color: AppColors.blueGray,
-                  ),
-                  child: Text('Drawer Header'),
-                ),
-                ListTile(
-                  title: const Text('Item 1'),
-                  onTap: () {},
-                ),
-                ListTile(
-                  title: const Text('Item 2'),
-                  onTap: () {
-                    // Update the state of the app.
-                    // ...
-                  },
-                ),
-                Image.asset(Assets.warrior, scale: 4),
-                const Padding(
-                  padding: EdgeInsets.only(left: 16, top: 16),
-                  child: DevelopedByWidget(),
-                ),
-              ],
-            ),
+          drawer: HomeDrawer(
+            size: size,
+            notifier: notifier,
           ),
           body: Container(
             alignment: Alignment.topCenter,
