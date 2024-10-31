@@ -29,6 +29,15 @@ class AppTextStyles {
     leadingDistribution: TextLeadingDistribution.even,
   );
 
+  static const cnxW600PrimaryeXL = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.primaryColor,
+    decoration: TextDecoration.none,
+    height: 7 / 5,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
   static const appW600Primary = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
@@ -80,6 +89,15 @@ class AppTextStyles {
     color: AppColors.white,
     decoration: TextDecoration.none,
     height: 3 / 2,
+    leadingDistribution: TextLeadingDistribution.even,
+  );
+
+  static const cnxW600WhiteXL = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    color: AppColors.white,
+    decoration: TextDecoration.none,
+    height: 7 / 5,
     leadingDistribution: TextLeadingDistribution.even,
   );
 

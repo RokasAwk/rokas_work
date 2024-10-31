@@ -13,6 +13,7 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
 
   static const Color yellow = Color(0xFFF4CD7B);
+  static const Color orange = Color.fromARGB(255, 242, 183, 55);
 
   static const Color neutral_10 = Color(0xFFFBFBFD);
   static const Color neutral_20 = Color(0xFFF9F9FB);
@@ -54,6 +55,7 @@ class AppColors {
   static const Color b_3 = Color(0xFF005BEA);
 
   static List<Color> dividerGradientColors = [blueGrey_10, blueGray];
+  static List<Color> dividerLightGradientColors = [yellow, orange, r_200];
   static List<Color> balanceGradientColors = [b_1, b_2];
 
   static const Color boxShadow1 = Color(0x7A000000);
