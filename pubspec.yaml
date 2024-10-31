@@ -57,6 +57,7 @@ dependencies:
   youtube_player_flutter: ^9.1.1
   flutter_inappwebview: ^6.1.5
   flutter_native_splash: ^2.4.2
+  flip_card: ^0.7.0
 
   # 時間
   intl: ^0.19.0
