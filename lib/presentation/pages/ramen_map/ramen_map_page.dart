@@ -14,7 +14,6 @@ import 'package:rokas_work/utils/toast_utils.dart';
 
 import '../../di_providers/di_provider.dart';
 import '../../routers/router.dart';
-import '../../services/firestore_service/firestore_ramen_map_service.dart';
 import '../widgets/form_field_with_title.dart';
 import '../widgets/icon_dialog.dart';
 import 'ramen_map_notifier.dart';
@@ -35,6 +34,9 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
   late final AppRouter appRouter;
   final Completer<GoogleMapController> _controller =
       Completer<GoogleMapController>();
+  late GoogleMapController mapController;
+  late BitmapDescriptor redDotIcon;
+  Set<Marker> _markers = {};
 
   TextEditingController addXLocationController = TextEditingController();
   TextEditingController addYLocationController = TextEditingController();
@@ -45,30 +47,17 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
     target: LatLng(25.033244239810053, 121.56269542199011),
     zoom: 14,
   );
-  final Set<Marker> _markers = {};
 
   @override
   void initState() {
     super.initState();
+
     RamenMapNotifier notifier =
         ref.read(ramenMapStateNotifierProvider.notifier);
     appRouter = ref.read(routerProvider);
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      FirestoreRamenMapService().listenToData();
-      List dataList = await FirestoreRamenMapService().getData();
-      dataList.forEach((element) {
-        _markers.add(
-          Marker(
-              markerId: MarkerId('${element.shopName}'),
-              position: LatLng(element.xLocation, element.yLocation),
-              infoWindow: InfoWindow(title: '${element.shopName}'),
-              icon: BitmapDescriptor.defaultMarker,
-              onTap: () => notifier.updateCurrentShop(currentShop: element)),
-        );
-      });
-
-      notifier.updateLocationKeySet(locationKeySet: _markers);
+      notifier.loadExcelPlaces(markers: _markers);
     });
   }
 
@@ -107,6 +96,7 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
       ),
       body: _buildBody(
         state: state,
+        notifier: notifier,
         size: size,
       ),
     );
@@ -118,6 +108,7 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
 
   Widget _buildBody({
     required RamenMapState state,
+    required RamenMapNotifier notifier,
     required Size size,
   }) {
     return Column(children: [
@@ -132,17 +123,28 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
         ),
       ),
       const SizedBox(height: 16),
-      _buildTextTile(title: '店家名稱', body: state.currentShop.shopName),
       _buildTextTile(
-          title: '店家座標',
+          title: L10n.tr.page_ramen_map_shop_name,
+          body: state.currentShop.shopName),
+      _buildTextTile(
+          title: L10n.tr.page_ramen_map_shop_location,
           body:
               '${state.currentShop.xLocation}, ${state.currentShop.yLocation}'),
       Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: CommonButton(
-            title: '前往Google Map',
+            title: L10n.tr.page_ramen_map_go_to_google_map,
             verticalPadding: 14,
-            onPressed: () {},
+            onPressed: () {
+              if (state.currentShop.xLocation == 0 ||
+                  state.currentShop.yLocation == 0) {
+                return;
+              }
+
+              notifier.openMapByUrl(
+                  latitude: state.currentShop.xLocation,
+                  longitude: state.currentShop.yLocation);
+            },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30),
             ),
@@ -155,7 +157,7 @@ class _RamenMapPageState extends ConsumerState<RamenMapPage> {
     required String body,
   }) {
     return Padding(
-        padding: const EdgeInsetsDirectional.all(8),
+        padding: const EdgeInsetsDirectional.all(17),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
