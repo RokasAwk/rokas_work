@@ -150,6 +150,53 @@ class IconDialog extends StatefulWidget {
     );
   }
 
+  /// Display with message and another body widget
+  factory IconDialog.withBodyWidget(
+      {String? title,
+      required String message,
+      String? cancelButtonText,
+      String? confirmButtonText,
+      required VoidCallback onCancel,
+      required VoidCallback onConfirm,
+      bool isHideCancel = false,
+      bool isHideConfirm = false,
+      TextStyle? messageStyle,
+      required Widget subContent}) {
+    return IconDialog(
+      title: title != null
+          ? Text(
+              title,
+              style: AppTextStyles.appW600White,
+              textAlign: TextAlign.center,
+            )
+          : null,
+      content: Column(
+        children: [
+          Text(
+            message,
+            style: messageStyle ?? AppTextStyles.appW400White,
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+      isShowSubContent: true,
+      subContent: subContent,
+      positiveButton: isHideConfirm
+          ? null
+          : PrimaryButton.medium(
+              text: confirmButtonText ?? L10n.tr.common_ok,
+              onPressed: onConfirm,
+            ),
+      negativeButton: isHideCancel
+          ? null
+          : CommonButton(
+              title: cancelButtonText ?? L10n.tr.common_cancel,
+              onPressed: onCancel,
+              verticalPadding: 8,
+            ),
+    );
+  }
+
   @override
   State<IconDialog> createState() => _IconDialogState();
 }
