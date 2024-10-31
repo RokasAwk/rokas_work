@@ -69,5 +69,22 @@
     "page_ramen_map_add_ramen_shop_name": "店家名稱",
     "page_ramen_map_add_ramen_shop_x_location_hint": "請輸入緯度",
     "page_ramen_map_add_ramen_shop_y_location_hint": "請輸入經度",
-    "page_ramen_map_add_ramen_shop_name_hint": "請輸入店家名稱"
+    "page_ramen_map_add_ramen_shop_name_hint": "請輸入店家名稱",
+    "page_ramen_map_shop_name": "店家名稱",
+    "page_ramen_map_shop_location": "店家座標",
+    "page_ramen_map_go_to_google_map": "前往Google Map",
+    "page_home_drawer_default_user_name": "預設使用者",
+    "page_home_drawer_user_name_hint": "請輸入使用者名稱",
+    "page_home_drawer_default_user_level": "Lv.{level}",
+    "@page_home_drawer_default_user_level": {
+        "placeholders": {
+            "level": {"type": "String"}
+        }
+    },
+    "page_home_drawer_user_default_description": "無描述",
+    "page_home_drawer_user_description_hint": "請輸入使用者描述",
+    "page_home_drawer_user_exp": "經驗值",
+    "page_home_drawer_profile": "個人檔案",
+    "page_home_drawer_missions": "任務清單",
+    "page_home_drawer_settings": "設定"
 }
