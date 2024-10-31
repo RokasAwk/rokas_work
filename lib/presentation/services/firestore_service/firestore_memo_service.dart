@@ -48,9 +48,13 @@ class FirestoreMemoService implements FirestoreService {
   }) async {
     data as Memo;
     try {
-      await db.collection('memo').doc(dataId).update(data.toFirestore());
+      await db
+          .collection('memo')
+          .doc('memo_$dataId')
+          .update(data.toFirestore());
     } catch (e) {
       print("Error update memo: $e");
+      rethrow;
     }
   }
 
