@@ -9,6 +9,7 @@ class SharePreferenceUtil {
   }
   static const String _userNameKey = 'userName';
   static const String _userExpKey = 'userExp';
+  static const String _userDescriptionKey = 'userDescription';
 
   SharePreferenceUtil._internal();
 
@@ -20,10 +21,15 @@ class SharePreferenceUtil {
     await prefs.setString(_userNameKey, userName);
   }
 
+  Future<void> setUserDescription(String userDescription) async {
+    await prefs.setString(_userDescriptionKey, userDescription);
+  }
+
   Future<void> setUserExp(int userExp) async {
-    await prefs.setInt(_userNameKey, userExp);
+    await prefs.setInt(_userExpKey, userExp);
   }
 
   String? getUserName() => prefs.getString(_userNameKey);
   int? getUserExp() => prefs.getInt(_userExpKey);
+  String? getUserDescription() => prefs.getString(_userDescriptionKey);
 }
