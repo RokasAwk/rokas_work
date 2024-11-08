@@ -92,7 +92,7 @@ class AppTextStyles {
     leadingDistribution: TextLeadingDistribution.even,
   );
 
-  static const cnxW600WhiteXL = TextStyle(
+  static const appW600WhiteXL = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w600,
     color: AppColors.white,
