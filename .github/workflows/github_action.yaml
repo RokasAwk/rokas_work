@@ -1,0 +1,15 @@
+# github_action.yaml
+name: 'GitHub Action Test' # workflow名稱
+
+on:
+  push:
+    branches:
+      - main  # 當main有新的commit時會觸發
+
+jobs:
+  test_github_action:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing GitHub action
+        run: echo "Hello World GitHub Action"
