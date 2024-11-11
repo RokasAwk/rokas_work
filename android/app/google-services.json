@@ -12,15 +12,74 @@
           "package_name": "com.rokas.work"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "520810380009-nk4iqq1281s8ru4m7bcv67mtelv9s6f5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC6M8E0zZ7MO95ScIQTZAcsS0nZGzgEhv0"
+        },
+        {
+          "current_key": "AIzaSyDjG19K08GV18zbLyrBYBBw1U_LgO4ilnw"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520810380009-nk4iqq1281s8ru4m7bcv67mtelv9s6f5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "520810380009-iurii30jbg0mepmto81qbd4jp69gvhep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rokas.work"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520810380009:android:84ba25fc65297c6b2e0e78",
+        "android_client_info": {
+          "package_name": "com.rokas.work.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520810380009-nk4iqq1281s8ru4m7bcv67mtelv9s6f5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6M8E0zZ7MO95ScIQTZAcsS0nZGzgEhv0"
+        },
+        {
+          "current_key": "AIzaSyDjG19K08GV18zbLyrBYBBw1U_LgO4ilnw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520810380009-nk4iqq1281s8ru4m7bcv67mtelv9s6f5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "520810380009-iurii30jbg0mepmto81qbd4jp69gvhep.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.rokas.work"
+              }
+            }
+          ]
         }
       }
     }
