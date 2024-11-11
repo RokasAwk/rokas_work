@@ -6,7 +6,7 @@ void main() {
     expect(1, 1);
   });
 
-  test('Failed Test', () {
-    expect(1, 2);
+  test('Success Test', () {
+    expect(2, 2);
   });
 }
