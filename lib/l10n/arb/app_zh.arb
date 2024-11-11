@@ -24,6 +24,10 @@
     "common_success": "成功",
     "common_fail": "失敗",
     "common_empty_item": "還沒有資料哦...！",
+    "common_account_title": "帳號(信箱)",
+    "common_account_title_hint": "請輸入帳號(信箱)",
+    "common_password": "密碼",
+    "common_password_hint": "請輸入密碼",
     "page_cost_total_cost": "本期總花費",
     "page_cost_last_month_cost": "上月總花費",
     "page_cost_current_month_cost": "本月總花費",
@@ -74,6 +78,7 @@
     "page_ramen_map_shop_location": "店家座標",
     "page_ramen_map_go_to_google_map": "前往Google Map",
     "page_home_drawer_default_user_name": "預設使用者",
+    "page_home_drawer_user_name": "使用者名稱",
     "page_home_drawer_user_name_hint": "請輸入使用者名稱",
     "page_home_drawer_default_user_level": "Lv.{level}",
     "@page_home_drawer_default_user_level": {
@@ -82,9 +87,20 @@
         }
     },
     "page_home_drawer_user_default_description": "無描述",
+    "page_home_drawer_user_description": "關於我",
     "page_home_drawer_user_description_hint": "請輸入使用者描述",
     "page_home_drawer_user_exp": "經驗值",
     "page_home_drawer_profile": "個人檔案",
     "page_home_drawer_missions": "任務清單",
-    "page_home_drawer_settings": "設定"
+    "page_home_drawer_settings": "設定",
+    "page_register_title": "申請加入會員！",
+    "page_register_subtitle": "現在就加入會員，出賣你的個資（？",
+    "page_register_become_user": "成為會員有什麼好處？",
+    "page_register_button": "註冊",
+    "page_login_title": "歡迎回來！",
+    "page_login_subtitle": "輸入帳號密碼，登入以讀取紀錄。",
+    "page_login_have_not_register": "還沒註冊?",
+    "page_login_button": "登入",
+    "page_1A_2B_title_in_page": "終極密碼"
+   
 }
