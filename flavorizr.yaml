@@ -1,0 +1,19 @@
+flavors:
+  prod:
+    app:
+      name: 'Rokas Tools'
+    android:
+      applicationId: 'com.rokas.work'
+    ios:
+      bundleId: 'com.rokas.work'
+    macos:
+      bundleId: 'com.rokas.work'
+  dev:
+    app:
+      name: 'Rokas Tools DEV'
+    android:
+      applicationId: 'com.rokas.work.dev'
+    ios:
+      bundleId: 'com.rokas.work.dev'
+    macos:
+      bundleId: 'com.rokas.work.dev'
