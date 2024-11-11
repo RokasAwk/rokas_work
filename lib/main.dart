@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/presentation/services/firebase_service/firbase_service.dart';
 
+import 'presentation/utils/share_preferance_util.dart';
 import 'rokas_work_app.dart';
 
 bool shouldUseFirestoreEmulator = true;
@@ -24,6 +25,8 @@ void main() async {
   if (shouldUseFirestoreEmulator) {
     FirebaseFirestore.instance.useFirestoreEmulator('localhost', 8080);
   }
+
+  SharePreferenceUtil().init();
 
   runApp(const ProviderScope(child: RokasWorkApp()));
 }
