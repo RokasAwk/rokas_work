@@ -1,0 +1,26 @@
+# pr.yaml
+
+name: 'PR CI'
+
+on:
+  pull_request:    # pull_request_target有寫入權限
+    types:
+      - opened
+      - edited
+      - synchronize
+
+jobs:
+  flutter_test:
+    name: Flutter Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.3' # 指定使用版本
+      - name: Flutter Test
+        run: |
+          flutter pub get
+          flutter test
