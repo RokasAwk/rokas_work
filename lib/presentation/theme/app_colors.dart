@@ -57,7 +57,7 @@ class AppColors {
   static List<Color> dividerGradientColors = [blueGrey_10, blueGray];
   static List<Color> dividerLightGradientColors = [yellow, orange, r_200];
   static List<Color> balanceGradientColors = [b_1, b_2];
-  static List<Color> orangeGradientColors = [yellow, neutral_50];
+  static List<Color> orangeGradientColors = [orange, neutral_300];
 
   static const Color boxShadow1 = Color(0x7A000000);
   static const Color boxShadow2 = Color(0x32000000);
