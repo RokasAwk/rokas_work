@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../domain/entity/memo.dart';
 import '../pages/cost/cost_page.dart';
 import '../pages/home/home_page.dart';
+import '../pages/login/login_page.dart';
 import '../pages/memo/add_memo_page.dart';
 import '../pages/memo/memo_list_page.dart';
 import '../pages/music_player/music_player_page.dart';
@@ -53,6 +54,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: ProfileRoute.page,
+        ),
+        AutoRoute(
+          page: LoginRoute.page,
         ),
       ];
 }

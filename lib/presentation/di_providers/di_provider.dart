@@ -5,6 +5,8 @@ import '../pages/cost/cost_notifier.dart';
 import '../pages/cost/cost_state.dart';
 import '../pages/home/home_notifier.dart';
 import '../pages/home/home_state.dart';
+import '../pages/login/login_notifier.dart';
+import '../pages/login/login_state.dart';
 import '../pages/memo/memo_list_notifier.dart';
 import '../pages/memo/memo_list_state.dart';
 import '../pages/music_player/music_player_notifier.dart';
@@ -69,3 +71,10 @@ final profileListStateNotifierProvider =
     appRouter: ref.read(routerProvider),
   );
 });
+final loginStateNotifierProvider =
+    StateNotifierProvider.autoDispose<LoginNotifier, LoginState>((ref) {
+  return LoginNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});
+
