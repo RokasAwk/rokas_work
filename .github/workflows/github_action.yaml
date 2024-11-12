@@ -7,9 +7,17 @@ on:
       - main  # 當main有新的commit時會觸發
 
 jobs:
-  test_github_action:
-    name: Validate PR title
+  flutter_test:
+    name: Flutter Test
     runs-on: ubuntu-latest
     steps:
-      - name: Testing GitHub action
-        run: echo "Hello World GitHub Action"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.3' # 指定使用版本
+      - name: Flutter Test
+        run: |
+          flutter pub get
+          flutter test
