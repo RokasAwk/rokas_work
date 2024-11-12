@@ -49,8 +49,8 @@ class IconDialog extends StatefulWidget {
     required String message,
     String? cancelButtonText,
     String? confirmButtonText,
-    required VoidCallback onCancel,
-    required VoidCallback onConfirm,
+    VoidCallback? onCancel,
+    VoidCallback? onConfirm,
     bool isHideCancel = false,
     bool isHideConfirm = false,
     TextStyle? messageStyle,
@@ -77,13 +77,13 @@ class IconDialog extends StatefulWidget {
           ? null
           : PrimaryButton.medium(
               text: confirmButtonText ?? L10n.tr.common_ok,
-              onPressed: onConfirm,
+              onPressed: onConfirm!,
             ),
       negativeButton: isHideCancel
           ? null
           : CommonButton(
               title: cancelButtonText ?? L10n.tr.common_cancel,
-              onPressed: onCancel,
+              onPressed: onCancel!,
               verticalPadding: 8,
             ),
     );
@@ -101,8 +101,8 @@ class IconDialog extends StatefulWidget {
         style: AppTextStyles.appW400White,
         textAlign: TextAlign.center,
       ),
-      positiveButton: PrimaryButton(
-        title: confirmButtonText ?? L10n.tr.common_ok,
+      positiveButton: PrimaryButton.medium(
+        text: confirmButtonText ?? L10n.tr.common_ok,
         onPressed: onConfirm,
       ),
     );
@@ -114,14 +114,17 @@ class IconDialog extends StatefulWidget {
     required String message,
     String? cancelButtonText,
     String? confirmButtonText,
-    required VoidCallback onCancel,
-    required VoidCallback onConfirm,
+    VoidCallback? onCancel,
+    VoidCallback? onConfirm,
     bool isHideCancel = false,
     bool isHideConfirm = false,
     TextStyle? messageStyle,
   }) {
     return IconDialog(
-      icon: const FaIcon(FontAwesomeIcons.check),
+      icon: const FaIcon(
+        FontAwesomeIcons.check,
+        color: AppColors.g_400,
+      ),
       title: title != null
           ? Text(
               title,
@@ -136,15 +139,15 @@ class IconDialog extends StatefulWidget {
       ),
       positiveButton: isHideConfirm
           ? null
-          : PrimaryButton(
-              title: confirmButtonText ?? L10n.tr.common_ok,
-              onPressed: onConfirm,
+          : PrimaryButton.medium(
+              text: confirmButtonText ?? L10n.tr.common_ok,
+              onPressed: onConfirm!,
             ),
       negativeButton: isHideCancel
           ? null
           : CommonButton(
               title: cancelButtonText ?? L10n.tr.common_cancel,
-              onPressed: onCancel,
+              onPressed: onCancel!,
               verticalPadding: 8,
             ),
     );
@@ -360,8 +363,8 @@ class _IconDialogState extends State<IconDialog> {
   }
 
   Widget _defaultPositiveButton(BuildContext context) {
-    return PrimaryButton(
-      title: L10n.tr.common_ok,
+    return PrimaryButton.medium(
+      text: L10n.tr.common_ok,
       onPressed: () {
         Navigator.of(context).pop();
       },
