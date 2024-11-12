@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../domain/entity/memo.dart';
+import '../pages/1a2b/1a2b_page.dart';
 import '../pages/cost/cost_page.dart';
 import '../pages/home/home_page.dart';
 import '../pages/login/login_page.dart';
@@ -55,6 +56,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: ProfileRoute.page,
+        ),
+        AutoRoute(
+          page: OneATwoBRoute.page,
         ),
         AutoRoute(
           page: LoginRoute.page,

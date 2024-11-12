@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/presentation/pages/profifle/profile_notifier.dart';
 
+import '../pages/1a2b/1a2b_notifier.dart';
+import '../pages/1a2b/1a2b_state.dart';
 import '../pages/cost/cost_notifier.dart';
 import '../pages/cost/cost_state.dart';
 import '../pages/home/home_notifier.dart';
@@ -73,6 +75,14 @@ final profileListStateNotifierProvider =
     appRouter: ref.read(routerProvider),
   );
 });
+
+final oneAtwoBStateNotifierProvider =
+    StateNotifierProvider.autoDispose<OneATwoBNotifier, OneATwoBState>((ref) {
+  return OneATwoBNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});
+
 final loginStateNotifierProvider =
     StateNotifierProvider.autoDispose<LoginNotifier, LoginState>((ref) {
   return LoginNotifierImpl(
