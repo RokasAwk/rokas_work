@@ -32,7 +32,7 @@ class RokasWorkAppState extends ConsumerState<RokasWorkApp> {
     locale = const Locale('zh', 'TW');
 
     return MaterialApp.router(
-      title: 'Home',
+      title: 'Rokas Tools V2',
       builder: (context, child) {
         return Overlay(
           initialEntries: [
