@@ -15,6 +15,9 @@ abstract class HomeNotifier extends StateNotifier<HomeState> {
   void goToMusicPlayerPage();
   void goToCostPage();
   void goToRamenMapPage();
+  void goToProfilePage();
+  void goToOneATwoBPage();
+  void goToLoginPage();
 
   void openDrawer(BuildContext context);
 }
@@ -61,5 +64,20 @@ class HomeNotifierImpl extends HomeNotifier {
   @override
   void goToCostPage() {
     appRouter.push(const CostRoute());
+  }
+
+  @override
+  void goToProfilePage() {
+    appRouter.push(const ProfileRoute());
+  }
+
+  @override
+  void goToOneATwoBPage() {
+    appRouter.push(const OneATwoBRoute());
+  }
+
+  @override
+  void goToLoginPage() {
+    appRouter.push(const LoginRoute());
   }
 }

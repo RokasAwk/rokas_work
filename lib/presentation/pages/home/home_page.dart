@@ -78,6 +78,12 @@ class _HomePageState extends ConsumerState<HomePage> {
           appBar: AppBar(
             title: Text(L10n.tr.page_home_title),
             leading: _buildDrawerButton(notifier),
+            actions: [
+              IconButton(
+                onPressed: () => notifier.goToLoginPage(),
+                icon: const FaIcon(FontAwesomeIcons.user),
+              )
+            ],
           ),
           drawer: HomeDrawer(
             size: size,
@@ -160,10 +166,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget _buildDateTimeSection({
     required HomeState state,
   }) {
-    return Text(
-      state.currentTime.toDateTimeString(),
-      style: AppTextStyles.appW400N300Medium,
-    );
+    return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+      Text(
+        state.currentTime.toDateTimeString(),
+        style: AppTextStyles.appW400N300Medium,
+      )
+    ]);
   }
 
   Widget _buildBody({
@@ -172,8 +180,26 @@ class _HomePageState extends ConsumerState<HomePage> {
   }) {
     return Column(
       children: [
-        _buildDateTimeSection(
-          state: state,
+        Row(
+          children: [
+            Expanded(
+                flex: 2,
+                child: _buildDateTimeSection(
+                  state: state,
+                )),
+            Expanded(
+                flex: 1,
+                child:
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  InkWell(
+                    onTap: () => notifier.goToLoginPage(),
+                    child: Text('登入?',
+                        style: AppTextStyles.appW600BlueGray.copyWith(
+                            decoration: TextDecoration.underline,
+                            decorationStyle: TextDecorationStyle.dotted)),
+                  )
+                ]))
+          ],
         ),
         const SizedBox(
           height: 16,
@@ -225,7 +251,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     required HomeNotifier notifier,
   }) {
     return Container(
-        height: 80 * ((functionsList.length ~/ 4) + 1),
+        height: 52 * ((functionsList.length ~/ 4) + 1),
         decoration: BoxDecoration(
           color: AppColors.blueGrey_10,
         ),
@@ -363,6 +389,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         return notifier.goToCostPage();
       case 5:
         return notifier.goToRamenMapPage();
+      case 7:
+        return notifier.goToOneATwoBPage();
 
       default:
         return ToastUtils.showToast('別急！還沒開發～');
