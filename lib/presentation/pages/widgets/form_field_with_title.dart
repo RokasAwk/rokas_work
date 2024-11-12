@@ -11,6 +11,7 @@ class FormFieldWithTitle extends StatefulWidget {
     this.isShowClearIcon = true,
     required this.titleText,
     required this.hintText,
+    this.textStyle,
     this.maxLines = 1,
     this.maxLength = 20,
     this.controller,
@@ -27,6 +28,7 @@ class FormFieldWithTitle extends StatefulWidget {
   final bool isShowClearIcon;
   final String titleText;
   final String hintText;
+  final TextStyle? textStyle;
   final int maxLines;
   final int maxLength;
   final TextEditingController? controller;
@@ -127,7 +129,7 @@ class _FormFieldWithTitleState extends State<FormFieldWithTitle> {
         FocusScope.of(context).unfocus();
       },
       cursorColor: AppColors.white,
-      style: AppTextStyles.appW400PrimaryMedium,
+      style: widget.textStyle ?? AppTextStyles.appW400PrimaryMedium,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 16),
         prefix: const Padding(padding: EdgeInsets.only(left: 8)),
