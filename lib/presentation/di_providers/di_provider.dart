@@ -14,6 +14,8 @@ import '../pages/music_player/music_player_state.dart';
 import '../pages/profifle/profile_state.dart';
 import '../pages/ramen_map/ramen_map_notifier.dart';
 import '../pages/ramen_map/ramen_map_state.dart';
+import '../pages/register/register_notifier.dart';
+import '../pages/register/register_state.dart';
 import '../pages/to_do/to_do_notifier.dart';
 import '../pages/to_do/to_do_state.dart';
 import '../routers/router.dart';
@@ -78,3 +80,9 @@ final loginStateNotifierProvider =
   );
 });
 
+final registerStateNotifierProvider =
+    StateNotifierProvider.autoDispose<RegisterNotifier, RegisterState>((ref) {
+  return RegisterNotifierImpl(
+    appRouter: ref.read(routerProvider),
+  );
+});

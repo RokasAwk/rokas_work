@@ -10,6 +10,7 @@ import '../pages/music_player/music_player_page.dart';
 import '../pages/music_player/video_list/video_list_page.dart';
 import '../pages/profifle/profile_page.dart';
 import '../pages/ramen_map/ramen_map_page.dart';
+import '../pages/register/register_page.dart';
 import '../pages/to_do/to_do_page.dart';
 
 part 'router.gr.dart';
@@ -57,6 +58,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: LoginRoute.page,
+        ),
+        AutoRoute(
+          page: RegisterRoute.page,
         ),
       ];
 }
