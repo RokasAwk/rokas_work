@@ -6,13 +6,10 @@ part 'memo_list_state.freezed.dart';
 
 @freezed
 class MemoListState with _$MemoListState {
-  factory MemoListState({
+  factory MemoListState.loading() = Loading;
+  factory MemoListState.success({
     required List<Memo> memoList,
     required MemoFilterType filterType,
-  }) = _MemoListState;
-
-  factory MemoListState.init() => MemoListState(
-        memoList: [],
-        filterType: MemoFilterType.createdTime,
-      );
+  }) = Success;
+  factory MemoListState.error() = Error;
 }

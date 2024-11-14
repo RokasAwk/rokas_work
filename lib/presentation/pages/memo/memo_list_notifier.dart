@@ -40,7 +40,7 @@ class MemoListNotifierImpl extends MemoListNotifier {
 
   MemoListNotifierImpl({
     required this.appRouter,
-  }) : super(MemoListState.init());
+  }) : super(MemoListState.loading());
 
   @override
   void goToAddMemoPage(Memo? existedMemo) {
@@ -53,7 +53,7 @@ class MemoListNotifierImpl extends MemoListNotifier {
     required String body,
   }) {
     Memo memoData = Memo(
-      id: state.memoList.length + 1,
+      id: (state as Success).memoList.length + 1,
       title: title,
       body: body,
       createdTime: DateTime.now(),
@@ -95,19 +95,21 @@ class MemoListNotifierImpl extends MemoListNotifier {
 
   @override
   void updateMemoList({required List memoList}) {
-    state = state.copyWith(memoList: memoList as List<Memo>);
+    state = Success(
+        memoList: memoList as List<Memo>,
+        filterType: MemoFilterType.createdTime);
   }
 
   @override
   void onChangeMemoFilterType({required MemoFilterType type}) {
-    List<Memo> sortedMemoList = state.memoList;
+    List<Memo> sortedMemoList = (state as Success).memoList;
     if (type == MemoFilterType.createdTime) {
       sortedMemoList.sort((a, b) => a.createdTime.compareTo(b.createdTime));
     } else {
       sortedMemoList.sort((a, b) => a.editedTime.compareTo(b.editedTime));
     }
 
-    state = state.copyWith(
+    state = (state as Success).copyWith(
       filterType: type,
       memoList: sortedMemoList,
     );

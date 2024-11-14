@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/domain/entity/memo.dart';
 import 'package:rokas_work/domain/value_object/memo_filter_type.dart';
 import 'package:rokas_work/l10n/l10n.dart';
+import 'package:rokas_work/presentation/pages/widgets/error_state_widget%20.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/utils/date_util.dart';
 import 'package:rokas_work/presentation/utils/memo_filter_type_extension.dart';
@@ -17,6 +18,7 @@ import '../widgets/bottom_sheet_tile.dart';
 import '../widgets/empty_list_widget.dart';
 import '../widgets/filter_button.dart';
 import '../widgets/icon_dialog.dart';
+import '../widgets/loading_state_widget .dart';
 import '../widgets/title_bottom_sheet.dart';
 import 'memo_list_notifier.dart';
 import 'memo_list_state.dart';
@@ -64,36 +66,43 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
         ref.read(memoListStateNotifierProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(L10n.tr.page_memo_title),
-        leading: const BackButton(),
-        actions: [
-          IconButton(
-              onPressed: () => notifier.goToAddMemoPage(null),
-              icon: const FaIcon(
-                FontAwesomeIcons.plus,
-              ))
-        ],
-      ),
-      body: _buildBody(
-        state: state,
-        notifier: notifier,
-        size: size,
-        title: '排序',
-        selectedType: state.filterType,
-        onItemTap: (value) async {
-          await appRouter.pop();
+        appBar: AppBar(
+          title: Text(L10n.tr.page_memo_title),
+          leading: const BackButton(),
+          actions: [
+            IconButton(
+                onPressed: () => notifier.goToAddMemoPage(null),
+                icon: const FaIcon(
+                  FontAwesomeIcons.plus,
+                ))
+          ],
+        ),
+        body: state.when(
+          loading: () => const LoadingStateWidget(),
+          success: (
+            memoList,
+            filterType,
+          ) =>
+              _buildBody(
+            state: state,
+            notifier: notifier,
+            size: size,
+            title: '排序',
+            selectedType: filterType,
+            onItemTap: (value) async {
+              await appRouter.pop();
 
-          if (state.filterType == value) {
-            return;
-          }
+              if (filterType == value) {
+                return;
+              }
 
-          notifier.onChangeMemoFilterType(
-            type: value,
-          );
-        },
-      ),
-    );
+              notifier.onChangeMemoFilterType(
+                type: value,
+              );
+            },
+          ),
+          error: () => const ErrorStateWidget(),
+        ));
   }
 
   Widget _buildBody({
@@ -150,8 +159,8 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
                               }));
                     });
               },
-              filterTitle:
-                  L10n.tr.page_memo_filter_type_result(state.filterType.text()),
+              filterTitle: L10n.tr.page_memo_filter_type_result(
+                  (state as Success).filterType.text()),
             ),
             const SizedBox(height: 8),
             Expanded(
@@ -172,7 +181,7 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
     required MemoListNotifier notifier,
   }) =>
       ListView.separated(
-        itemCount: state.memoList.length,
+        itemCount: (state as Success).memoList.length,
         itemBuilder: (context, index) {
           return _buildItemTile(
             size: size,
@@ -332,7 +341,7 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
         onCancel: () => appRouter.pop(),
         onConfirm: () async {
           try {
-            Memo tempMemo = state.memoList[index];
+            Memo tempMemo = (state as Success).memoList[index];
             List newMemoList = [];
             newMemoList.addAll(state.memoList);
             newMemoList.removeAt(index);

@@ -103,7 +103,7 @@ class _AddMemoPageState extends ConsumerState<AddMemoPage> {
           FormFieldWithTitle(
             titleText: L10n.tr.page_add_memo_add_body,
             hintText: L10n.tr.page_add_memo_add_body_hint,
-            maxLines: 18,
+            maxLines: 12,
             maxLength: 1000,
             isShowClearIcon: false,
             controller: bodyController,
