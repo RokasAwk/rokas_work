@@ -1,6 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rokas_work/data/apis/weather_service/weather_api.dart';
 import 'package:rokas_work/presentation/pages/profifle/profile_notifier.dart';
 
+import '../../data/apis/global_response_handler.dart';
+import '../../data/repository/weather_repository_impl.dart';
+import '../../domain/repository/weather_repository.dart';
+import '../../domain/usecase/common/server_error.dart';
+import '../../domain/usecase/weather/fetch_week_weather_usecase.dart';
 import '../pages/1a2b/1a2b_notifier.dart';
 import '../pages/1a2b/1a2b_state.dart';
 import '../pages/cost/cost_notifier.dart';
@@ -20,7 +27,12 @@ import '../pages/register/register_notifier.dart';
 import '../pages/register/register_state.dart';
 import '../pages/to_do/to_do_notifier.dart';
 import '../pages/to_do/to_do_state.dart';
+import '../pages/weather/weather_notifier.dart';
+import '../pages/weather/weather_state.dart';
 import '../routers/router.dart';
+
+part "usecase_provider.dart";
+part "repo_provider.dart";
 
 final routerProvider = Provider<AppRouter>((ref) {
   return AppRouter();
@@ -95,4 +107,21 @@ final registerStateNotifierProvider =
   return RegisterNotifierImpl(
     appRouter: ref.read(routerProvider),
   );
+});
+
+final weatherStateNotifierProvider =
+    StateNotifierProvider.autoDispose<WeatherNotifier, WeatherState>((ref) {
+  return WeatherNotifierImpl(
+      appRouter: ref.read(routerProvider),
+      fetchWeekWeatherUseCase: ref.read(weatherUseCaseProvider));
+});
+
+final weatherApiProvider = Provider.autoDispose<WeatherApi>((ref) {
+  return WeatherApi(
+    Dio(),
+  );
+});
+
+final serverErrorFactoryProvider = Provider<ServerErrorFactory>((ref) {
+  return ServerErrorFactoryImpl();
 });
