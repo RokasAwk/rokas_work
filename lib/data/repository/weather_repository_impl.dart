@@ -23,9 +23,11 @@ class WeatherRepositoryImpl extends WeatherRepository {
   @override
   Future<List<WeekWeather>> fetchWeekWeather({
     String? elementName,
+    String? locationName,
   }) async {
     FetchWeekWeatherRequestDto dto = FetchWeekWeatherRequestDto(
       elementName: elementName,
+      locationName: locationName,
       Authorization: apiAuthKey,
     );
     var r = await _weatherApi().fetchWeekWeather(dto);

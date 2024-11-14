@@ -10,6 +10,7 @@ _$FetchWeekWeatherRequestDtoImpl _$$FetchWeekWeatherRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$FetchWeekWeatherRequestDtoImpl(
       elementName: json['elementName'] as String?,
+      locationName: json['locationName'] as String?,
       Authorization: json['Authorization'] as String,
     );
 
@@ -17,5 +18,6 @@ Map<String, dynamic> _$$FetchWeekWeatherRequestDtoImplToJson(
         _$FetchWeekWeatherRequestDtoImpl instance) =>
     <String, dynamic>{
       'elementName': instance.elementName,
+      'locationName': instance.locationName,
       'Authorization': instance.Authorization,
     };

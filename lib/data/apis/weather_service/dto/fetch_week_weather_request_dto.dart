@@ -7,6 +7,7 @@ part 'fetch_week_weather_request_dto.g.dart';
 class FetchWeekWeatherRequestDto with _$FetchWeekWeatherRequestDto {
   factory FetchWeekWeatherRequestDto({
     String? elementName,
+    String? locationName,
     required String Authorization,
   }) = _FetchWeekWeatherRequestDto;
 
