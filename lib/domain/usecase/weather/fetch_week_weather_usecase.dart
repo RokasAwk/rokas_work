@@ -21,8 +21,10 @@ class FetchWeekWeatherUseCase
     FetchWeekWeatherQuery param,
   ) async {
     try {
-      List<WeekWeather> data =
-          await weatherRepo.fetchWeekWeather(elementName: param.elementName);
+      List<WeekWeather> data = await weatherRepo.fetchWeekWeather(
+        elementName: param.elementName,
+        locationName: param.locationName,
+      );
 
       return Result.success(data);
     } catch (e) {
