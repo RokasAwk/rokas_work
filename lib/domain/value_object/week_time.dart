@@ -1,28 +1,28 @@
-import 'element_value.dart';
+import 'week_element_value.dart';
 
-class Time {
+class WeekTime {
   final String startTime;
   final String endTime;
-  final ElementValue elementValue;
+  final WeekElementValue elementValue;
 
-  Time({
+  WeekTime({
     required this.startTime,
     required this.endTime,
     required this.elementValue,
   });
 
-  factory Time.empty() => Time(
+  factory WeekTime.empty() => WeekTime(
         startTime: '',
         endTime: '',
-        elementValue: ElementValue.empty(),
+        elementValue: WeekElementValue.empty(),
       );
 
-  Time copyWith({
+  WeekTime copyWith({
     String? startTime,
     String? endTime,
-    ElementValue? elementValue,
+    WeekElementValue? elementValue,
   }) {
-    return Time(
+    return WeekTime(
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       elementValue: elementValue ?? this.elementValue,

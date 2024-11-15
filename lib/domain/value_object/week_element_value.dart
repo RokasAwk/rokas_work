@@ -1,18 +1,18 @@
-class ElementValue {
+class WeekElementValue {
   final String weatherDescription;
 
-  ElementValue({
+  WeekElementValue({
     required this.weatherDescription,
   });
 
-  factory ElementValue.empty() => ElementValue(
+  factory WeekElementValue.empty() => WeekElementValue(
         weatherDescription: '',
       );
 
-  ElementValue copyWith({
+  WeekElementValue copyWith({
     String? weatherDescription,
   }) {
-    return ElementValue(
+    return WeekElementValue(
       weatherDescription: weatherDescription ?? this.weatherDescription,
     );
   }

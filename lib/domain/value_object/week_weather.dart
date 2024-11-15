@@ -1,8 +1,8 @@
-import 'package:rokas_work/domain/value_object/weather_element.dart';
+import 'package:rokas_work/domain/value_object/week_weather_element.dart';
 
 class WeekWeather {
   final String locationName;
-  final WeatherElement weatherElement;
+  final WeekWeatherElement weatherElement;
 
   WeekWeather({
     required this.locationName,
@@ -11,12 +11,12 @@ class WeekWeather {
 
   factory WeekWeather.empty() => WeekWeather(
         locationName: '',
-        weatherElement: WeatherElement.empty(),
+        weatherElement: WeekWeatherElement.empty(),
       );
 
   WeekWeather copyWith({
     String? locationName,
-    WeatherElement? weatherElement,
+    WeekWeatherElement? weatherElement,
   }) {
     return WeekWeather(
       locationName: locationName ?? this.locationName,
