@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/data/apis/weather_service/weather_api.dart';
+import 'package:rokas_work/domain/usecase/weather/fetch_36_hours_weather_usecase.dart';
 import 'package:rokas_work/presentation/pages/profifle/profile_notifier.dart';
 
 import '../../data/apis/global_response_handler.dart';
@@ -113,7 +114,9 @@ final weatherStateNotifierProvider =
     StateNotifierProvider.autoDispose<WeatherNotifier, WeatherState>((ref) {
   return WeatherNotifierImpl(
       appRouter: ref.read(routerProvider),
-      fetchWeekWeatherUseCase: ref.read(weatherUseCaseProvider));
+      fetchWeekWeatherUseCase: ref.read(weekweatherUseCaseProvider),
+      fetch36HoursWeatherUseCase:
+          ref.read(thirtySixHoursWeatherUseCaseProvider));
 });
 
 final weatherApiProvider = Provider.autoDispose<WeatherApi>((ref) {
