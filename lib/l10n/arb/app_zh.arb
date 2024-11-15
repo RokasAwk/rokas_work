@@ -101,6 +101,11 @@
     "page_login_subtitle": "輸入帳號密碼，登入以讀取紀錄。",
     "page_login_have_not_register": "還沒註冊?",
     "page_login_button": "登入",
-    "page_1A_2B_title_in_page": "終極密碼"
-   
+    "page_1A_2B_title_in_page": "終極密碼",
+    "page_weather_week_weather_tab": "未來一週天氣預報",
+    "page_weather_36_hours_weather_tab": "今明36小時天氣預報",
+    "page_weather_week_weather_tab": "未來一週天氣預報",
+    "common_advanced_search": "進階搜尋",
+    "common_search_city": "搜尋縣市",
+    "common_search_city_hint": "請輸入縣市完整名稱"
 }
