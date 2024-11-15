@@ -18,6 +18,7 @@ abstract class HomeNotifier extends StateNotifier<HomeState> {
   void goToProfilePage();
   void goToOneATwoBPage();
   void goToLoginPage();
+  void goToWeatherPage();
 
   void openDrawer(BuildContext context);
 }
@@ -79,5 +80,10 @@ class HomeNotifierImpl extends HomeNotifier {
   @override
   void goToLoginPage() {
     appRouter.push(const LoginRoute());
+  }
+
+  @override
+  void goToWeatherPage() {
+    appRouter.push(const WeatherRoute());
   }
 }

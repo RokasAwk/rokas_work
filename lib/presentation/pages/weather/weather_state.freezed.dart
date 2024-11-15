@@ -19,21 +19,33 @@ mixin _$WeatherState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<WeekWeather> weatherDataList) success,
+    required TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)
+        success,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<WeekWeather> weatherDataList)? success,
+    TResult? Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult? Function()? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<WeekWeather> weatherDataList)? success,
+    TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -119,7 +131,11 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<WeekWeather> weatherDataList) success,
+    required TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)
+        success,
     required TResult Function() error,
   }) {
     return loading();
@@ -129,7 +145,11 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<WeekWeather> weatherDataList)? success,
+    TResult? Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult? Function()? error,
   }) {
     return loading?.call();
@@ -139,7 +159,11 @@ class _$LoadingImpl implements Loading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<WeekWeather> weatherDataList)? success,
+    TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -194,7 +218,10 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<WeekWeather> weatherDataList});
+  $Res call(
+      {List<WeekWeather> weekWeatherDataList,
+      List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+      String currentCity});
 }
 
 /// @nodoc
@@ -208,13 +235,23 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? weatherDataList = null,
+    Object? weekWeatherDataList = null,
+    Object? thirtySixHoursWeatherDataList = null,
+    Object? currentCity = null,
   }) {
     return _then(_$SuccessImpl(
-      weatherDataList: null == weatherDataList
-          ? _value._weatherDataList
-          : weatherDataList // ignore: cast_nullable_to_non_nullable
+      weekWeatherDataList: null == weekWeatherDataList
+          ? _value._weekWeatherDataList
+          : weekWeatherDataList // ignore: cast_nullable_to_non_nullable
               as List<WeekWeather>,
+      thirtySixHoursWeatherDataList: null == thirtySixHoursWeatherDataList
+          ? _value._thirtySixHoursWeatherDataList
+          : thirtySixHoursWeatherDataList // ignore: cast_nullable_to_non_nullable
+              as List<ThirtySixHoursWeather>,
+      currentCity: null == currentCity
+          ? _value.currentCity
+          : currentCity // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -222,20 +259,37 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements Success {
-  _$SuccessImpl({required final List<WeekWeather> weatherDataList})
-      : _weatherDataList = weatherDataList;
+  _$SuccessImpl(
+      {required final List<WeekWeather> weekWeatherDataList,
+      required final List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+      required this.currentCity})
+      : _weekWeatherDataList = weekWeatherDataList,
+        _thirtySixHoursWeatherDataList = thirtySixHoursWeatherDataList;
 
-  final List<WeekWeather> _weatherDataList;
+  final List<WeekWeather> _weekWeatherDataList;
   @override
-  List<WeekWeather> get weatherDataList {
-    if (_weatherDataList is EqualUnmodifiableListView) return _weatherDataList;
+  List<WeekWeather> get weekWeatherDataList {
+    if (_weekWeatherDataList is EqualUnmodifiableListView)
+      return _weekWeatherDataList;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weatherDataList);
+    return EqualUnmodifiableListView(_weekWeatherDataList);
+  }
+
+  final List<ThirtySixHoursWeather> _thirtySixHoursWeatherDataList;
+  @override
+  List<ThirtySixHoursWeather> get thirtySixHoursWeatherDataList {
+    if (_thirtySixHoursWeatherDataList is EqualUnmodifiableListView)
+      return _thirtySixHoursWeatherDataList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_thirtySixHoursWeatherDataList);
   }
 
   @override
+  final String currentCity;
+
+  @override
   String toString() {
-    return 'WeatherState.success(weatherDataList: $weatherDataList)';
+    return 'WeatherState.success(weekWeatherDataList: $weekWeatherDataList, thirtySixHoursWeatherDataList: $thirtySixHoursWeatherDataList, currentCity: $currentCity)';
   }
 
   @override
@@ -244,12 +298,20 @@ class _$SuccessImpl implements Success {
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
             const DeepCollectionEquality()
-                .equals(other._weatherDataList, _weatherDataList));
+                .equals(other._weekWeatherDataList, _weekWeatherDataList) &&
+            const DeepCollectionEquality().equals(
+                other._thirtySixHoursWeatherDataList,
+                _thirtySixHoursWeatherDataList) &&
+            (identical(other.currentCity, currentCity) ||
+                other.currentCity == currentCity));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_weatherDataList));
+      runtimeType,
+      const DeepCollectionEquality().hash(_weekWeatherDataList),
+      const DeepCollectionEquality().hash(_thirtySixHoursWeatherDataList),
+      currentCity);
 
   @JsonKey(ignore: true)
   @override
@@ -261,32 +323,47 @@ class _$SuccessImpl implements Success {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<WeekWeather> weatherDataList) success,
+    required TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)
+        success,
     required TResult Function() error,
   }) {
-    return success(weatherDataList);
+    return success(
+        weekWeatherDataList, thirtySixHoursWeatherDataList, currentCity);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<WeekWeather> weatherDataList)? success,
+    TResult? Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult? Function()? error,
   }) {
-    return success?.call(weatherDataList);
+    return success?.call(
+        weekWeatherDataList, thirtySixHoursWeatherDataList, currentCity);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<WeekWeather> weatherDataList)? success,
+    TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult Function()? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(weatherDataList);
+      return success(
+          weekWeatherDataList, thirtySixHoursWeatherDataList, currentCity);
     }
     return orElse();
   }
@@ -327,10 +404,14 @@ class _$SuccessImpl implements Success {
 }
 
 abstract class Success implements WeatherState {
-  factory Success({required final List<WeekWeather> weatherDataList}) =
-      _$SuccessImpl;
+  factory Success(
+      {required final List<WeekWeather> weekWeatherDataList,
+      required final List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+      required final String currentCity}) = _$SuccessImpl;
 
-  List<WeekWeather> get weatherDataList;
+  List<WeekWeather> get weekWeatherDataList;
+  List<ThirtySixHoursWeather> get thirtySixHoursWeatherDataList;
+  String get currentCity;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -375,7 +456,11 @@ class _$ErrorImpl implements Error {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
-    required TResult Function(List<WeekWeather> weatherDataList) success,
+    required TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)
+        success,
     required TResult Function() error,
   }) {
     return error();
@@ -385,7 +470,11 @@ class _$ErrorImpl implements Error {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
-    TResult? Function(List<WeekWeather> weatherDataList)? success,
+    TResult? Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult? Function()? error,
   }) {
     return error?.call();
@@ -395,7 +484,11 @@ class _$ErrorImpl implements Error {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
-    TResult Function(List<WeekWeather> weatherDataList)? success,
+    TResult Function(
+            List<WeekWeather> weekWeatherDataList,
+            List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
+            String currentCity)?
+        success,
     TResult Function()? error,
     required TResult orElse(),
   }) {

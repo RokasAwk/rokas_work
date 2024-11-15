@@ -389,6 +389,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         return notifier.goToCostPage();
       case 5:
         return notifier.goToRamenMapPage();
+      case 6:
+        return notifier.goToWeatherPage();
       case 7:
         return notifier.goToOneATwoBPage();
 
