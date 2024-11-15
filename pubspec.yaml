@@ -83,6 +83,7 @@ dependencies:
   permission_handler: ^11.3.1
   excel: ^4.0.6
   url_launcher: ^6.3.1
+  dropdown_search: ^6.0.1
   
 dev_dependencies:
   flutter_test:
