@@ -6,4 +6,6 @@ class Assets {
   static String punch5 = 'assets/punch5.png';
   static String punch6 = 'assets/punch6.png';
   static String warrior = 'assets/warrior.jpg';
+  static String appIcon = 'assets/app_icon.jpg';
+  static String holding = 'assets/holding.png';
 }
