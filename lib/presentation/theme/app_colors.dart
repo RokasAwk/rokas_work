@@ -11,6 +11,7 @@ class AppColors {
   static Color black_50 = AppColors.black.withOpacity(0.5);
 
   static const Color white = Color(0xFFFFFFFF);
+  static const Color grey = Color(0xFFE4E4E4);
 
   static const Color yellow = Color(0xFFF4CD7B);
   static const Color orange = Color.fromARGB(255, 242, 183, 55);

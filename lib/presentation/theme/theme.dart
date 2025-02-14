@@ -5,7 +5,7 @@ var appTheme = ThemeData(
   useMaterial3: false,
   scaffoldBackgroundColor: Colors.white,
   appBarTheme: const AppBarTheme(
-    backgroundColor: AppColors.blueGray,
+    backgroundColor: AppColors.orange,
     centerTitle: false,
     titleSpacing: 24,
   ),
