@@ -26,6 +26,18 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CostListChartRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CostListChartPage(),
+      );
+    },
+    CostListRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const CostListPage(),
+      );
+    },
     CostRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -137,6 +149,34 @@ class AddMemoRouteArgs {
   String toString() {
     return 'AddMemoRouteArgs{key: $key, existedMemo: $existedMemo}';
   }
+}
+
+/// generated route for
+/// [CostListChartPage]
+class CostListChartRoute extends PageRouteInfo<void> {
+  const CostListChartRoute({List<PageRouteInfo>? children})
+      : super(
+          CostListChartRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CostListChartRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [CostListPage]
+class CostListRoute extends PageRouteInfo<void> {
+  const CostListRoute({List<PageRouteInfo>? children})
+      : super(
+          CostListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CostListRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
