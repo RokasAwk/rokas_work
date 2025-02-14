@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "520810380009",
+    "project_id": "rokastoolsv2",
+    "storage_bucket": "rokastoolsv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520810380009:android:8f417e8cfa12d10f2e0e78",
+        "android_client_info": {
+          "package_name": "com.rokas.work"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6M8E0zZ7MO95ScIQTZAcsS0nZGzgEhv0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

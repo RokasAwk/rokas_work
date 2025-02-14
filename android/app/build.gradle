@@ -78,6 +78,18 @@ android {
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
         }
+
+    flavorDimensions "flavor-type"
+
+    productFlavors{
+        dev{
+            dimension "flavor-type"
+        }
+       
+        prod{
+            dimension "flavor-type"
+        }
+    }
     }
 }
 
