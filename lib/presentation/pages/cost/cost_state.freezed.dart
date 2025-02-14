@@ -16,11 +16,12 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CostState {
-  DateTime get currentTime => throw _privateConstructorUsedError;
   Decimal get totalCost => throw _privateConstructorUsedError;
   Decimal get lastMonthCost => throw _privateConstructorUsedError;
   Decimal get currentMonthCost => throw _privateConstructorUsedError;
   Decimal get costChangeRate => throw _privateConstructorUsedError;
+  String get currentCostType => throw _privateConstructorUsedError;
+  List<CostInfo> get costList => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CostStateCopyWith<CostState> get copyWith =>
@@ -33,11 +34,12 @@ abstract class $CostStateCopyWith<$Res> {
       _$CostStateCopyWithImpl<$Res, CostState>;
   @useResult
   $Res call(
-      {DateTime currentTime,
-      Decimal totalCost,
+      {Decimal totalCost,
       Decimal lastMonthCost,
       Decimal currentMonthCost,
-      Decimal costChangeRate});
+      Decimal costChangeRate,
+      String currentCostType,
+      List<CostInfo> costList});
 }
 
 /// @nodoc
@@ -53,17 +55,14 @@ class _$CostStateCopyWithImpl<$Res, $Val extends CostState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentTime = null,
     Object? totalCost = null,
     Object? lastMonthCost = null,
     Object? currentMonthCost = null,
     Object? costChangeRate = null,
+    Object? currentCostType = null,
+    Object? costList = null,
   }) {
     return _then(_value.copyWith(
-      currentTime: null == currentTime
-          ? _value.currentTime
-          : currentTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       totalCost: null == totalCost
           ? _value.totalCost
           : totalCost // ignore: cast_nullable_to_non_nullable
@@ -80,6 +79,14 @@ class _$CostStateCopyWithImpl<$Res, $Val extends CostState>
           ? _value.costChangeRate
           : costChangeRate // ignore: cast_nullable_to_non_nullable
               as Decimal,
+      currentCostType: null == currentCostType
+          ? _value.currentCostType
+          : currentCostType // ignore: cast_nullable_to_non_nullable
+              as String,
+      costList: null == costList
+          ? _value.costList
+          : costList // ignore: cast_nullable_to_non_nullable
+              as List<CostInfo>,
     ) as $Val);
   }
 }
@@ -93,11 +100,12 @@ abstract class _$$CostStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime currentTime,
-      Decimal totalCost,
+      {Decimal totalCost,
       Decimal lastMonthCost,
       Decimal currentMonthCost,
-      Decimal costChangeRate});
+      Decimal costChangeRate,
+      String currentCostType,
+      List<CostInfo> costList});
 }
 
 /// @nodoc
@@ -111,17 +119,14 @@ class __$$CostStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? currentTime = null,
     Object? totalCost = null,
     Object? lastMonthCost = null,
     Object? currentMonthCost = null,
     Object? costChangeRate = null,
+    Object? currentCostType = null,
+    Object? costList = null,
   }) {
     return _then(_$CostStateImpl(
-      currentTime: null == currentTime
-          ? _value.currentTime
-          : currentTime // ignore: cast_nullable_to_non_nullable
-              as DateTime,
       totalCost: null == totalCost
           ? _value.totalCost
           : totalCost // ignore: cast_nullable_to_non_nullable
@@ -138,6 +143,14 @@ class __$$CostStateImplCopyWithImpl<$Res>
           ? _value.costChangeRate
           : costChangeRate // ignore: cast_nullable_to_non_nullable
               as Decimal,
+      currentCostType: null == currentCostType
+          ? _value.currentCostType
+          : currentCostType // ignore: cast_nullable_to_non_nullable
+              as String,
+      costList: null == costList
+          ? _value._costList
+          : costList // ignore: cast_nullable_to_non_nullable
+              as List<CostInfo>,
     ));
   }
 }
@@ -146,14 +159,14 @@ class __$$CostStateImplCopyWithImpl<$Res>
 
 class _$CostStateImpl implements _CostState {
   _$CostStateImpl(
-      {required this.currentTime,
-      required this.totalCost,
+      {required this.totalCost,
       required this.lastMonthCost,
       required this.currentMonthCost,
-      required this.costChangeRate});
+      required this.costChangeRate,
+      required this.currentCostType,
+      required final List<CostInfo> costList})
+      : _costList = costList;
 
-  @override
-  final DateTime currentTime;
   @override
   final Decimal totalCost;
   @override
@@ -162,10 +175,19 @@ class _$CostStateImpl implements _CostState {
   final Decimal currentMonthCost;
   @override
   final Decimal costChangeRate;
+  @override
+  final String currentCostType;
+  final List<CostInfo> _costList;
+  @override
+  List<CostInfo> get costList {
+    if (_costList is EqualUnmodifiableListView) return _costList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_costList);
+  }
 
   @override
   String toString() {
-    return 'CostState(currentTime: $currentTime, totalCost: $totalCost, lastMonthCost: $lastMonthCost, currentMonthCost: $currentMonthCost, costChangeRate: $costChangeRate)';
+    return 'CostState(totalCost: $totalCost, lastMonthCost: $lastMonthCost, currentMonthCost: $currentMonthCost, costChangeRate: $costChangeRate, currentCostType: $currentCostType, costList: $costList)';
   }
 
   @override
@@ -173,8 +195,6 @@ class _$CostStateImpl implements _CostState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CostStateImpl &&
-            (identical(other.currentTime, currentTime) ||
-                other.currentTime == currentTime) &&
             (identical(other.totalCost, totalCost) ||
                 other.totalCost == totalCost) &&
             (identical(other.lastMonthCost, lastMonthCost) ||
@@ -182,12 +202,21 @@ class _$CostStateImpl implements _CostState {
             (identical(other.currentMonthCost, currentMonthCost) ||
                 other.currentMonthCost == currentMonthCost) &&
             (identical(other.costChangeRate, costChangeRate) ||
-                other.costChangeRate == costChangeRate));
+                other.costChangeRate == costChangeRate) &&
+            (identical(other.currentCostType, currentCostType) ||
+                other.currentCostType == currentCostType) &&
+            const DeepCollectionEquality().equals(other._costList, _costList));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, currentTime, totalCost,
-      lastMonthCost, currentMonthCost, costChangeRate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      totalCost,
+      lastMonthCost,
+      currentMonthCost,
+      costChangeRate,
+      currentCostType,
+      const DeepCollectionEquality().hash(_costList));
 
   @JsonKey(ignore: true)
   @override
@@ -198,14 +227,13 @@ class _$CostStateImpl implements _CostState {
 
 abstract class _CostState implements CostState {
   factory _CostState(
-      {required final DateTime currentTime,
-      required final Decimal totalCost,
+      {required final Decimal totalCost,
       required final Decimal lastMonthCost,
       required final Decimal currentMonthCost,
-      required final Decimal costChangeRate}) = _$CostStateImpl;
+      required final Decimal costChangeRate,
+      required final String currentCostType,
+      required final List<CostInfo> costList}) = _$CostStateImpl;
 
-  @override
-  DateTime get currentTime;
   @override
   Decimal get totalCost;
   @override
@@ -214,6 +242,10 @@ abstract class _CostState implements CostState {
   Decimal get currentMonthCost;
   @override
   Decimal get costChangeRate;
+  @override
+  String get currentCostType;
+  @override
+  List<CostInfo> get costList;
   @override
   @JsonKey(ignore: true)
   _$$CostStateImplCopyWith<_$CostStateImpl> get copyWith =>

@@ -1,23 +1,25 @@
-import 'dart:async';
-
 import 'package:auto_route/annotations.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:decimal/decimal.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:rokas_work/domain/entity/cost_info.dart';
 import 'package:rokas_work/l10n/l10n.dart';
-import 'package:rokas_work/presentation/resource/assets.dart';
+import 'package:rokas_work/presentation/pages/cost/cost_const.dart';
+import 'package:rokas_work/presentation/services/firestore_service/firestore_cost_list_service.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
-import 'package:rokas_work/presentation/utils/date_util.dart';
 import 'package:rokas_work/presentation/utils/string_extension.dart';
 import 'package:rokas_work/utils/toast_utils.dart';
 
+import '../../../domain/value_object/cost_type.dart';
 import '../../di_providers/di_provider.dart';
-import '../widgets/developed_by_widget.dart';
+import '../../routers/router.dart';
+import '../../services/firestore_service/firestore_cost_service.dart';
+import '../widgets/common_border.dart';
 import '../widgets/form_field_with_title.dart';
+import '../widgets/icon_dialog.dart';
 import 'cost_notifier.dart';
 import 'cost_state.dart';
 
@@ -33,13 +35,24 @@ class CostPage extends ConsumerStatefulWidget {
 
 class _CostPageState extends ConsumerState<CostPage> {
   var size;
+  late final AppRouter appRouter;
   TextEditingController addItemController = TextEditingController();
-  TextEditingController addCategoryController = TextEditingController();
   TextEditingController addCostController = TextEditingController();
   TextEditingController addMemoController = TextEditingController();
 
   @override
   void initState() {
+    appRouter = ref.read(routerProvider);
+
+    CostNotifier notifier = ref.read(costStateNotifierProvider.notifier);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+      FirestoreCostService().listenToData();
+      FirestoreCostListService().listenToData();
+      List<CostInfo> dataList = await FirestoreCostListService().getData();
+
+      notifier.updateCostList(dataList: dataList);
+    });
     super.initState();
   }
 
@@ -89,11 +102,14 @@ class _CostPageState extends ConsumerState<CostPage> {
                 const SizedBox(
                   height: 16,
                 ),
-                _buildAddCostSection(),
+                _buildAddCostSection(notifier: notifier),
                 const SizedBox(
                   height: 16,
                 ),
-                _buildAddButton(notifier: notifier),
+                _buildAddButton(
+                  notifier: notifier,
+                  state: state,
+                ),
               ],
             )));
   }
@@ -105,7 +121,7 @@ class _CostPageState extends ConsumerState<CostPage> {
   }) {
     return Stack(alignment: Alignment.topRight, children: [
       Container(
-        height: size.height * 0.3,
+        height: size.height * 0.25,
         width: size.width,
         padding: const EdgeInsets.symmetric(
           horizontal: 16,
@@ -114,13 +130,13 @@ class _CostPageState extends ConsumerState<CostPage> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             gradient: LinearGradient(
-              colors: AppColors.balanceGradientColors,
+              colors: AppColors.dividerLightGradientColors,
             )),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildCostCardTitle(title: L10n.tr.page_cost_total_cost),
-            _buildCostCardBody(body: '12345477', fontSize: 32),
+            _buildCostCardBody(body: state.totalCost.toString(), fontSize: 24),
             Row(
               children: [
                 Expanded(
@@ -136,10 +152,10 @@ class _CostPageState extends ConsumerState<CostPage> {
               children: [
                 Expanded(
                     child: _buildCostCardBody(
-                        body: state.currentMonthCost.toString(), fontSize: 28)),
+                        body: state.currentMonthCost.toString(), fontSize: 20)),
                 Expanded(
                     child: _buildCostCardBody(
-                        body: state.lastMonthCost.toString(), fontSize: 28)),
+                        body: state.lastMonthCost.toString(), fontSize: 20)),
               ],
             ),
             _buildCostCardTitle(title: L10n.tr.page_cost_month_change_cost),
@@ -147,14 +163,14 @@ class _CostPageState extends ConsumerState<CostPage> {
               body: getChangeCost(
                   currentMonthCost: state.currentMonthCost,
                   lastMonthCost: state.lastMonthCost),
-              fontSize: 22,
+              fontSize: 20,
               isMoney: false,
             ),
           ],
         ),
       ),
       TextButton.icon(
-        onPressed: () {},
+        onPressed: () => notifier.goToHistoryPage(),
         icon: const FaIcon(
           FontAwesomeIcons.listUl,
           size: 20,
@@ -174,7 +190,7 @@ class _CostPageState extends ConsumerState<CostPage> {
   }) {
     return Text(
       title,
-      style: AppTextStyles.appW600White.copyWith(fontSize: 20),
+      style: AppTextStyles.appW400Primary.copyWith(fontSize: 16),
     );
   }
 
@@ -231,7 +247,9 @@ class _CostPageState extends ConsumerState<CostPage> {
   }
 
 // 新增花費區塊
-  Widget _buildAddCostSection() {
+  Widget _buildAddCostSection({
+    required CostNotifier notifier,
+  }) {
     return Container(
         decoration: BoxDecoration(
             border: Border.all(color: AppColors.b_2),
@@ -242,19 +260,42 @@ class _CostPageState extends ConsumerState<CostPage> {
             vertical: 16,
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildFormField(
-                controller: addItemController,
-                titleText: L10n.tr.page_cost_add_cost_button_item,
-                hintText: L10n.tr.page_cost_add_cost_button_item_hint,
+              Text(
+                L10n.tr.page_cost_add_cost_button_category,
+                style: AppTextStyles.appW600N300Medium,
               ),
+              const SizedBox(height: 4),
+              DropdownSearch<String>(
+                  selectedItem: CostConst.costType.first,
+                  items: (filter, infiniteScrollProps) => CostConst.costType,
+                  decoratorProps: DropDownDecoratorProps(
+                    baseStyle: AppTextStyles.appW400Primary,
+                    decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      enabledBorder: enableBorder(),
+                      focusedBorder: focusBorder(),
+                      errorBorder: errorBorder(),
+                      hintText: L10n.tr.page_cost_add_cost_button_category_hint,
+                      suffixIconColor: AppColors.primaryColor,
+                    ),
+                  ),
+                  popupProps: PopupProps.menu(
+                      fit: FlexFit.loose,
+                      constraints: BoxConstraints(maxHeight: size.height * 0.3),
+                      searchFieldProps: TextFieldProps(
+                          textInputAction: TextInputAction.done,
+                          controller: TextEditingController())),
+                  onChanged: (value) =>
+                      notifier.updateCostType(costType: value ?? '')),
               const SizedBox(
                 height: 16,
               ),
               _buildFormField(
-                controller: addCategoryController,
-                titleText: L10n.tr.page_cost_add_cost_button_category,
-                hintText: L10n.tr.page_cost_add_cost_button_category_hint,
+                controller: addItemController,
+                titleText: L10n.tr.page_cost_add_cost_button_item,
+                hintText: L10n.tr.page_cost_add_cost_button_item_hint,
               ),
               const SizedBox(
                 height: 16,
@@ -279,18 +320,21 @@ class _CostPageState extends ConsumerState<CostPage> {
 
 // 新增花費按鈕
   Widget _buildAddButton({
+    required CostState state,
     required CostNotifier notifier,
   }) {
     return TextButton(
         onPressed: () {
           if (addItemController.text.isEmpty ||
-              addCostController.text.isEmpty ||
-              addCategoryController.text.isEmpty) {
+              addCostController.text.isEmpty) {
             ToastUtils.showToast(L10n.tr.page_cost_add_cost_empty);
             return;
           }
 
-          notifier.updateCost(addCost: addCostController.text);
+          ToastUtils.showCustomDialog(_buildAddConfirmDialog(
+            state: state,
+            notifier: notifier,
+          ));
         },
         style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(
@@ -313,5 +357,32 @@ class _CostPageState extends ConsumerState<CostPage> {
       titleText: titleText,
       hintText: hintText,
     );
+  }
+
+  Widget _buildAddConfirmDialog({
+    required CostNotifier notifier,
+    required CostState state,
+  }) {
+    return IconDialog.warning(
+        message: L10n.tr.common_add_hint,
+        onCancel: () => appRouter.pop(),
+        onConfirm: () {
+          notifier.updateCost(addCost: addCostController.text);
+          notifier.addCostList(
+            itemName: addItemController.text,
+            price: Decimal.parse(addCostController.text),
+            costType: CostTypeHelper.toCostType(state.currentCostType),
+          );
+          // notifier.updateCostList(dataList: dataList);
+          // notifier.updateCostList(
+          //     itemName: addItemController.text,
+          //     price: Decimal.parse(addCostController.text),
+          //     memo: addMemoController.text,
+          //     costType: CostTypeHelper.toCostType(state.currentCostType));
+          addItemController.clear();
+          addCostController.clear();
+          addMemoController.clear();
+          appRouter.pop();
+        });
   }
 }
