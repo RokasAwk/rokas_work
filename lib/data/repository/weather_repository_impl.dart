@@ -8,6 +8,7 @@ import 'package:rokas_work/domain/value_object/36_hours_weather_element.dart';
 import 'package:rokas_work/domain/value_object/week_time.dart';
 import 'package:rokas_work/domain/value_object/week_weather_element.dart';
 import 'package:rokas_work/domain/value_object/week_weather.dart';
+import 'package:rokas_work/presentation/pages/weather/weather_const.dart';
 import 'package:rokas_work/presentation/utils/date_util.dart';
 
 import '../../domain/repository/weather_repository.dart';
@@ -15,7 +16,6 @@ import '../../domain/value_object/36_hours_time.dart';
 import '../../domain/value_object/week_element_value.dart';
 import '../apis/weather_service/dto/fetch_36_hours_weather_location_response_dto.dart';
 import '../apis/weather_service/dto/fetch_36_hours_weather_request_dto.dart';
-import '../apis/weather_service/dto/fetch_36_hours_weather_response_dto.dart';
 import '../apis/weather_service/dto/fetch_36_hours_weather_time_response_dto.dart';
 import '../apis/weather_service/dto/fetch_week_weather_location_response_dto.dart';
 import '../apis/weather_service/dto/fetch_week_weather_request_dto.dart';
@@ -28,7 +28,6 @@ class WeatherRepositoryImpl extends WeatherRepository {
   }) : _weatherApi = weatherApi;
 
   final WeatherApi Function() _weatherApi;
-  String apiAuthKey = 'CWB-E68F8F42-6ED1-4ACC-9E55-1B74BB42588C';
 
   @override
   Future<List<WeekWeather>> fetchWeekWeather({
@@ -38,7 +37,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
     FetchWeekWeatherRequestDto dto = FetchWeekWeatherRequestDto(
       elementName: elementName,
       locationName: locationName,
-      Authorization: apiAuthKey,
+      Authorization: WeatherConst.authKey,
     );
     var r = await _weatherApi().fetchWeekWeather(dto);
 
@@ -57,7 +56,7 @@ class WeatherRepositoryImpl extends WeatherRepository {
     Fetch36HoursWeatherRequestDto dto = Fetch36HoursWeatherRequestDto(
       elementName: elementName,
       locationName: locationName,
-      Authorization: apiAuthKey,
+      Authorization: WeatherConst.authKey,
     );
     var r = await _weatherApi().fetch36HoursWeather(dto);
 
