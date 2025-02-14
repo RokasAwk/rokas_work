@@ -6,8 +6,10 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
 import 'package:rokas_work/presentation/pages/widgets/developed_by_widget.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
+import 'package:rokas_work/presentation/utils/share_preferance_util.dart';
 import '../../../utils/toast_utils.dart';
 import '../../di_providers/di_provider.dart';
+import '../../resource/assets.dart';
 import '../../routers/router.dart';
 import '../../theme/app_text_styles.dart';
 import '../widgets/form_field_with_title.dart';
@@ -33,7 +35,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   void initState() {
     appRouter = ref.read(routerProvider);
-
+    nameController.text = SharePreferenceUtil().getUserName() ?? '';
+    descriptionController.text =
+        SharePreferenceUtil().getUserDescription() ?? '';
     super.initState();
   }
 
@@ -103,13 +107,15 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       child: Center(
           child: Column(
         children: [
-          const CircleAvatar(
+          CircleAvatar(
             backgroundColor: AppColors.boxShadow1,
             radius: 70,
+            foregroundImage: AssetImage(Assets.appIcon),
           ),
           const SizedBox(height: 8),
           Text(
-            L10n.tr.page_home_drawer_default_user_name,
+            SharePreferenceUtil().getUserName() ??
+                L10n.tr.page_home_drawer_default_user_name,
             style: AppTextStyles.cnxW600PrimaryeXL,
           ),
           Row(
@@ -134,11 +140,15 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             style: AppTextStyles.appW600Primary,
           ),
           const SizedBox(height: 20),
-          Container(
-              width: size.width * 0.7,
-              height: size.height * 0.3,
-              padding: const EdgeInsets.all(16),
-              child: Text(L10n.tr.page_home_drawer_user_default_description))
+          SizedBox(
+            width: size.width * 0.6,
+            child: Text(
+              SharePreferenceUtil().getUserDescription() ??
+                  L10n.tr.page_home_drawer_user_default_description,
+              overflow: TextOverflow.clip,
+              textAlign: TextAlign.center,
+            ),
+          )
         ],
       )),
     );
@@ -185,7 +195,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           ],
         ),
         onCancel: () => appRouter.pop(),
-        onConfirm: () async {});
+        onConfirm: () async {
+          setState(() {
+            SharePreferenceUtil().setUserName(nameController.text);
+            SharePreferenceUtil()
+                .setUserDescription(descriptionController.text);
+          });
+          appRouter.pop();
+        });
   }
 
   // 輸入框區塊
@@ -204,7 +221,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             children: [
               _buildFormField(
                 controller: nameController,
-                titleText: L10n.tr.page_home_drawer_user_name_hint,
+                titleText: L10n.tr.page_home_drawer_user_name,
                 hintText: L10n.tr.page_home_drawer_user_name_hint,
               ),
               const SizedBox(
@@ -212,9 +229,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
               ),
               _buildFormField(
                 controller: descriptionController,
-                titleText: L10n.tr.page_home_drawer_user_description_hint,
+                titleText: L10n.tr.page_home_drawer_user_description,
                 hintText: L10n.tr.page_home_drawer_user_description_hint,
-                maxLength: 100,
+                maxLength: 50,
               ),
             ],
           ),
@@ -233,6 +250,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       titleText: titleText,
       hintText: hintText,
       maxLength: maxLength,
+      textStyle: AppTextStyles.appW400WhiteMedium,
     );
   }
 }
