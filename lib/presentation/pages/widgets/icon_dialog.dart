@@ -279,7 +279,7 @@ class _IconDialogState extends State<IconDialog> {
 
             Flexible(
               child: Padding(
-                padding: const EdgeInsets.only(left: 24, right: 6),
+                padding: const EdgeInsets.only(left: 24, right: 6, top: 20),
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
                     maxHeight:
