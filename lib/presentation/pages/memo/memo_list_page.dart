@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -36,12 +37,15 @@ class MemoListPage extends ConsumerStatefulWidget {
 class _MemoListPageState extends ConsumerState<MemoListPage> {
   var size;
   late final AppRouter appRouter;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? _user;
 
   @override
   void initState() {
     MemoListNotifier notifier =
         ref.read(memoListStateNotifierProvider.notifier);
     appRouter = ref.read(routerProvider);
+    _user = _auth.currentUser; // 確認當前登入的用戶
 
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       FirestoreMemoService().listenToData();
@@ -66,6 +70,7 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
         ref.read(memoListStateNotifierProvider.notifier);
 
     return Scaffold(
+        backgroundColor: AppColors.grey,
         appBar: AppBar(
           title: Text(L10n.tr.page_memo_title),
           leading: const BackButton(),
@@ -101,7 +106,14 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
               );
             },
           ),
-          error: () => const ErrorStateWidget(),
+          error: () => ErrorStateWidget(
+            onRetry: () async {
+              FirestoreMemoService().listenToData();
+              List dataList = await FirestoreMemoService().getData();
+
+              notifier.updateMemoList(memoList: dataList);
+            },
+          ),
         ));
   }
 
@@ -208,11 +220,9 @@ class _MemoListPageState extends ConsumerState<MemoListPage> {
     return Container(
         width: size.width,
         height: size.height * 0.23,
-        decoration: BoxDecoration(
-            color: AppColors.yellow,
-            border: Border.all(
-              color: AppColors.black_50,
-            )),
+        decoration: const BoxDecoration(
+          color: AppColors.yellow,
+        ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           _buildMemoDataItem(
             meomItem: item,
