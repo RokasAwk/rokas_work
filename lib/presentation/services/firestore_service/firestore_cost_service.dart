@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rokas_work/domain/entity/cost_type.dart';
 
-import '../../../domain/entity/memo.dart';
 import 'firestore_service.dart';
 
 class FirestoreCostService implements FirestoreService {
@@ -18,18 +17,18 @@ class FirestoreCostService implements FirestoreService {
 
   @override
   Future<void> addData(var data) async {
-    data as Memo;
+    data as CostType;
     final docRef = db
         .collection("cost_type")
         .withConverter(
-          fromFirestore: Memo.fromFirestore,
-          toFirestore: (Memo memo, options) => memo.toFirestore(),
+          fromFirestore: CostType.fromFirestore,
+          toFirestore: (CostType costType, options) => costType.toFirestore(),
         )
         .doc("cost_type${data.id}");
     try {
       await docRef.set(data);
     } catch (e) {
-      print("Error add cost_type: $e");
+      print("Error add CostType: $e");
     }
   }
 
@@ -38,7 +37,7 @@ class FirestoreCostService implements FirestoreService {
     try {
       await db.collection('cost_type').doc(dataId).delete();
     } catch (e) {
-      print("Error delete cost_type: $e");
+      print("Error delete CostType: $e");
     }
   }
 
@@ -47,34 +46,34 @@ class FirestoreCostService implements FirestoreService {
     required String dataId,
     required var data,
   }) async {
-    data as Memo;
+    data as CostType;
     try {
       await db
           .collection('cost_type')
-          .doc('cost_type$dataId')
+          .doc('CostType$dataId')
           .update(data.toFirestore());
     } catch (e) {
-      print("Error update cost_type: $e");
+      print("Error update CostType: $e");
       rethrow;
     }
   }
 
   @override
-  Future<List> getData() async {
-    List<CostType> costTypeList = [];
+  Future<List<CostType>> getData() async {
+    List<CostType> CostTypeList = [];
     try {
-      QuerySnapshot snapshot = await db.collection('cost_type').get();
+      QuerySnapshot snapshot = await db.collection("cost_type").get();
       for (var doc in snapshot.docs) {
         Map data = doc.data() as Map;
-        costTypeList.add(CostType(
+        CostTypeList.add(CostType(
           id: data['id'],
-          costType: data['cost_type'],
+          title: data['cost_type'],
         ));
       }
     } catch (e) {
       print("Error get cost_type: $e");
     }
 
-    return costTypeList;
+    return CostTypeList;
   }
 }
