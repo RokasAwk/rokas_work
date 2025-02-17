@@ -119,5 +119,6 @@
     "page_cost_category_item_hotel":  "住宿",
     "page_cost_category_item_traffic":  "交通",
     "page_cost_category_item_other":  "其他",
-    "page_cost_list_title":  "花費歷史"
+    "page_cost_list_title":  "花費歷史",
+    "page_cost_list_pie_chart_title":  "花費統計圖"
 }

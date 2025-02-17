@@ -22,6 +22,8 @@ mixin _$CostState {
   Decimal get costChangeRate => throw _privateConstructorUsedError;
   String get currentCostType => throw _privateConstructorUsedError;
   List<CostInfo> get costList => throw _privateConstructorUsedError;
+  Map<CostType, Decimal> get costDataSource =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CostStateCopyWith<CostState> get copyWith =>
@@ -39,7 +41,8 @@ abstract class $CostStateCopyWith<$Res> {
       Decimal currentMonthCost,
       Decimal costChangeRate,
       String currentCostType,
-      List<CostInfo> costList});
+      List<CostInfo> costList,
+      Map<CostType, Decimal> costDataSource});
 }
 
 /// @nodoc
@@ -61,6 +64,7 @@ class _$CostStateCopyWithImpl<$Res, $Val extends CostState>
     Object? costChangeRate = null,
     Object? currentCostType = null,
     Object? costList = null,
+    Object? costDataSource = null,
   }) {
     return _then(_value.copyWith(
       totalCost: null == totalCost
@@ -87,6 +91,10 @@ class _$CostStateCopyWithImpl<$Res, $Val extends CostState>
           ? _value.costList
           : costList // ignore: cast_nullable_to_non_nullable
               as List<CostInfo>,
+      costDataSource: null == costDataSource
+          ? _value.costDataSource
+          : costDataSource // ignore: cast_nullable_to_non_nullable
+              as Map<CostType, Decimal>,
     ) as $Val);
   }
 }
@@ -105,7 +113,8 @@ abstract class _$$CostStateImplCopyWith<$Res>
       Decimal currentMonthCost,
       Decimal costChangeRate,
       String currentCostType,
-      List<CostInfo> costList});
+      List<CostInfo> costList,
+      Map<CostType, Decimal> costDataSource});
 }
 
 /// @nodoc
@@ -125,6 +134,7 @@ class __$$CostStateImplCopyWithImpl<$Res>
     Object? costChangeRate = null,
     Object? currentCostType = null,
     Object? costList = null,
+    Object? costDataSource = null,
   }) {
     return _then(_$CostStateImpl(
       totalCost: null == totalCost
@@ -151,6 +161,10 @@ class __$$CostStateImplCopyWithImpl<$Res>
           ? _value._costList
           : costList // ignore: cast_nullable_to_non_nullable
               as List<CostInfo>,
+      costDataSource: null == costDataSource
+          ? _value._costDataSource
+          : costDataSource // ignore: cast_nullable_to_non_nullable
+              as Map<CostType, Decimal>,
     ));
   }
 }
@@ -164,8 +178,10 @@ class _$CostStateImpl implements _CostState {
       required this.currentMonthCost,
       required this.costChangeRate,
       required this.currentCostType,
-      required final List<CostInfo> costList})
-      : _costList = costList;
+      required final List<CostInfo> costList,
+      required final Map<CostType, Decimal> costDataSource})
+      : _costList = costList,
+        _costDataSource = costDataSource;
 
   @override
   final Decimal totalCost;
@@ -185,9 +201,17 @@ class _$CostStateImpl implements _CostState {
     return EqualUnmodifiableListView(_costList);
   }
 
+  final Map<CostType, Decimal> _costDataSource;
+  @override
+  Map<CostType, Decimal> get costDataSource {
+    if (_costDataSource is EqualUnmodifiableMapView) return _costDataSource;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_costDataSource);
+  }
+
   @override
   String toString() {
-    return 'CostState(totalCost: $totalCost, lastMonthCost: $lastMonthCost, currentMonthCost: $currentMonthCost, costChangeRate: $costChangeRate, currentCostType: $currentCostType, costList: $costList)';
+    return 'CostState(totalCost: $totalCost, lastMonthCost: $lastMonthCost, currentMonthCost: $currentMonthCost, costChangeRate: $costChangeRate, currentCostType: $currentCostType, costList: $costList, costDataSource: $costDataSource)';
   }
 
   @override
@@ -205,7 +229,9 @@ class _$CostStateImpl implements _CostState {
                 other.costChangeRate == costChangeRate) &&
             (identical(other.currentCostType, currentCostType) ||
                 other.currentCostType == currentCostType) &&
-            const DeepCollectionEquality().equals(other._costList, _costList));
+            const DeepCollectionEquality().equals(other._costList, _costList) &&
+            const DeepCollectionEquality()
+                .equals(other._costDataSource, _costDataSource));
   }
 
   @override
@@ -216,7 +242,8 @@ class _$CostStateImpl implements _CostState {
       currentMonthCost,
       costChangeRate,
       currentCostType,
-      const DeepCollectionEquality().hash(_costList));
+      const DeepCollectionEquality().hash(_costList),
+      const DeepCollectionEquality().hash(_costDataSource));
 
   @JsonKey(ignore: true)
   @override
@@ -232,7 +259,8 @@ abstract class _CostState implements CostState {
       required final Decimal currentMonthCost,
       required final Decimal costChangeRate,
       required final String currentCostType,
-      required final List<CostInfo> costList}) = _$CostStateImpl;
+      required final List<CostInfo> costList,
+      required final Map<CostType, Decimal> costDataSource}) = _$CostStateImpl;
 
   @override
   Decimal get totalCost;
@@ -246,6 +274,8 @@ abstract class _CostState implements CostState {
   String get currentCostType;
   @override
   List<CostInfo> get costList;
+  @override
+  Map<CostType, Decimal> get costDataSource;
   @override
   @JsonKey(ignore: true)
   _$$CostStateImplCopyWith<_$CostStateImpl> get copyWith =>

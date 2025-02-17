@@ -18,14 +18,15 @@ class CostState with _$CostState {
     required Decimal costChangeRate,
     required String currentCostType,
     required List<CostInfo> costList,
+    required Map<CostType, Decimal> costDataSource,
   }) = _CostState;
 
   factory CostState.init() => CostState(
-        totalCost: Decimal.zero,
-        lastMonthCost: Decimal.zero,
-        currentMonthCost: Decimal.zero,
-        costChangeRate: Decimal.zero,
-        currentCostType: CostTypeHelper.name(CostType.eat),
-        costList: [],
-      );
+      totalCost: Decimal.zero,
+      lastMonthCost: Decimal.zero,
+      currentMonthCost: Decimal.zero,
+      costChangeRate: Decimal.zero,
+      currentCostType: CostTypeHelper.name(CostType.eat),
+      costList: [],
+      costDataSource: {});
 }

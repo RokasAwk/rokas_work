@@ -87,6 +87,7 @@ class CostNotifierImpl extends CostNotifier {
 
   @override
   void goToHistoryChartPage() {
+    _calTotalData();
     appRouter.push(const CostListChartRoute());
   }
 
@@ -103,5 +104,18 @@ class CostNotifierImpl extends CostNotifier {
         costType: costType,
         createTime: DateTime.now());
     FirestoreCostListService().addData(costData);
+  }
+
+  void _calTotalData() {
+    Map<CostType, Decimal> dataSource = {};
+    for (var element in state.costList) {
+      if (!dataSource.keys.contains(element.costType)) {
+        dataSource.addAll({element.costType: element.price});
+      } else {
+        dataSource.update(element.costType,
+            (value) => dataSource[element.costType]! + element.price);
+      }
+    }
+    state = state.copyWith(costDataSource: dataSource);
   }
 }
