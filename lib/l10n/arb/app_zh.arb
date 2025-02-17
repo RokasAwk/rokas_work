@@ -107,5 +107,17 @@
     "page_weather_week_weather_tab": "未來一週天氣預報",
     "common_advanced_search": "進階搜尋",
     "common_search_city": "搜尋縣市",
-    "common_search_city_hint": "請輸入縣市完整名稱"
+    "common_search_city_hint": "請輸入縣市完整名稱",
+    "page_cost_category_item_food":  "伙食",
+    "page_cost_category_item_drink":  "飲料",
+    "page_cost_category_item_dailyLife":  "生活用品",
+    "page_cost_category_item_bill":  "帳單",
+    "page_cost_category_item_entertainment":  "娛樂",
+    "page_cost_category_item_invest":  "投資",
+    "page_cost_category_item_pet":  "寵物",
+    "page_cost_category_item_learn":  "學習",
+    "page_cost_category_item_hotel":  "住宿",
+    "page_cost_category_item_traffic":  "交通",
+    "page_cost_category_item_other":  "其他",
+    "page_cost_list_title":  "花費歷史"
 }
