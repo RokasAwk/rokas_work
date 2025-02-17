@@ -30,7 +30,7 @@ class PrimaryButton extends StatelessWidget {
       Expanded(
         child: TextButton(
           style: TextButton.styleFrom(
-            backgroundColor: AppColors.blueGray,
+            backgroundColor: AppColors.orange,
             padding: EdgeInsets.symmetric(vertical: verticalPadding),
           ),
           onPressed: onPressed,
