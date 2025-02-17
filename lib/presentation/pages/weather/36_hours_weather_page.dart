@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rokas_work/l10n/l10n.dart';
@@ -13,6 +14,8 @@ import 'package:rokas_work/utils/toast_utils.dart';
 
 import '../../../domain/value_object/36_hours_weather.dart';
 import '../../di_providers/di_provider.dart';
+import '../widgets/common_border.dart';
+import 'weather_const.dart';
 import 'weather_notifier.dart';
 import 'weather_state.dart';
 
@@ -64,6 +67,7 @@ class _ThirtySixHoursWeatherPageState
           _buildBody(
         thirtySixHoursWeatherDataList: thirtySixHoursWeatherDataList,
         notifier: notifier,
+        state: state,
       ),
       error: () => ErrorStateWidget(
         onRetry: () async => await ref
@@ -76,13 +80,14 @@ class _ThirtySixHoursWeatherPageState
   Widget _buildBody({
     required List<ThirtySixHoursWeather> thirtySixHoursWeatherDataList,
     required WeatherNotifier notifier,
+    required WeatherState state,
   }) {
     return Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           FilterButton(
-              onTap: () => ToastUtils.showCustomDialog(
-                  IconDialog.withBodyWidget(
+              onTap: () =>
+                  ToastUtils.showCustomDialog(IconDialog.withBodyWidget(
                       message: L10n.tr.common_advanced_search,
                       onCancel: () {
                         searchController.clear();
@@ -93,15 +98,33 @@ class _ThirtySixHoursWeatherPageState
                             .read(weatherStateNotifierProvider.notifier)
                             .fetch36HoursWeatherData(
                                 elementName: 'MinT,MaxT',
-                                locationName: searchController.text);
-                        searchController.clear();
+                                locationName: (state as Success).currentCity);
                         appRouter.pop();
                       },
-                      subContent: FormFieldWithTitle(
-                          controller: searchController,
-                          titleText: L10n.tr.common_search_city,
-                          textStyle: AppTextStyles.appW600White,
-                          hintText: L10n.tr.common_search_city_hint))),
+                      subContent: DropdownSearch<String>(
+                        selectedItem: WeatherConst.cityList.first,
+                        items: (filter, infiniteScrollProps) =>
+                            WeatherConst.cityList,
+                        decoratorProps: DropDownDecoratorProps(
+                          baseStyle: AppTextStyles.appW400White,
+                          decoration: InputDecoration(
+                            labelText: L10n.tr.common_search_city_hint,
+                            border: const OutlineInputBorder(),
+                            labelStyle: AppTextStyles.appW400BlueGray,
+                            enabledBorder: enableBorder(),
+                            focusedBorder: focusBorder(),
+                            errorBorder: errorBorder(),
+                            suffixIconColor: AppColors.white,
+                          ),
+                        ),
+                        popupProps: PopupProps.menu(
+                            fit: FlexFit.loose,
+                            constraints:
+                                BoxConstraints(maxHeight: size.height * 0.3),
+                            searchFieldProps: const TextFieldProps()),
+                        onChanged: (value) => notifier.updateCurrentCity(
+                            currentCity: value ?? ''),
+                      ))),
               filterTitle: L10n.tr.common_advanced_search),
           const SizedBox(height: 8),
           Expanded(

@@ -74,7 +74,7 @@ class WeatherNotifierImpl extends WeatherNotifier {
     );
     final result = await fetch36HoursWeatherUseCase.execute(query);
     result.when(success: (data) {
-      if (state is Loading) {
+      if (state is Loading || state is Error) {
         state = Success(
             weekWeatherDataList: [],
             thirtySixHoursWeatherDataList: data,
