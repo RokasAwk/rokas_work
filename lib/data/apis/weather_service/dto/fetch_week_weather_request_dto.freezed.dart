@@ -21,8 +21,8 @@ FetchWeekWeatherRequestDto _$FetchWeekWeatherRequestDtoFromJson(
 
 /// @nodoc
 mixin _$FetchWeekWeatherRequestDto {
-  String? get elementName => throw _privateConstructorUsedError;
-  String? get locationName => throw _privateConstructorUsedError;
+  List<String>? get ElementName => throw _privateConstructorUsedError;
+  List<String>? get LocationName => throw _privateConstructorUsedError;
   String get Authorization => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +38,10 @@ abstract class $FetchWeekWeatherRequestDtoCopyWith<$Res> {
       _$FetchWeekWeatherRequestDtoCopyWithImpl<$Res,
           FetchWeekWeatherRequestDto>;
   @useResult
-  $Res call({String? elementName, String? locationName, String Authorization});
+  $Res call(
+      {List<String>? ElementName,
+      List<String>? LocationName,
+      String Authorization});
 }
 
 /// @nodoc
@@ -55,19 +58,19 @@ class _$FetchWeekWeatherRequestDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementName = freezed,
-    Object? locationName = freezed,
+    Object? ElementName = freezed,
+    Object? LocationName = freezed,
     Object? Authorization = null,
   }) {
     return _then(_value.copyWith(
-      elementName: freezed == elementName
-          ? _value.elementName
-          : elementName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      locationName: freezed == locationName
-          ? _value.locationName
-          : locationName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      ElementName: freezed == ElementName
+          ? _value.ElementName
+          : ElementName // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      LocationName: freezed == LocationName
+          ? _value.LocationName
+          : LocationName // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       Authorization: null == Authorization
           ? _value.Authorization
           : Authorization // ignore: cast_nullable_to_non_nullable
@@ -85,7 +88,10 @@ abstract class _$$FetchWeekWeatherRequestDtoImplCopyWith<$Res>
       __$$FetchWeekWeatherRequestDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? elementName, String? locationName, String Authorization});
+  $Res call(
+      {List<String>? ElementName,
+      List<String>? LocationName,
+      String Authorization});
 }
 
 /// @nodoc
@@ -101,19 +107,19 @@ class __$$FetchWeekWeatherRequestDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? elementName = freezed,
-    Object? locationName = freezed,
+    Object? ElementName = freezed,
+    Object? LocationName = freezed,
     Object? Authorization = null,
   }) {
     return _then(_$FetchWeekWeatherRequestDtoImpl(
-      elementName: freezed == elementName
-          ? _value.elementName
-          : elementName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      locationName: freezed == locationName
-          ? _value.locationName
-          : locationName // ignore: cast_nullable_to_non_nullable
-              as String?,
+      ElementName: freezed == ElementName
+          ? _value._ElementName
+          : ElementName // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      LocationName: freezed == LocationName
+          ? _value._LocationName
+          : LocationName // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       Authorization: null == Authorization
           ? _value.Authorization
           : Authorization // ignore: cast_nullable_to_non_nullable
@@ -126,22 +132,42 @@ class __$$FetchWeekWeatherRequestDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FetchWeekWeatherRequestDtoImpl implements _FetchWeekWeatherRequestDto {
   _$FetchWeekWeatherRequestDtoImpl(
-      {this.elementName, this.locationName, required this.Authorization});
+      {final List<String>? ElementName,
+      final List<String>? LocationName,
+      required this.Authorization})
+      : _ElementName = ElementName,
+        _LocationName = LocationName;
 
   factory _$FetchWeekWeatherRequestDtoImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$FetchWeekWeatherRequestDtoImplFromJson(json);
 
+  final List<String>? _ElementName;
   @override
-  final String? elementName;
+  List<String>? get ElementName {
+    final value = _ElementName;
+    if (value == null) return null;
+    if (_ElementName is EqualUnmodifiableListView) return _ElementName;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  final List<String>? _LocationName;
   @override
-  final String? locationName;
+  List<String>? get LocationName {
+    final value = _LocationName;
+    if (value == null) return null;
+    if (_LocationName is EqualUnmodifiableListView) return _LocationName;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String Authorization;
 
   @override
   String toString() {
-    return 'FetchWeekWeatherRequestDto(elementName: $elementName, locationName: $locationName, Authorization: $Authorization)';
+    return 'FetchWeekWeatherRequestDto(ElementName: $ElementName, LocationName: $LocationName, Authorization: $Authorization)';
   }
 
   @override
@@ -149,18 +175,21 @@ class _$FetchWeekWeatherRequestDtoImpl implements _FetchWeekWeatherRequestDto {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchWeekWeatherRequestDtoImpl &&
-            (identical(other.elementName, elementName) ||
-                other.elementName == elementName) &&
-            (identical(other.locationName, locationName) ||
-                other.locationName == locationName) &&
+            const DeepCollectionEquality()
+                .equals(other._ElementName, _ElementName) &&
+            const DeepCollectionEquality()
+                .equals(other._LocationName, _LocationName) &&
             (identical(other.Authorization, Authorization) ||
                 other.Authorization == Authorization));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, elementName, locationName, Authorization);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_ElementName),
+      const DeepCollectionEquality().hash(_LocationName),
+      Authorization);
 
   @JsonKey(ignore: true)
   @override
@@ -180,17 +209,17 @@ class _$FetchWeekWeatherRequestDtoImpl implements _FetchWeekWeatherRequestDto {
 abstract class _FetchWeekWeatherRequestDto
     implements FetchWeekWeatherRequestDto {
   factory _FetchWeekWeatherRequestDto(
-      {final String? elementName,
-      final String? locationName,
+      {final List<String>? ElementName,
+      final List<String>? LocationName,
       required final String Authorization}) = _$FetchWeekWeatherRequestDtoImpl;
 
   factory _FetchWeekWeatherRequestDto.fromJson(Map<String, dynamic> json) =
       _$FetchWeekWeatherRequestDtoImpl.fromJson;
 
   @override
-  String? get elementName;
+  List<String>? get ElementName;
   @override
-  String? get locationName;
+  List<String>? get LocationName;
   @override
   String get Authorization;
   @override

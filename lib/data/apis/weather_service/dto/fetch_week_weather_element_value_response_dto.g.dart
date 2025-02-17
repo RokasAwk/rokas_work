@@ -10,11 +10,11 @@ _$FetchWeekWeatherelEmentValueResponseDtoImpl
     _$$FetchWeekWeatherelEmentValueResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
         _$FetchWeekWeatherelEmentValueResponseDtoImpl(
-          value: json['value'] as String?,
+          Value: json['Value'] as String?,
         );
 
 Map<String, dynamic> _$$FetchWeekWeatherelEmentValueResponseDtoImplToJson(
         _$FetchWeekWeatherelEmentValueResponseDtoImpl instance) =>
     <String, dynamic>{
-      'value': instance.value,
+      'Value': instance.Value,
     };

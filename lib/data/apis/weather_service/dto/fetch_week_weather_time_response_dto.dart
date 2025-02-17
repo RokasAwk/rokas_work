@@ -8,9 +8,9 @@ part 'fetch_week_weather_time_response_dto.g.dart';
 @freezed
 class FetchWeekWeatherTimeResponseDto with _$FetchWeekWeatherTimeResponseDto {
   factory FetchWeekWeatherTimeResponseDto({
-    String? startTime,
-    String? endTime,
-    List<FetchWeekWeatherelEmentValueResponseDto>? elementValue,
+    String? StartTime,
+    String? EndTime,
+    List<FetchWeekWeatherelEmentValueResponseDto>? ElementValue,
   }) = _FetchWeekWeatherTimeResponseDto;
 
   factory FetchWeekWeatherTimeResponseDto.fromJson(Map<String, dynamic> json) =>

@@ -35,13 +35,13 @@ class WeatherRepositoryImpl extends WeatherRepository {
     String? locationName,
   }) async {
     FetchWeekWeatherRequestDto dto = FetchWeekWeatherRequestDto(
-      elementName: elementName,
-      locationName: locationName,
+      ElementName: elementName == null ? null : [elementName],
+      LocationName: locationName == null ? null : [locationName],
       Authorization: WeatherConst.authKey,
     );
     var r = await _weatherApi().fetchWeekWeather(dto);
 
-    List<WeekWeather> weekWeatherList = r.records!.locations![0].location!
+    List<WeekWeather> weekWeatherList = r.records!.Locations![0].Location!
         .map((e) => e.toWeekWeather())
         .toList();
 
@@ -71,9 +71,9 @@ extension FetchWeekWeatherLocationResponseDtoMapper
     on FetchWeekWeatherLocationResponseDto {
   WeekWeather toWeekWeather() {
     return WeekWeather(
-      locationName: locationName ?? '',
+      locationName: LocationName ?? '',
       weatherElement: WeekWeatherElement(
-          time: weatherElement![0].time!.map((e) => e.toWeekTime()).toList()),
+          time: WeatherElement![0].Time!.map((e) => e.toWeekTime()).toList()),
     );
   }
 }
@@ -82,10 +82,10 @@ extension FetchWeekWeatherTimeResponseDtoMapper
     on FetchWeekWeatherTimeResponseDto {
   WeekTime toWeekTime() {
     return WeekTime(
-      startTime: startTime ?? DateTime.parse('1970-01-01').toDateTimeString(),
-      endTime: endTime ?? DateTime.parse('1970-01-01').toDateTimeString(),
+      startTime: StartTime ?? DateTime.parse('1970-01-01').toDateTimeString(),
+      endTime: EndTime ?? DateTime.parse('1970-01-01').toDateTimeString(),
       elementValue:
-          WeekElementValue(weatherDescription: elementValue?[0].value ?? ''),
+          WeekElementValue(weatherDescription: ElementValue?[0].Value ?? ''),
     );
   }
 }

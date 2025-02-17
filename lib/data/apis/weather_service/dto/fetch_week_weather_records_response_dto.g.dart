@@ -10,7 +10,7 @@ _$FetchWeekWeatherRecordsResponseDtoImpl
     _$$FetchWeekWeatherRecordsResponseDtoImplFromJson(
             Map<String, dynamic> json) =>
         _$FetchWeekWeatherRecordsResponseDtoImpl(
-          locations: (json['locations'] as List<dynamic>?)
+          Locations: (json['Locations'] as List<dynamic>?)
               ?.map((e) => FetchWeekWeatherLocationsResponseDto.fromJson(
                   e as Map<String, dynamic>))
               .toList(),
@@ -19,5 +19,5 @@ _$FetchWeekWeatherRecordsResponseDtoImpl
 Map<String, dynamic> _$$FetchWeekWeatherRecordsResponseDtoImplToJson(
         _$FetchWeekWeatherRecordsResponseDtoImpl instance) =>
     <String, dynamic>{
-      'locations': instance.locations,
+      'Locations': instance.Locations,
     };

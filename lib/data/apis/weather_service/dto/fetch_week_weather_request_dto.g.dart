@@ -9,15 +9,19 @@ part of 'fetch_week_weather_request_dto.dart';
 _$FetchWeekWeatherRequestDtoImpl _$$FetchWeekWeatherRequestDtoImplFromJson(
         Map<String, dynamic> json) =>
     _$FetchWeekWeatherRequestDtoImpl(
-      elementName: json['elementName'] as String?,
-      locationName: json['locationName'] as String?,
+      ElementName: (json['ElementName'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
+      LocationName: (json['LocationName'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       Authorization: json['Authorization'] as String,
     );
 
 Map<String, dynamic> _$$FetchWeekWeatherRequestDtoImplToJson(
         _$FetchWeekWeatherRequestDtoImpl instance) =>
     <String, dynamic>{
-      'elementName': instance.elementName,
-      'locationName': instance.locationName,
+      'ElementName': instance.ElementName,
+      'LocationName': instance.LocationName,
       'Authorization': instance.Authorization,
     };

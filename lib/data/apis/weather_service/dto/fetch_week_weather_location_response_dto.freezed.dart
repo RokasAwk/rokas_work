@@ -21,8 +21,8 @@ FetchWeekWeatherLocationResponseDto
 
 /// @nodoc
 mixin _$FetchWeekWeatherLocationResponseDto {
-  String? get locationName => throw _privateConstructorUsedError;
-  List<FetchWeekWeatherWeatherElementResponseDto>? get weatherElement =>
+  String? get LocationName => throw _privateConstructorUsedError;
+  List<FetchWeekWeatherWeatherElementResponseDto>? get WeatherElement =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,8 +41,8 @@ abstract class $FetchWeekWeatherLocationResponseDtoCopyWith<$Res> {
           FetchWeekWeatherLocationResponseDto>;
   @useResult
   $Res call(
-      {String? locationName,
-      List<FetchWeekWeatherWeatherElementResponseDto>? weatherElement});
+      {String? LocationName,
+      List<FetchWeekWeatherWeatherElementResponseDto>? WeatherElement});
 }
 
 /// @nodoc
@@ -59,17 +59,17 @@ class _$FetchWeekWeatherLocationResponseDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locationName = freezed,
-    Object? weatherElement = freezed,
+    Object? LocationName = freezed,
+    Object? WeatherElement = freezed,
   }) {
     return _then(_value.copyWith(
-      locationName: freezed == locationName
-          ? _value.locationName
-          : locationName // ignore: cast_nullable_to_non_nullable
+      LocationName: freezed == LocationName
+          ? _value.LocationName
+          : LocationName // ignore: cast_nullable_to_non_nullable
               as String?,
-      weatherElement: freezed == weatherElement
-          ? _value.weatherElement
-          : weatherElement // ignore: cast_nullable_to_non_nullable
+      WeatherElement: freezed == WeatherElement
+          ? _value.WeatherElement
+          : WeatherElement // ignore: cast_nullable_to_non_nullable
               as List<FetchWeekWeatherWeatherElementResponseDto>?,
     ) as $Val);
   }
@@ -85,8 +85,8 @@ abstract class _$$FetchWeekWeatherLocationResponseDtoImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String? locationName,
-      List<FetchWeekWeatherWeatherElementResponseDto>? weatherElement});
+      {String? LocationName,
+      List<FetchWeekWeatherWeatherElementResponseDto>? WeatherElement});
 }
 
 /// @nodoc
@@ -102,17 +102,17 @@ class __$$FetchWeekWeatherLocationResponseDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locationName = freezed,
-    Object? weatherElement = freezed,
+    Object? LocationName = freezed,
+    Object? WeatherElement = freezed,
   }) {
     return _then(_$FetchWeekWeatherLocationResponseDtoImpl(
-      locationName: freezed == locationName
-          ? _value.locationName
-          : locationName // ignore: cast_nullable_to_non_nullable
+      LocationName: freezed == LocationName
+          ? _value.LocationName
+          : LocationName // ignore: cast_nullable_to_non_nullable
               as String?,
-      weatherElement: freezed == weatherElement
-          ? _value._weatherElement
-          : weatherElement // ignore: cast_nullable_to_non_nullable
+      WeatherElement: freezed == WeatherElement
+          ? _value._WeatherElement
+          : WeatherElement // ignore: cast_nullable_to_non_nullable
               as List<FetchWeekWeatherWeatherElementResponseDto>?,
     ));
   }
@@ -123,29 +123,29 @@ class __$$FetchWeekWeatherLocationResponseDtoImplCopyWithImpl<$Res>
 class _$FetchWeekWeatherLocationResponseDtoImpl
     implements _FetchWeekWeatherLocationResponseDto {
   _$FetchWeekWeatherLocationResponseDtoImpl(
-      {this.locationName,
-      final List<FetchWeekWeatherWeatherElementResponseDto>? weatherElement})
-      : _weatherElement = weatherElement;
+      {this.LocationName,
+      final List<FetchWeekWeatherWeatherElementResponseDto>? WeatherElement})
+      : _WeatherElement = WeatherElement;
 
   factory _$FetchWeekWeatherLocationResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$FetchWeekWeatherLocationResponseDtoImplFromJson(json);
 
   @override
-  final String? locationName;
-  final List<FetchWeekWeatherWeatherElementResponseDto>? _weatherElement;
+  final String? LocationName;
+  final List<FetchWeekWeatherWeatherElementResponseDto>? _WeatherElement;
   @override
-  List<FetchWeekWeatherWeatherElementResponseDto>? get weatherElement {
-    final value = _weatherElement;
+  List<FetchWeekWeatherWeatherElementResponseDto>? get WeatherElement {
+    final value = _WeatherElement;
     if (value == null) return null;
-    if (_weatherElement is EqualUnmodifiableListView) return _weatherElement;
+    if (_WeatherElement is EqualUnmodifiableListView) return _WeatherElement;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'FetchWeekWeatherLocationResponseDto(locationName: $locationName, weatherElement: $weatherElement)';
+    return 'FetchWeekWeatherLocationResponseDto(LocationName: $LocationName, WeatherElement: $WeatherElement)';
   }
 
   @override
@@ -153,16 +153,16 @@ class _$FetchWeekWeatherLocationResponseDtoImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchWeekWeatherLocationResponseDtoImpl &&
-            (identical(other.locationName, locationName) ||
-                other.locationName == locationName) &&
+            (identical(other.LocationName, LocationName) ||
+                other.LocationName == LocationName) &&
             const DeepCollectionEquality()
-                .equals(other._weatherElement, _weatherElement));
+                .equals(other._WeatherElement, _WeatherElement));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, locationName,
-      const DeepCollectionEquality().hash(_weatherElement));
+  int get hashCode => Object.hash(runtimeType, LocationName,
+      const DeepCollectionEquality().hash(_WeatherElement));
 
   @JsonKey(ignore: true)
   @override
@@ -183,18 +183,18 @@ class _$FetchWeekWeatherLocationResponseDtoImpl
 abstract class _FetchWeekWeatherLocationResponseDto
     implements FetchWeekWeatherLocationResponseDto {
   factory _FetchWeekWeatherLocationResponseDto(
-      {final String? locationName,
+      {final String? LocationName,
       final List<FetchWeekWeatherWeatherElementResponseDto>?
-          weatherElement}) = _$FetchWeekWeatherLocationResponseDtoImpl;
+          WeatherElement}) = _$FetchWeekWeatherLocationResponseDtoImpl;
 
   factory _FetchWeekWeatherLocationResponseDto.fromJson(
           Map<String, dynamic> json) =
       _$FetchWeekWeatherLocationResponseDtoImpl.fromJson;
 
   @override
-  String? get locationName;
+  String? get LocationName;
   @override
-  List<FetchWeekWeatherWeatherElementResponseDto>? get weatherElement;
+  List<FetchWeekWeatherWeatherElementResponseDto>? get WeatherElement;
   @override
   @JsonKey(ignore: true)
   _$$FetchWeekWeatherLocationResponseDtoImplCopyWith<

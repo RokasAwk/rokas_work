@@ -41,7 +41,7 @@ class _WeekWeatherPageState extends ConsumerState<WeekWeatherPage> {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await ref
           .read(weatherStateNotifierProvider.notifier)
-          .fetchWeekWeatherData(elementName: 'WeatherDescription');
+          .fetchWeekWeatherData(elementName: '天氣預報綜合描述');
     });
     super.initState();
   }
@@ -202,11 +202,11 @@ class _WeekWeatherPageState extends ConsumerState<WeekWeatherPage> {
                 child: Column(
                   children: [
                     Text(
-                      title.split(' ')[0],
+                      title.split('T')[0],
                       textAlign: TextAlign.center,
                     ),
                     Text(
-                      title.split(' ')[1],
+                      title.split('T')[1].split('+')[0],
                       textAlign: TextAlign.center,
                     ),
                   ],

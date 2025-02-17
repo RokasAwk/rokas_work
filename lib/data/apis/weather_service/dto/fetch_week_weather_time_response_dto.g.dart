@@ -9,9 +9,9 @@ part of 'fetch_week_weather_time_response_dto.dart';
 _$FetchWeekWeatherTimeResponseDtoImpl
     _$$FetchWeekWeatherTimeResponseDtoImplFromJson(Map<String, dynamic> json) =>
         _$FetchWeekWeatherTimeResponseDtoImpl(
-          startTime: json['startTime'] as String?,
-          endTime: json['endTime'] as String?,
-          elementValue: (json['elementValue'] as List<dynamic>?)
+          StartTime: json['StartTime'] as String?,
+          EndTime: json['EndTime'] as String?,
+          ElementValue: (json['ElementValue'] as List<dynamic>?)
               ?.map((e) => FetchWeekWeatherelEmentValueResponseDto.fromJson(
                   e as Map<String, dynamic>))
               .toList(),
@@ -20,7 +20,7 @@ _$FetchWeekWeatherTimeResponseDtoImpl
 Map<String, dynamic> _$$FetchWeekWeatherTimeResponseDtoImplToJson(
         _$FetchWeekWeatherTimeResponseDtoImpl instance) =>
     <String, dynamic>{
-      'startTime': instance.startTime,
-      'endTime': instance.endTime,
-      'elementValue': instance.elementValue,
+      'StartTime': instance.StartTime,
+      'EndTime': instance.EndTime,
+      'ElementValue': instance.ElementValue,
     };

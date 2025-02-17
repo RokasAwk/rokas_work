@@ -22,7 +22,7 @@ FetchWeekWeatherelEmentValueResponseDto
 
 /// @nodoc
 mixin _$FetchWeekWeatherelEmentValueResponseDto {
-  String? get value => throw _privateConstructorUsedError;
+  String? get Value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,7 +39,7 @@ abstract class $FetchWeekWeatherelEmentValueResponseDtoCopyWith<$Res> {
       _$FetchWeekWeatherelEmentValueResponseDtoCopyWithImpl<$Res,
           FetchWeekWeatherelEmentValueResponseDto>;
   @useResult
-  $Res call({String? value});
+  $Res call({String? Value});
 }
 
 /// @nodoc
@@ -57,12 +57,12 @@ class _$FetchWeekWeatherelEmentValueResponseDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? Value = freezed,
   }) {
     return _then(_value.copyWith(
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      Value: freezed == Value
+          ? _value.Value
+          : Value // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -77,7 +77,7 @@ abstract class _$$FetchWeekWeatherelEmentValueResponseDtoImplCopyWith<$Res>
       __$$FetchWeekWeatherelEmentValueResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? value});
+  $Res call({String? Value});
 }
 
 /// @nodoc
@@ -93,12 +93,12 @@ class __$$FetchWeekWeatherelEmentValueResponseDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? Value = freezed,
   }) {
     return _then(_$FetchWeekWeatherelEmentValueResponseDtoImpl(
-      value: freezed == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
+      Value: freezed == Value
+          ? _value.Value
+          : Value // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -108,18 +108,18 @@ class __$$FetchWeekWeatherelEmentValueResponseDtoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$FetchWeekWeatherelEmentValueResponseDtoImpl
     implements _FetchWeekWeatherelEmentValueResponseDto {
-  _$FetchWeekWeatherelEmentValueResponseDtoImpl({this.value});
+  _$FetchWeekWeatherelEmentValueResponseDtoImpl({this.Value});
 
   factory _$FetchWeekWeatherelEmentValueResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$FetchWeekWeatherelEmentValueResponseDtoImplFromJson(json);
 
   @override
-  final String? value;
+  final String? Value;
 
   @override
   String toString() {
-    return 'FetchWeekWeatherelEmentValueResponseDto(value: $value)';
+    return 'FetchWeekWeatherelEmentValueResponseDto(Value: $Value)';
   }
 
   @override
@@ -127,12 +127,12 @@ class _$FetchWeekWeatherelEmentValueResponseDtoImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FetchWeekWeatherelEmentValueResponseDtoImpl &&
-            (identical(other.value, value) || other.value == value));
+            (identical(other.Value, Value) || other.Value == Value));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, Value);
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +153,7 @@ class _$FetchWeekWeatherelEmentValueResponseDtoImpl
 
 abstract class _FetchWeekWeatherelEmentValueResponseDto
     implements FetchWeekWeatherelEmentValueResponseDto {
-  factory _FetchWeekWeatherelEmentValueResponseDto({final String? value}) =
+  factory _FetchWeekWeatherelEmentValueResponseDto({final String? Value}) =
       _$FetchWeekWeatherelEmentValueResponseDtoImpl;
 
   factory _FetchWeekWeatherelEmentValueResponseDto.fromJson(
@@ -161,7 +161,7 @@ abstract class _FetchWeekWeatherelEmentValueResponseDto
       _$FetchWeekWeatherelEmentValueResponseDtoImpl.fromJson;
 
   @override
-  String? get value;
+  String? get Value;
   @override
   @JsonKey(ignore: true)
   _$$FetchWeekWeatherelEmentValueResponseDtoImplCopyWith<

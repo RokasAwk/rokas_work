@@ -9,8 +9,8 @@ part 'fetch_week_weather_locations_response_dto.g.dart';
 class FetchWeekWeatherLocationsResponseDto
     with _$FetchWeekWeatherLocationsResponseDto {
   factory FetchWeekWeatherLocationsResponseDto({
-    String? datasetDescription,
-    List<FetchWeekWeatherLocationResponseDto>? location,
+    String? DatasetDescription,
+    List<FetchWeekWeatherLocationResponseDto>? Location,
   }) = _FetchWeekWeatherLocationsResponseDto;
 
   factory FetchWeekWeatherLocationsResponseDto.fromJson(

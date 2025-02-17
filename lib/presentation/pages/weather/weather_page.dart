@@ -100,7 +100,7 @@ class _WeatherPageState extends ConsumerState<WeatherPage>
 
       case 0:
       default:
-        return notifier.fetchWeekWeatherData(elementName: 'WeatherDescription');
+        return notifier.fetchWeekWeatherData(elementName: '天氣預報綜合描述');
     }
   }
 

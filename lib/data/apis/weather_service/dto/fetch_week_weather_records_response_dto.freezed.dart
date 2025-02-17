@@ -21,7 +21,7 @@ FetchWeekWeatherRecordsResponseDto _$FetchWeekWeatherRecordsResponseDtoFromJson(
 
 /// @nodoc
 mixin _$FetchWeekWeatherRecordsResponseDto {
-  List<FetchWeekWeatherLocationsResponseDto>? get locations =>
+  List<FetchWeekWeatherLocationsResponseDto>? get Locations =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ abstract class $FetchWeekWeatherRecordsResponseDtoCopyWith<$Res> {
       _$FetchWeekWeatherRecordsResponseDtoCopyWithImpl<$Res,
           FetchWeekWeatherRecordsResponseDto>;
   @useResult
-  $Res call({List<FetchWeekWeatherLocationsResponseDto>? locations});
+  $Res call({List<FetchWeekWeatherLocationsResponseDto>? Locations});
 }
 
 /// @nodoc
@@ -56,12 +56,12 @@ class _$FetchWeekWeatherRecordsResponseDtoCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locations = freezed,
+    Object? Locations = freezed,
   }) {
     return _then(_value.copyWith(
-      locations: freezed == locations
-          ? _value.locations
-          : locations // ignore: cast_nullable_to_non_nullable
+      Locations: freezed == Locations
+          ? _value.Locations
+          : Locations // ignore: cast_nullable_to_non_nullable
               as List<FetchWeekWeatherLocationsResponseDto>?,
     ) as $Val);
   }
@@ -76,7 +76,7 @@ abstract class _$$FetchWeekWeatherRecordsResponseDtoImplCopyWith<$Res>
       __$$FetchWeekWeatherRecordsResponseDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<FetchWeekWeatherLocationsResponseDto>? locations});
+  $Res call({List<FetchWeekWeatherLocationsResponseDto>? Locations});
 }
 
 /// @nodoc
@@ -92,12 +92,12 @@ class __$$FetchWeekWeatherRecordsResponseDtoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? locations = freezed,
+    Object? Locations = freezed,
   }) {
     return _then(_$FetchWeekWeatherRecordsResponseDtoImpl(
-      locations: freezed == locations
-          ? _value._locations
-          : locations // ignore: cast_nullable_to_non_nullable
+      Locations: freezed == Locations
+          ? _value._Locations
+          : Locations // ignore: cast_nullable_to_non_nullable
               as List<FetchWeekWeatherLocationsResponseDto>?,
     ));
   }
@@ -108,26 +108,26 @@ class __$$FetchWeekWeatherRecordsResponseDtoImplCopyWithImpl<$Res>
 class _$FetchWeekWeatherRecordsResponseDtoImpl
     implements _FetchWeekWeatherRecordsResponseDto {
   _$FetchWeekWeatherRecordsResponseDtoImpl(
-      {final List<FetchWeekWeatherLocationsResponseDto>? locations})
-      : _locations = locations;
+      {final List<FetchWeekWeatherLocationsResponseDto>? Locations})
+      : _Locations = Locations;
 
   factory _$FetchWeekWeatherRecordsResponseDtoImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$FetchWeekWeatherRecordsResponseDtoImplFromJson(json);
 
-  final List<FetchWeekWeatherLocationsResponseDto>? _locations;
+  final List<FetchWeekWeatherLocationsResponseDto>? _Locations;
   @override
-  List<FetchWeekWeatherLocationsResponseDto>? get locations {
-    final value = _locations;
+  List<FetchWeekWeatherLocationsResponseDto>? get Locations {
+    final value = _Locations;
     if (value == null) return null;
-    if (_locations is EqualUnmodifiableListView) return _locations;
+    if (_Locations is EqualUnmodifiableListView) return _Locations;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
 
   @override
   String toString() {
-    return 'FetchWeekWeatherRecordsResponseDto(locations: $locations)';
+    return 'FetchWeekWeatherRecordsResponseDto(Locations: $Locations)';
   }
 
   @override
@@ -136,13 +136,13 @@ class _$FetchWeekWeatherRecordsResponseDtoImpl
         (other.runtimeType == runtimeType &&
             other is _$FetchWeekWeatherRecordsResponseDtoImpl &&
             const DeepCollectionEquality()
-                .equals(other._locations, _locations));
+                .equals(other._Locations, _Locations));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_locations));
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_Locations));
 
   @JsonKey(ignore: true)
   @override
@@ -163,7 +163,7 @@ class _$FetchWeekWeatherRecordsResponseDtoImpl
 abstract class _FetchWeekWeatherRecordsResponseDto
     implements FetchWeekWeatherRecordsResponseDto {
   factory _FetchWeekWeatherRecordsResponseDto(
-          {final List<FetchWeekWeatherLocationsResponseDto>? locations}) =
+          {final List<FetchWeekWeatherLocationsResponseDto>? Locations}) =
       _$FetchWeekWeatherRecordsResponseDtoImpl;
 
   factory _FetchWeekWeatherRecordsResponseDto.fromJson(
@@ -171,7 +171,7 @@ abstract class _FetchWeekWeatherRecordsResponseDto
       _$FetchWeekWeatherRecordsResponseDtoImpl.fromJson;
 
   @override
-  List<FetchWeekWeatherLocationsResponseDto>? get locations;
+  List<FetchWeekWeatherLocationsResponseDto>? get Locations;
   @override
   @JsonKey(ignore: true)
   _$$FetchWeekWeatherRecordsResponseDtoImplCopyWith<
