@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
+import 'package:rokas_work/presentation/theme/app_text_styles.dart';
 
 import '../presentation/routers/router.dart';
 
@@ -32,15 +33,9 @@ class ToastUtils {
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: AppColors.blueGray.withOpacity(0.7),
+          color: AppColors.border,
         ),
-        child: Text(
-          msg,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 14,
-          ),
-        ),
+        child: Text(msg, style: AppTextStyles.appW400White),
       ),
       gravity: ToastGravity.CENTER,
       toastDuration: const Duration(seconds: 2),
