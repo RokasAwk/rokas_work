@@ -2,24 +2,24 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CostType {
   final int id;
-  final String costType;
+  final String title;
 
   CostType({
     required this.id,
-    required this.costType,
+    required this.title,
   });
 
   factory CostType.empty() => CostType(
         id: 0,
-        costType: '',
+        title: '',
       );
 
   CostType copyWith({
-    String? costType,
+    String? title,
   }) {
     return CostType(
       id: id,
-      costType: costType ?? this.costType,
+      title: title ?? this.title,
     );
   }
 
@@ -30,14 +30,14 @@ class CostType {
     final data = snapshot.data();
     return CostType(
       id: data?['id'],
-      costType: data?['cost_type'],
+      title: data?['cost_type'],
     );
   }
 
   Map<String, dynamic> toFirestore() {
     return {
       "id": id,
-      "cost_type": costType,
+      "title": title,
     };
   }
 }
