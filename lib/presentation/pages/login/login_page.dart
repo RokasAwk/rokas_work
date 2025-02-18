@@ -126,6 +126,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     required TextEditingController emailController,
     required TextEditingController passwordController,
   }) {
-    return PrimaryButton(title: L10n.tr.page_login_button, onPressed: () {});
+    return PrimaryButton(
+        title: L10n.tr.page_login_button,
+        onPressed: () => notifier.loginUser(
+              email: emailController.text,
+              password: passwordController.text,
+            ));
   }
 }

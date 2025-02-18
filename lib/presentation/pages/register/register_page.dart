@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
 import 'package:rokas_work/presentation/pages/widgets/primary_button.dart';
+import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
 
 import '../../di_providers/di_provider.dart';
@@ -94,14 +95,23 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                     FocusPopupTips(
                         key: _createUserHintFocusPopupTipsKey,
                         focusNode: _createUserHintFocusNode,
-                        tip: Text('並沒有'),
+                        tip: const Text(
+                          '並沒有',
+                          style: AppTextStyles.appW400WhiteMedium,
+                        ),
                         child: TextButton.icon(
                             focusNode: _createUserHintFocusNode,
                             icon: const FaIcon(
                               FontAwesomeIcons.circleExclamation,
                               size: 18,
+                              color: AppColors.blueGray,
                             ),
-                            onPressed: null,
+                            onPressed: () {
+                              _createUserHintFocusNode.requestFocus();
+                              Future.delayed(const Duration(seconds: 3), () {
+                                _createUserHintFocusNode.unfocus();
+                              });
+                            },
                             label: Text(
                               L10n.tr.page_register_become_user,
                               style: AppTextStyles.appW600N300.copyWith(
