@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,6 +12,7 @@ import 'package:rokas_work/presentation/resource/assets.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
 import 'package:rokas_work/presentation/utils/date_util.dart';
+import 'package:rokas_work/presentation/utils/share_preferance_util.dart';
 import 'package:rokas_work/utils/toast_utils.dart';
 
 import '../../di_providers/di_provider.dart';
@@ -51,12 +54,19 @@ class _HomePageState extends ConsumerState<HomePage> {
     Assets.punch6,
   ];
 
+  int currentTabIndex = 1;
+
   @override
   void initState() {
     dateTimeTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       ref
           .read(homeStateNotifierProvider.notifier)
           .updateCurrentTime(currentTime: DateTime.now());
+    });
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user != null) {
+        SharePreferenceUtil().setUserId(user.uid);
+      }
     });
     super.initState();
   }
@@ -75,49 +85,62 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            title: Text(L10n.tr.page_home_title),
-            leading: _buildDrawerButton(notifier),
-            actions: [
-              IconButton(
-                onPressed: () => notifier.goToLoginPage(),
-                icon: const FaIcon(FontAwesomeIcons.user),
-              )
+        appBar: AppBar(
+          title: Text(L10n.tr.page_home_title),
+          leading: _buildDrawerButton(notifier),
+          actions: [
+            IconButton(
+              onPressed: () => notifier.goToLoginPage(),
+              icon: const FaIcon(FontAwesomeIcons.user),
+            )
+          ],
+        ),
+        drawer: HomeDrawer(
+          size: size,
+          notifier: notifier,
+        ),
+        body: Container(
+          alignment: Alignment.topCenter,
+          padding: const EdgeInsets.only(bottom: 32),
+          child: Column(
+            children: [
+              _buildScrollMsg(size: size),
+              const SizedBox(height: 15),
+              Expanded(
+                  child: _buildBody(
+                state: state,
+                notifier: notifier,
+              )),
+              _buildPunchImgSection(),
+              const DevelopedByWidget(),
             ],
           ),
-          drawer: HomeDrawer(
-            size: size,
-            notifier: notifier,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: AppColors.r_200,
+          child: const FaIcon(
+            FontAwesomeIcons.house,
           ),
-          body: Container(
-            alignment: Alignment.topCenter,
-            padding: const EdgeInsets.only(bottom: 32),
-            child: Column(
-              children: [
-                _buildScrollMsg(size: size),
-                const SizedBox(height: 15),
-                Expanded(
-                    child: _buildBody(
-                  state: state,
-                  notifier: notifier,
-                )),
-                Row(
-                  children: [
-                    _buildSectionTitleDivider(),
-                    const Spacer(),
-                    Text(
-                      L10n.tr.page_punch_title,
-                      style: AppTextStyles.appW400Primary,
-                    ),
-                    const Spacer(),
-                    _buildSectionTitleDivider(isReverse: true),
-                  ],
-                ),
-                _buildPunchImgSection(),
-                const DevelopedByWidget(),
-              ],
-            ),
-          )),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: AnimatedBottomNavigationBar(
+          icons: const [
+            FontAwesomeIcons.battleNet,
+            FontAwesomeIcons.userNinja,
+            FontAwesomeIcons.user,
+            Icons.settings,
+          ],
+          activeIndex: currentTabIndex,
+          activeColor: AppColors.white,
+          inactiveColor: AppColors.white,
+          backgroundColor: AppColors.orange,
+          gapLocation: GapLocation.center,
+          notchSmoothness: NotchSmoothness.softEdge,
+          onTap: (index) => setState(() => currentTabIndex = index),
+          //other params
+        ),
+      ),
     );
   }
 
@@ -166,7 +189,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   Widget _buildDateTimeSection({
     required HomeState state,
   }) {
-    return Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Text(
         state.currentTime.toDateTimeString(),
         style: AppTextStyles.appW400N300Medium,
@@ -180,26 +203,27 @@ class _HomePageState extends ConsumerState<HomePage> {
   }) {
     return Column(
       children: [
-        Row(
-          children: [
-            Expanded(
-                flex: 2,
-                child: _buildDateTimeSection(
-                  state: state,
-                )),
-            Expanded(
-                flex: 1,
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  InkWell(
-                    onTap: () => notifier.goToLoginPage(),
-                    child: Text('登入?',
-                        style: AppTextStyles.appW600BlueGray.copyWith(
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Align(
+              alignment: Alignment.centerLeft,
+              child: InkWell(
+                onTap: () => notifier.goToLoginPage(),
+                child: Text(
+                    isLogin
+                        ? SharePreferenceUtil().getUserName() == null
+                            ? '你好，使用者！'
+                            : '狼客，${SharePreferenceUtil().getUserName().toString()} 歡迎回來！'
+                        : '登入?',
+                    style: isLogin
+                        ? AppTextStyles.appW600BlueGray.copyWith(fontSize: 24)
+                        : AppTextStyles.appW600BlueGray.copyWith(
                             decoration: TextDecoration.underline,
                             decorationStyle: TextDecorationStyle.dotted)),
-                  )
-                ]))
-          ],
+              )),
+        ),
+        _buildDateTimeSection(
+          state: state,
         ),
         const SizedBox(
           height: 16,
@@ -252,9 +276,10 @@ class _HomePageState extends ConsumerState<HomePage> {
   }) {
     return Container(
         height: 52 * ((functionsList.length ~/ 4) + 1),
+        margin: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColors.blueGrey_10,
-        ),
+            color: AppColors.blueGrey_10,
+            borderRadius: BorderRadius.circular(20)),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,

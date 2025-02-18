@@ -15,3 +15,9 @@ final thirtySixHoursWeatherUseCaseProvider =
     serverErrorFactory: ref.read(serverErrorFactoryProvider),
   );
 });
+
+final loginUseCaseProvider = Provider.autoDispose<LoginUseCase>((ref) {
+  return LoginUseCase(
+    authenticationRepository: ref.watch(authRepoProvider),
+  );
+});

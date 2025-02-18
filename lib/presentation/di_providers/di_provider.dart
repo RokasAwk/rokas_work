@@ -1,6 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:rokas_work/data/apis/weather_service/weather_api.dart';
+import 'package:rokas_work/data/repository/auth_repository/authentication_repository_impl.dart';
+import 'package:rokas_work/domain/repository/authentication_repository.dart';
+import 'package:rokas_work/domain/usecase/login/login_usecase.dart';
 import 'package:rokas_work/domain/usecase/weather/fetch_36_hours_weather_usecase.dart';
 import 'package:rokas_work/presentation/pages/profifle/profile_notifier.dart';
 
@@ -37,6 +41,19 @@ part "repo_provider.dart";
 
 final routerProvider = Provider<AppRouter>((ref) {
   return AppRouter();
+});
+
+final authRepoImplProvider = Provider<AuthenticationRepository>((ref) {
+  return AuthRepoImpl(
+    secureStorage: ref.read(securityStorageProvider),
+  );
+});
+
+final securityStorageProvider = Provider<FlutterSecureStorage>((ref) {
+  /// https://pub.dev/packages/flutter_secure_storage
+  /// When using the encryptedSharedPreferences parameter on Android,
+  /// make sure to pass the option to the constructor instead of the function
+  return const FlutterSecureStorage();
 });
 
 final homeStateNotifierProvider =
@@ -100,6 +117,7 @@ final loginStateNotifierProvider =
     StateNotifierProvider.autoDispose<LoginNotifier, LoginState>((ref) {
   return LoginNotifierImpl(
     appRouter: ref.read(routerProvider),
+    loginUseCase: ref.read(loginUseCaseProvider),
   );
 });
 
@@ -127,4 +145,8 @@ final weatherApiProvider = Provider.autoDispose<WeatherApi>((ref) {
 
 final serverErrorFactoryProvider = Provider<ServerErrorFactory>((ref) {
   return ServerErrorFactoryImpl();
+});
+
+final authRepoProvider = Provider.autoDispose<AuthenticationRepository>((ref) {
+  return ref.read(authRepoImplProvider);
 });
