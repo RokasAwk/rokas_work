@@ -59,7 +59,7 @@ class _OneATwoBPageState extends ConsumerState<OneATwoBPage> {
         title: Text(L10n.tr.page_1A_2B_title_in_page),
         leading: const BackButton(),
       ),
-      backgroundColor: AppColors.neutral_50,
+      backgroundColor: AppColors.grey,
       body: _buildBody(
         state: state,
         notifier: notifier,
@@ -254,7 +254,9 @@ class _OneATwoBPageState extends ConsumerState<OneATwoBPage> {
             children: [Text('第$index輪嘗試了$item次')]));
   }
 
-  Widget _buildEmptyList() => const EmptyListWidget();
+  Widget _buildEmptyList() => const EmptyListWidget(
+        isShowPic: false,
+      );
 
   Widget _buildGuessButton({
     required OneATwoBNotifier notifier,
@@ -326,7 +328,9 @@ class _OneATwoBPageState extends ConsumerState<OneATwoBPage> {
 
     for (int index = 0; index < codeList.length; index++) {
       if (state.radomAnswer.contains(codeList[index]) &&
-          (codeList[index] != state.radomAnswer[index])) {}
+          (codeList[index] != state.radomAnswer[index])) {
+        bCount++;
+      }
     }
 
     notifier.updateBCount(bCount);
