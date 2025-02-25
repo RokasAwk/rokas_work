@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:rokas_work/domain/value_object/credential.dart';
+import 'package:rokas_work/presentation/utils/share_preferance_util.dart';
 
 import '../../routers/router.dart';
 import 'home_state.dart';
 
 abstract class HomeNotifier extends StateNotifier<HomeState> {
   HomeNotifier(super.state);
-
   void updateCurrentTime({
     required DateTime currentTime,
   });
@@ -19,6 +20,7 @@ abstract class HomeNotifier extends StateNotifier<HomeState> {
   void goToOneATwoBPage();
   void goToLoginPage();
   void goToWeatherPage();
+  void onTapProfile(Future<Credential?> credential);
 
   void openDrawer(BuildContext context);
 }
@@ -85,5 +87,17 @@ class HomeNotifierImpl extends HomeNotifier {
   @override
   void goToWeatherPage() {
     appRouter.push(const WeatherRoute());
+  }
+
+  @override
+  void onTapProfile(Future<Credential?> credential) async {
+    bool isLogin = (SharePreferenceUtil().getUserId() != null);
+    if (isLogin) {
+      // 已登入
+      goToProfilePage();
+    } else {
+      // 未登入導向登入頁
+      goToLoginPage();
+    }
   }
 }

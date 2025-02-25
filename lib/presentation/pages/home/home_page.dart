@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rokas_work/l10n/l10n.dart';
+import 'package:rokas_work/presentation/pages/setting/setting_page.dart';
 import 'package:rokas_work/presentation/resource/assets.dart';
 import 'package:rokas_work/presentation/theme/app_colors.dart';
 import 'package:rokas_work/presentation/theme/app_text_styles.dart';
@@ -54,7 +55,7 @@ class _HomePageState extends ConsumerState<HomePage> {
     Assets.punch6,
   ];
 
-  int currentTabIndex = 1;
+  int currentTabIndex = 4;
 
   @override
   void initState() {
@@ -90,7 +91,8 @@ class _HomePageState extends ConsumerState<HomePage> {
           leading: _buildDrawerButton(notifier),
           actions: [
             IconButton(
-              onPressed: () => notifier.goToLoginPage(),
+              onPressed: () =>
+                  notifier.onTapProfile(ref.read(authRepoProvider).hasAuth()),
               icon: const FaIcon(FontAwesomeIcons.user),
             )
           ],
@@ -100,24 +102,19 @@ class _HomePageState extends ConsumerState<HomePage> {
           notifier: notifier,
         ),
         body: Container(
-          alignment: Alignment.topCenter,
-          padding: const EdgeInsets.only(bottom: 32),
-          child: Column(
-            children: [
-              _buildScrollMsg(size: size),
-              const SizedBox(height: 15),
-              Expanded(
-                  child: _buildBody(
-                state: state,
-                notifier: notifier,
-              )),
-              _buildPunchImgSection(),
-              const DevelopedByWidget(),
-            ],
-          ),
-        ),
+            alignment: Alignment.topCenter,
+            padding: const EdgeInsets.only(bottom: 32),
+            child: _buildPageBody(
+              state: state,
+              notifier: notifier,
+              index: currentTabIndex,
+            )),
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            setState(() {
+              currentTabIndex = 4;
+            });
+          },
           backgroundColor: AppColors.r_200,
           child: const FaIcon(
             FontAwesomeIcons.house,
@@ -142,6 +139,33 @@ class _HomePageState extends ConsumerState<HomePage> {
         ),
       ),
     );
+  }
+
+// 切換首頁Body
+  Widget _buildPageBody({
+    required HomeState state,
+    required HomeNotifier notifier,
+    required int index,
+  }) {
+    if (index == 0 || index == 1 || index == 2) {
+      return const SizedBox();
+    } else if (index == 3) {
+      return const SettingPage();
+    } else {
+      return Column(
+        children: [
+          _buildScrollMsg(size: size),
+          const SizedBox(height: 15),
+          Expanded(
+              child: _buildBody(
+            state: state,
+            notifier: notifier,
+          )),
+          _buildPunchImgSection(),
+          const DevelopedByWidget(),
+        ],
+      );
+    }
   }
 
 // 開啟Drawer的按鈕
@@ -177,7 +201,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           const SizedBox(width: 15),
           Expanded(
               child: Text(
-            L10n.tr.page_home_noify_title,
+            '${L10n.tr.page_home_noify_title} 洛卡斯的二代小工具開發中！',
             style: AppTextStyles.appW400Primary,
           ))
         ],
