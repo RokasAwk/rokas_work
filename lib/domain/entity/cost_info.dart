@@ -52,6 +52,7 @@ class CostInfo {
     return CostInfo(
         id: data?['id'],
         itemName: data?['itemName'],
+        memo: data?['memo'],
         price: data?['price'],
         costType: CostTypeHelper.toCostType(data?['costType']),
         createTime: data?['createTime']);
@@ -62,6 +63,7 @@ class CostInfo {
       "id": id,
       "itemName": itemName,
       "price": price.toString(),
+      "memo": memo,
       "costType": CostTypeHelper.name(costType),
       "createTime": createTime,
     };
