@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        PATH = "/Users/rokasawk/Desktop/development/flutter/bin:$PATH" 
+        FLUTTER_HOME = '/Users/rokasawk/Desktop/development/flutter'  // Flutter SDK 路径
+        PATH = "/Users/rokasawk/Desktop/development/flutter/bin:$PATH"   // 更新 PATH 环境变量
     }
     stages {
         stage('Build') { 
