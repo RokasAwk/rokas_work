@@ -1,14 +1,20 @@
 pipeline {
-    agent {
-        docker {
-            image 'jenkinsci/blueocean' 
-            args '-p 3000:3000' 
-        }
+    agent any
+    environment {
+        PATH = "/Users/rokasawk/Desktop/development/flutter/bin:$PATH" 
     }
     stages {
         stage('Build') { 
             steps {
-                sh 'flutter build' 
+                // Ensure Flutter is available
+                sh 'flutter --version'
+                sh 'flutter pub get'
+                sh 'flutter build apk'
+            }
+        }
+        stage('Test') { 
+            steps {
+                sh 'flutter test' 
             }
         }
     }
