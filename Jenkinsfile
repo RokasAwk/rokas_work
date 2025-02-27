@@ -5,6 +5,12 @@ pipeline {
         PATH = "/Users/rokasawk/Desktop/development/flutter/bin:$PATH"   // 更新 PATH 环境变量
     }
     stages {
+         stage('Setup') {
+            steps {
+                print "${env.PATH}"
+            }    
+        }
+        
         stage('Build') { 
             steps {
                 // Ensure Flutter is available
